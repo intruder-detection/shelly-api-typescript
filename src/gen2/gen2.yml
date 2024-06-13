@@ -1,0 +1,191 @@
+openapi: 3.0.0
+info:
+  title: Shelly Gen 2 Device HTTP API
+  version: 1.0.0
+servers:
+  - url: https://shelly-api-docs.shelly.cloud/gen2/
+paths:
+  # WiFi Methods
+  /rpc/WiFi.GetConfig:
+    get:
+      tags:
+        - Wifi Methods
+      summary: Get Wifi Configuration
+      description: Get the Wifi Configuration of the device. [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/WiFi#wifigetconfig-example)
+      responses:
+        '200':
+          description: Configuration response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WifiConfig'
+
+components:
+    schemas:
+      # Wifi Methods
+      WifiConfig:
+        properties:
+          ap:
+            $ref: '#/components/schemas/WifiAccessPoint'
+          sta:
+            $ref: '#/components/schemas/WifiStation'
+          sta1:
+            $ref: '#/components/schemas/WifiStation'
+          roam:
+            $ref: '#/components/schemas/WifiRoaming'
+        required:
+          - ap
+          - sta
+          - sta1
+          - roam
+        additionalProperties: false
+        title: WifiConfig
+        type: object
+        example:
+          {
+            "ap": {
+              "ssid": "ShellyBluGw-A842E33F71F0",
+              "is_open": true,
+              "enable": true,
+              "range_extender": {
+                "enable": false
+              }
+            },
+            "sta": {
+              "ssid": "HUAWEI-B315-9985",
+              "is_open": false,
+              "enable": true,
+              "ipv4mode": "dhcp",
+              "ip": null,
+              "netmask": null,
+              "gw": null,
+              "nameserver": null
+            },
+            "sta1": {
+              "ssid": "limao",
+              "is_open": true,
+              "enable": false,
+              "ipv4mode": "dhcp",
+              "ip": null,
+              "netmask": null,
+              "gw": null,
+              "nameserver": null
+            },
+            "roam": {
+              "rssi_thr": -80,
+              "interval": 60
+            }
+          }
+      WifiAccessPointWithPass:
+        properties:
+          pass:
+            type: string
+        required:
+          - pass
+        additionalProperties: false
+        title: WifiAccessPointWithPass
+        type: object
+      WifiRoaming:
+        properties:
+          rssi_thr:
+            type: number
+          interval:
+            type: number
+        required:
+          - rssi_thr
+          - interval
+        additionalProperties: false
+        title: WifiRoaming
+        type: object
+      WifiStationWithPass:
+        properties:
+          ssid:
+            nullable: true
+            type: string
+          is_open:
+            type: boolean
+          enable:
+            type: boolean
+          ipv4mode:
+            enum:
+              - dhcp
+              - static
+            type: string
+          ip:
+            type: string
+          netmask:
+            type: string
+          gw:
+            type: string
+          nameserver:
+            type: string
+          pass:
+            type: string
+        required:
+          - ssid
+          - is_open
+          - enable
+          - ipv4mode
+          - ip
+          - netmask
+          - gw
+          - nameserver
+          - pass
+        additionalProperties: false
+        title: WifiStationWithPass, WifiStation
+        type: object
+      WifiAccessPoint:
+        properties:
+          ssid:
+            type: string
+          is_open:
+            type: boolean
+          enable:
+            type: boolean
+          range_extender:
+            type: object
+            properties:
+              enable:
+                type: boolean
+        required:
+          - ssid
+          - is_open
+          - enable
+          - range_extender
+        additionalProperties: false
+        title: WifiAccessPoint
+        type: object
+      WifiStation:
+        properties:
+          ssid:
+            nullable: true
+            type: string
+          is_open:
+            type: boolean
+          enable:
+            type: boolean
+          ipv4mode:
+            enum:
+              - dhcp
+              - static
+            type: string
+          ip:
+            type: string
+          netmask:
+            type: string
+          gw:
+            type: string
+          nameserver:
+            type: string
+        required:
+          - ssid
+          - is_open
+          - enable
+          - ipv4mode
+          - ip
+          - netmask
+          - gw
+          - nameserver
+        additionalProperties: false
+        title: WifiStation
+        type: object

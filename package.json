@@ -4,7 +4,9 @@
   "description": "Typescript client for the Shelly HTTP API",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
-  "files": ["dist/src/**"],
+  "files": [
+    "dist/src/**"
+  ],
   "scripts": {
     "debug": "dotenv -- npx tsx --inspect-brk test/main.ts",
     "build": "tsc"
@@ -24,6 +26,7 @@
     "eslint-plugin-prettier": "^5.0.0",
     "npx": "^10.2.2",
     "prettier": "^3.3.1",
+    "ts-essentials": "^10.0.0",
     "tsx": "^4.15.1",
     "typescript": "^5.4.5"
   },

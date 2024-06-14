@@ -228,7 +228,7 @@ paths:
       tags:
         - Shelly Methods
       summary: Update Shelly device to the provided version
-      description: Update Shelly device to the provided version [Docs]()
+      description: Update Shelly device to the provided version [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Shelly#shellyupdate)
       requestBody:
         required: true
         content:
@@ -252,6 +252,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CheckForUpdateResponse' # TODO: Fix
+  /rpc/Shelly.FactoryReset:
+    post:
+      tags:
+        - Shelly Methods
+      summary: Factory reset Shelly device
+      description: Factory reset Shelly device [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Shelly#shellyfactoryreset)
+      responses:
+        '200':
+          description: Factory reset Shelly device
+          content:
+            application/json:
+              schema:
+                type: string # TODO: Test
+  /rpc/Shelly.ResetWiFiConfig:
+    post:
+      tags:
+        - Shelly Methods
+      summary: Reset Wifi Configuration of the Shelly device
+      description: Reset Wifi Configuration of the Shelly device [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Shelly#shellyresetwificonfig)
+      responses:
+        '200':
+          description: Reset Wifi Configuration of the Shelly device
+          content:
+            application/json:
+              schema:
+                type: 'null'
 
 components:
   schemas:

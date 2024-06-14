@@ -101,6 +101,11 @@ interface ShellyMethodsMapping {
     body: undefined;
     response: EmptyResponse; // TODO: Verify what's the response
   };
+  [ShellyMethods.ResetWiFiConfig]: {
+    queryParams: undefined;
+    body: undefined;
+    response: EmptyResponse;
+  };
 }
 
 export interface ShellyGen2HTTPAPIMapping extends WifiMethodsMapping, ShellyMethodsMapping {}

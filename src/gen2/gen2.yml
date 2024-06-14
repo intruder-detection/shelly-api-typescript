@@ -45,6 +45,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WifiListAPClientsResponse'
+  /rpc/WifiMethods.Scan:
+    get:
+      tags:
+        - Wifi Methods
+      summary: List of WiFi networks
+      description: List of WiFi networks scanned. [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/WiFi#wifiscan)
+      responses:
+        '200':
+          description: List of WiFi networks scanned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WifiScanResponse'
 
 components:
   schemas:
@@ -346,4 +359,107 @@ components:
         - since
       additionalProperties: false
       title: ApClient
+      type: object
+
+    # WifiMethods.Scan
+    WifiScanResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          properties:
+            results:
+              type: array
+              items:
+                $ref: '#/components/schemas/WifiScan'
+      required:
+        - id
+        - src
+        - dst
+        - result
+      additionalProperties: false
+      title: WifiScanResponse
+      example:
+        {
+          "id": 1,
+          "src": "shellyblugw-a842e33f71f0",
+          "dst": "my_self",
+          "result": {
+            "results": [
+              {
+                "ssid": "HOMERUI",
+                "bssid": "ca:9f:51:49:9a:7a",
+                "auth": 3,
+                "channel": 6,
+                "rssi": -50
+              },
+              {
+                "ssid": "HOMERUI",
+                "bssid": "ca:9f:51:4a:7b:02",
+                "auth": 3,
+                "channel": 11,
+                "rssi": -60
+              },
+              {
+                "ssid": "HOMERUI",
+                "bssid": "ca:9f:51:49:99:90",
+                "auth": 3,
+                "channel": 6,
+                "rssi": -79
+              },
+              {
+                "ssid": "MEO-99F992",
+                "bssid": "9c:97:26:98:f8:59",
+                "auth": 4,
+                "channel": 6,
+                "rssi": -91
+              },
+              {
+                "ssid": "HOMERUI",
+                "bssid": "aa:95:7f:61:70:6c",
+                "auth": 3,
+                "channel": 1,
+                "rssi": -92
+              },
+              {
+                "ssid": "MEO-WiFi",
+                "bssid": "9e:97:26:98:f8:5a",
+                "auth": 0,
+                "channel": 6,
+                "rssi": -92
+              }
+            ]
+          }
+        }
+    WifiScan:
+      properties:
+        ssid:
+          title: WifiScan.ssid
+          nullable: true
+          type: string
+        bssid:
+          title: WifiScan.bssid
+          nullable: true
+          type: string
+        auth:
+          title: WifiScan.auth
+          type: number
+        channel:
+          title: WifiScan.channel
+          type: number
+        rssi:
+          title: WifiScan.rssi
+          type: number
+      required:
+        - ssid
+        - bssid
+        - auth
+        - channel
+        - rssi
+      additionalProperties: false
+      title: WifiScan
       type: object

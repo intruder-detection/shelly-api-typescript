@@ -24,8 +24,8 @@ async function wifi() {
         enable: true,
         ssid: '<WIFI_SSID>',
         ipv4mode: 'dhcp',
-      }
-    }
+      },
+    },
   });
   console.log(setConfig);
 }
@@ -46,6 +46,12 @@ async function shelly() {
     ident: true,
   });
   console.log(getDeviceInfo);
+
+  const ListProfiles = await gen2Device.post(ShellyMethods.ListProfiles);
+  console.log(ListProfiles);
+
+  const ListTimezones = await gen2Device.post(ShellyMethods.ListTimezones);
+  console.log(ListTimezones);
 }
 
 async function main() {

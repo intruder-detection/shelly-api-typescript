@@ -11,6 +11,7 @@ import {
   GetDeviceInfoBody,
   GetDeviceInfoResponse,
 } from '@gen2/endpoints/types/shelly/get-device-info.interface';
+import { ListTimezonesResponse } from '@gen2/endpoints/types/shelly/list-timezones-response.interface';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -60,6 +61,21 @@ interface ShellyMethodsMapping {
     queryParams: undefined;
     body?: GetDeviceInfoBody;
     response: GetDeviceInfoResponse;
+  };
+  [ShellyMethods.ListProfiles]: {
+    queryParams: undefined;
+    body: undefined;
+    response: any; // TODO: Test with multi-profile device
+  };
+  [ShellyMethods.SetProfile]: {
+    queryParams: undefined;
+    body: undefined;
+    response: any; // TODO: Test with multi-profile device
+  };
+  [ShellyMethods.ListTimezones]: {
+    queryParams: undefined;
+    body: undefined;
+    response: ListTimezonesResponse;
   };
 }
 

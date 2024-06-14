@@ -70,10 +70,17 @@ async function shelly() {
   // const ResetWiFiConfig = await gen2Device.post(ShellyMethods.ResetWiFiConfig);
   // console.log(ResetWiFiConfig);
 
-  const Reboot = await gen2Device.post(ShellyMethods.Reboot, {
-    delay_ms: 5000,
+  // const Reboot = await gen2Device.post(ShellyMethods.Reboot, {
+  //   delay_ms: 5000,
+  // });
+  // console.log(Reboot);
+
+  const SetAuth = await gen2Device.post(ShellyMethods.SetAuth, {
+    user: 'admin',
+    realm: 'shellyblugw-a842e33f71f0',
+    ha1: null,
   });
-  console.log(Reboot);
+  console.log(SetAuth);
 }
 
 async function main() {

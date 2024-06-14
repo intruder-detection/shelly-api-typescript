@@ -17,6 +17,7 @@ import { CheckForUpdateResponse } from '@gen2/endpoints/types/shelly/check-for-u
 import { UpdateBody } from '@gen2/endpoints/types/shelly/update.interface';
 import { EmptyResponse } from '@gen2/generic.types';
 import { RebootBody } from '@gen2/endpoints/types/shelly/reboot.interface';
+import { SetAuthBody } from '@gen2/endpoints/types/shelly/set-auth.interface';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -110,6 +111,11 @@ interface ShellyMethodsMapping {
   [ShellyMethods.Reboot]: {
     queryParams: undefined;
     body: RebootBody;
+    response: EmptyResponse;
+  };
+  [ShellyMethods.SetAuth]: {
+    queryParams: undefined;
+    body: SetAuthBody;
     response: EmptyResponse;
   };
 }

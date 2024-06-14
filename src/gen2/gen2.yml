@@ -295,7 +295,6 @@ paths:
                   type: number
                   default: 1000
                   minimum: 500
-
       responses:
         '200':
           description: Reboot the Shelly device response
@@ -303,6 +302,36 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NullResponse'
+  /rpc/Shelly.SetAuth:
+    post:
+      tags:
+        - Shelly Methods
+      summary: Set device authentication
+      description: Set device authentication [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Shelly#shellysetauth)
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: string
+                  default: 'admin'
+                realm:
+                  type: string
+                  description: Must be the id of the device. Only one realm is supported.
+                ha1:
+                  type: string
+                  description: "user:realm:password" encoded in SHA256 (null to disable authentication)
+      responses:
+        '200':
+          description: Set device authentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NullResponse'
+
 
 components:
   schemas:

@@ -82,11 +82,23 @@ async function shelly() {
   // });
   // console.log(SetAuth);
 
-  const PutUserCA = await gen2Device.post(ShellyMethods.PutUserCA, {
-    data: null,
-    append: false,
-  });
-  console.log(PutUserCA);
+  // const PutUserCA = await gen2Device.post(ShellyMethods.PutUserCA, {
+  //   data: null,
+  //   append: false,
+  // });
+  // console.log(PutUserCA);
+
+  // const PutTLSClientCert = await gen2Device.post(ShellyMethods.PutTLSClientCert, {
+  //   data: null,
+  //   append: false,
+  // });
+  // console.log(PutTLSClientCert);
+  //
+  // const PutTLSClientKey = await gen2Device.post(ShellyMethods.PutTLSClientKey, {
+  //   data: null,
+  //   append: false,
+  // });
+  // console.log(PutTLSClientKey);
 }
 
 async function main() {

@@ -124,6 +124,16 @@ interface ShellyMethodsMapping {
     body: PutUserCaBody;
     response: PutUserCaResponse;
   };
+  [ShellyMethods.PutTLSClientCert]: {
+    queryParams: undefined;
+    body: PutUserCaBody;
+    response: PutUserCaResponse;
+  };
+  [ShellyMethods.PutTLSClientKey]: {
+    queryParams: undefined;
+    body: PutUserCaBody;
+    response: PutUserCaResponse;
+  };
 }
 
 export interface ShellyGen2HTTPAPIMapping extends WifiMethodsMapping, ShellyMethodsMapping {}

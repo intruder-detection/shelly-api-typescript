@@ -136,6 +136,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListMethodsResponse'
+  /rpc/Shelly.GetDeviceInfo:
+    get:
+      tags:
+        - Shelly Methods
+      summary: Get Shelly device info
+      description: Get Shelly device info [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Shelly#shellygetdeviceinfo)
+      responses:
+        '200':
+          description: Get Shelly device info response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDeviceInfoResponse'
 
 components:
   schemas:
@@ -161,7 +174,7 @@ components:
       example:
         {
           "id": 1,
-          "src": "shellyblugw-a842e33f71f0",
+          "src": "shellyblugw-a642e23fx1fa",
           "dst": "my_self",
           "result": {
             "sta_ip": null,
@@ -215,11 +228,11 @@ components:
       example:
         {
           "id": 1,
-          "src": "shellyblugw-a842e33f71f0",
+          "src": "shellyblugw-a642e23fx1fa",
           "dst": "my_self",
           "result": {
             "ap": {
-              "ssid": "ShellyBluGw-A842E33F71F0",
+              "ssid": "shellyblugw-a642e23fx1fa",
               "is_open": true,
               "enable": true,
               "range_extender": {
@@ -464,7 +477,7 @@ components:
       example:
         {
           "id": 1,
-          "src": "shellyblugw-a842e33f71f0",
+          "src": "shellyblugw-a642e23fx1fa",
           "dst": "my_self",
           "result": {
             "results": [
@@ -565,7 +578,7 @@ components:
       example:
         {
           "id": 1,
-          "src": "shellyblugw-a842e33f71f0",
+          "src": "shellyblugw-a642e23fx1fa",
           "dst": "my_self",
           "result": {
             "restart_required": false
@@ -614,7 +627,7 @@ components:
       example:
         {
           "id": 1,
-          "src": "shellyblugw-a842e33f71f0",
+          "src": "shellyblugw-a642e23fx1fa",
           "dst": "my_self",
           "result": {
             "ble": {
@@ -639,7 +652,7 @@ components:
               "mem_free": 22330
             },
             "sys": {
-              "mac": "A842E33F71F0",
+              "mac": "A642E23FX1FA",
               "restart_required": false,
               "time": "12:57",
               "unixtime": 1718366254,
@@ -815,10 +828,10 @@ components:
           "mqtt": {
             "enable": true,
             "server": "broker.hivemq.com:1883",
-            "client_id": "shellyblugw-a842e33f71f0",
+            "client_id": "shellyblugw-a642e23fx1fa",
             "user": null,
             "ssl_ca": null,
-            "topic_prefix": "shellyblugw-a842e33f71f0",
+            "topic_prefix": "shellyblugw-a642e23fx1fa",
             "rpc_ntf": true,
             "status_ntf": false,
             "use_client_cert": false,
@@ -838,7 +851,7 @@ components:
           "sys": {
             "device": {
               "name": "The Gateway ",
-              "mac": "A842E33F71F0",
+              "mac": "A642E23FX1FA",
               "fw_id": "20231219-133956/1.1.0-g34b5d4f",
               "discoverable": true,
               "eco_mode": false
@@ -873,7 +886,7 @@ components:
           },
           "wifi": {
             "ap": {
-              "ssid": "ShellyBluGw-A842E33F71F0",
+              "ssid": "shellyblugw-a642e23fx1fa",
               "is_open": true,
               "enable": false,
               "range_extender": {
@@ -1146,7 +1159,7 @@ components:
       example:
         {
           "id": 1,
-          "src": "shellyblugw-a842e33f71f0",
+          "src": "shellyblugw-a642e23fx1fa",
           "dst": "my_self",
           "result": {
             "methods": [
@@ -1239,3 +1252,88 @@ components:
           type: array
       required:
         - methods
+    
+    # Shelly.GetDeviceInfo
+    GetDeviceInfoResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          $ref: '#/components/schemas/GetDeviceInfoResponseResult'
+      required:
+        - id
+        - src
+        - dst
+        - result
+      additionalProperties: false
+      title: ListMethodsResponse
+      example:
+        {
+          "name": "The Gateway ",
+          "id": "shellyblugw-a642e23fx1fa",
+          "mac": "A642E23FX1FA",
+          "slot": 0,
+          "key": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE3MTgzNzM5MjQsImV4cCI6MTc0OTkwOTkyNCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJSb2xlIjpbIk1hbmFnZXIiLCJQcm9qZWN0IEFkbWluaXN0cmF0b3IiXX0.IKp8sRJaOwFKIOxiNuNkG38b7YybqCK6w1MCZwGWiYE",
+          "batch": "2336-Ogemray",
+          "fw_sbits": "00",
+          "model": "SNGW-BT01",
+          "gen": 2,
+          "fw_id": "20231219-133956/1.1.0-g34b5d4f",
+          "ver": "1.1.0",
+          "app": "BluGw",
+          "auth_en": false,
+          "auth_domain": null
+        }
+    GetDeviceInfoResponseResult:
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        mac:
+          type: string
+        slot:
+          type: number
+        key:
+          type: string
+        batch:
+          type: string
+        fw_sbits:
+          type: string
+        model:
+          type: string
+        gen:
+          type: number
+        fw_id:
+          type: string
+        ver:
+          type: string
+        app:
+          type: string
+        auth_en:
+          type: boolean
+        auth_domain:
+          type: string
+          nullable: true
+      required:
+        - name
+        - id
+        - mac
+        - slot
+        - key
+        - batch
+        - fw_sbits
+        - model
+        - gen
+        - fw_id
+        - ver
+        - app
+        - auth_en
+        - auth_domain
+      additionalProperties: false
+      title: GetDeviceInfoResponseResult
+      type: object

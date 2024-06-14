@@ -41,6 +41,11 @@ async function shelly() {
 
   const listMethods = await gen2Device.post(ShellyMethods.ListMethods);
   console.log(listMethods);
+
+  const getDeviceInfo = await gen2Device.post(ShellyMethods.GetDeviceInfo, {
+    ident: true,
+  });
+  console.log(getDeviceInfo);
 }
 
 async function main() {

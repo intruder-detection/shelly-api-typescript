@@ -63,6 +63,9 @@ async function shelly() {
   //   stage: 'stable',
   // });
   // console.log(Update);
+
+  // const FactoryReset = await gen2Device.post(ShellyMethods.FactoryReset);
+  // console.log(FactoryReset);
 }
 
 async function main() {

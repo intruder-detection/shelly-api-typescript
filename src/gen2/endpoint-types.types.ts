@@ -15,6 +15,7 @@ import { ListTimezonesResponse } from '@gen2/endpoints/types/shelly/list-timezon
 import { DetectLocationResponse } from '@gen2/endpoints/types/shelly/detect-device-location-response.interface';
 import { CheckForUpdateResponse } from '@gen2/endpoints/types/shelly/check-for-update-response.interface';
 import { UpdateBody } from '@gen2/endpoints/types/shelly/update.interface';
+import { EmptyResponse } from '@gen2/generic.types';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -68,12 +69,12 @@ interface ShellyMethodsMapping {
   [ShellyMethods.ListProfiles]: {
     queryParams: undefined;
     body: undefined;
-    response: any; // TODO: Test with multi-profile device
+    response: EmptyResponse; // TODO: Test with multi-profile device
   };
   [ShellyMethods.SetProfile]: {
     queryParams: undefined;
     body: undefined;
-    response: any; // TODO: Test with multi-profile device
+    response: EmptyResponse; // TODO: Test with multi-profile device
   };
   [ShellyMethods.ListTimezones]: {
     queryParams: undefined;
@@ -93,7 +94,12 @@ interface ShellyMethodsMapping {
   [ShellyMethods.Update]: {
     queryParams: undefined;
     body: UpdateBody;
-    response: any; // TODO: Verify what's the response
+    response: EmptyResponse; // TODO: Verify what's the response
+  };
+  [ShellyMethods.FactoryReset]: {
+    queryParams: undefined;
+    body: undefined;
+    response: EmptyResponse; // TODO: Verify what's the response
   };
 }
 

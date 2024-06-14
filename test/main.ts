@@ -52,6 +52,9 @@ async function shelly() {
 
   const ListTimezones = await gen2Device.post(ShellyMethods.ListTimezones);
   console.log(ListTimezones);
+
+  const DetectLocation = await gen2Device.post(ShellyMethods.DetectLocation);
+  console.log(DetectLocation);
 }
 
 async function main() {

@@ -58,6 +58,11 @@ async function shelly() {
 
   const CheckForUpdate = await gen2Device.post(ShellyMethods.CheckForUpdate);
   console.log(CheckForUpdate);
+
+  // const Update = await gen2Device.post(ShellyMethods.Update, {
+  //   stage: 'stable',
+  // });
+  // console.log(Update);
 }
 
 async function main() {

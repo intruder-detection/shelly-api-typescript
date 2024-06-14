@@ -14,6 +14,7 @@ import {
 import { ListTimezonesResponse } from '@gen2/endpoints/types/shelly/list-timezones-response.interface';
 import { DetectLocationResponse } from '@gen2/endpoints/types/shelly/detect-device-location-response.interface';
 import { CheckForUpdateResponse } from '@gen2/endpoints/types/shelly/check-for-update-response.interface';
+import { UpdateBody } from '@gen2/endpoints/types/shelly/update.interface';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -88,6 +89,11 @@ interface ShellyMethodsMapping {
     queryParams: undefined;
     body: undefined;
     response: CheckForUpdateResponse;
+  };
+  [ShellyMethods.Update]: {
+    queryParams: undefined;
+    body: UpdateBody;
+    response: any; // TODO: Verify what's the response
   };
 }
 

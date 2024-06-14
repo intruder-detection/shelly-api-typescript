@@ -223,6 +223,35 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CheckForUpdateResponse'
+  /rpc/Shelly.Update:
+    post:
+      tags:
+        - Shelly Methods
+      summary: Update Shelly device to the provided version
+      description: Update Shelly device to the provided version [Docs]()
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                stage:
+                  type: string
+                  enum:
+                    - stable
+                    - beta
+                url:
+                  type: string
+              required:
+                - stage
+      responses:
+        '200':
+          description: Update Shelly device to the provided version response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckForUpdateResponse' # TODO: Fix
 
 components:
   schemas:

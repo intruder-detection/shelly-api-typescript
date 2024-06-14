@@ -69,6 +69,11 @@ async function shelly() {
 
   // const ResetWiFiConfig = await gen2Device.post(ShellyMethods.ResetWiFiConfig);
   // console.log(ResetWiFiConfig);
+
+  const Reboot = await gen2Device.post(ShellyMethods.Reboot, {
+    delay_ms: 5000,
+  });
+  console.log(Reboot);
 }
 
 async function main() {

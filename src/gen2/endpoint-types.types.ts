@@ -16,6 +16,7 @@ import { DetectLocationResponse } from '@gen2/endpoints/types/shelly/detect-devi
 import { CheckForUpdateResponse } from '@gen2/endpoints/types/shelly/check-for-update-response.interface';
 import { UpdateBody } from '@gen2/endpoints/types/shelly/update.interface';
 import { EmptyResponse } from '@gen2/generic.types';
+import { RebootBody } from '@gen2/endpoints/types/shelly/reboot.interface';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -104,6 +105,11 @@ interface ShellyMethodsMapping {
   [ShellyMethods.ResetWiFiConfig]: {
     queryParams: undefined;
     body: undefined;
+    response: EmptyResponse;
+  };
+  [ShellyMethods.Reboot]: {
+    queryParams: undefined;
+    body: RebootBody;
     response: EmptyResponse;
   };
 }

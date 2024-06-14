@@ -251,7 +251,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CheckForUpdateResponse' # TODO: Fix
+                $ref: '#/components/schemas/NullResponse' # TODO: Verify
   /rpc/Shelly.FactoryReset:
     post:
       tags:
@@ -277,7 +277,32 @@ paths:
           content:
             application/json:
               schema:
-                type: 'null'
+                $ref: '#/components/schemas/NullResponse'
+  /rpc/Shelly.Reboot:
+    post:
+      tags:
+        - Shelly Methods
+      summary: Reboot the Shelly device
+      description: Reboot the Shelly device [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Shelly#shellyreboot)
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                delay_ms:
+                  type: number
+                  default: 1000
+                  minimum: 500
+
+      responses:
+        '200':
+          description: Reboot the Shelly device response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NullResponse'
 
 components:
   schemas:
@@ -2290,3 +2315,28 @@ components:
       additionalProperties: false
       title: Version
       type: object
+
+
+    # NullResponse
+    NullResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          type: 'null'
+      required:
+        - id
+        - src
+        - dst
+        - result
+      example:
+        {
+          "id": 1,
+          "src": "shellyblugw-a842e33f71f0",
+          "dst": "my_self",
+          "result": null
+        }

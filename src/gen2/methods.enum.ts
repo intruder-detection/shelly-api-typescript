@@ -19,6 +19,10 @@ export enum ShellyMethods {
   GetComponents = 'Shelly.GetComponents',
 }
 
+export enum ShellyExtraMethods {
+  Shelly = 'shelly',
+}
+
 export enum ScheduleMethods {
   Create = 'Schedule.Create',
   Update = 'Schedule.Update',
@@ -108,6 +112,7 @@ export enum ScriptMethods {
 
 export type Gen2Methods =
   | ShellyMethods
+  | ShellyExtraMethods
   | ScheduleMethods
   | WebhookMethods
   | HTTPMethods

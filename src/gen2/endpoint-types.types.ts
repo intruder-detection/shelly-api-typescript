@@ -1,4 +1,4 @@
-import { ShellyMethods, WifiMethods } from './methods.enum';
+import { ShellyExtraMethods, ShellyMethods, WifiMethods } from './methods.enum';
 import { WifiGetConfigResponse } from '@gen2/endpoints/types/wifi/wifi-get-config-response.interface';
 import { WifiGetStatusResponse } from '@gen2/endpoints/types/wifi/wifi-get-status-response.interface';
 import { WifiListAPClientsResponse } from '@gen2/endpoints/types/wifi/wifi-list-ap-clients-response.interface';
@@ -9,7 +9,7 @@ import { GetConfigResponse } from '@gen2/endpoints/types/shelly/get-config-respo
 import { ListMethodsResponse } from '@gen2/endpoints/types/shelly/list-methods-response.interface';
 import {
   GetDeviceInfoBody,
-  GetDeviceInfoResponse,
+  GetDeviceInfoResponse, GetDeviceInfoResponseResult,
 } from '@gen2/endpoints/types/shelly/get-device-info.interface';
 import { ListTimezonesResponse } from '@gen2/endpoints/types/shelly/list-timezones-response.interface';
 import { DetectLocationResponse } from '@gen2/endpoints/types/shelly/detect-device-location-response.interface';
@@ -142,4 +142,12 @@ interface ShellyMethodsMapping {
   };
 }
 
-export interface ShellyGen2HTTPAPIMapping extends WifiMethodsMapping, ShellyMethodsMapping {}
+interface ShellyExtraMethodsMapping {
+  [ShellyExtraMethods.Shelly]: {
+    queryParams: undefined;
+    body: undefined;
+    response: GetDeviceInfoResponseResult;
+  };
+}
+
+export interface ShellyGen2HTTPAPIMapping extends WifiMethodsMapping, ShellyMethodsMapping, ShellyExtraMethodsMapping {}

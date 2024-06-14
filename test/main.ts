@@ -1,5 +1,5 @@
 import { ShellyGen2DeviceHTTPAPI } from '@gen2/shelly-gen-2-http-api';
-import { ShellyMethods, WifiMethods } from '@gen2/methods.enum';
+import { ShellyExtraMethods, ShellyMethods, WifiMethods } from '@gen2/methods.enum';
 
 async function wifi() {
   // By default when the device starts for the first time, the IP of the device on it's AP is 192.168.33.1
@@ -102,8 +102,12 @@ async function shelly() {
 
   const GetComponents = await gen2Device.post(ShellyMethods.GetComponents, {
     offset: 0,
+    include: [],
   });
   console.log(GetComponents);
+
+  const Shelly = await gen2Device.get(ShellyExtraMethods.Shelly);
+  console.log(Shelly);
 }
 
 async function main() {

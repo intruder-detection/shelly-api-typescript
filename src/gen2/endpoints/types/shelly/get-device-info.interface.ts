@@ -20,5 +20,5 @@ export interface GetDeviceInfoResponseResult {
   ver: string;
   app: string;
   auth_en: boolean;
-  auth_domain: null;
+  auth_domain: string;
 }

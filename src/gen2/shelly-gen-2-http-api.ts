@@ -1,14 +1,9 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { ShellyGen2HTTPAPIMapping } from './endpoint-types.types';
 import { BaseRequest } from '@gen2/generic.types';
-import { queryStringify } from '@utils/querystring.utils';
 
 export class ShellyGen2DeviceHTTPAPI {
   constructor(private readonly ip: string) {}
-
-  private getUrl(queryParameters: any) {
-    return `http://${this.ip}/rpc${queryParameters ? `?${queryStringify(queryParameters)}` : ''}`;
-  }
 
   static get defaultRequestConfig(): AxiosRequestConfig {
     return {
@@ -38,17 +33,32 @@ export class ShellyGen2DeviceHTTPAPI {
   async post<E extends keyof ShellyGen2HTTPAPIMapping>(
     endpoint: E,
     body?: ShellyGen2HTTPAPIMapping[typeof endpoint]['body'],
-    queryParams?: ShellyGen2HTTPAPIMapping[typeof endpoint]['queryParams'],
   ): Promise<ShellyGen2HTTPAPIMapping[typeof endpoint]['response']> {
     try {
       const rxp = await axios.post<ShellyGen2HTTPAPIMapping[typeof endpoint]['response']>(
-        this.getUrl(queryParams),
+        this.getUrl(),
         ShellyGen2DeviceHTTPAPI.buildBodyData(endpoint, body),
         ShellyGen2DeviceHTTPAPI.defaultRequestConfig,
       );
       return rxp.data;
     } catch (e: unknown) {
-      ShellyGen2DeviceHTTPAPI.throwError(endpoint, this.getUrl(queryParams), e as AxiosError);
+      ShellyGen2DeviceHTTPAPI.throwError(endpoint, this.getUrl(), e as AxiosError);
     }
+  }
+
+  async get<E extends keyof ShellyGen2HTTPAPIMapping>(endpoint: E): Promise<ShellyGen2HTTPAPIMapping[typeof endpoint]['response']> {
+    try {
+      const rxp = await axios.get<ShellyGen2HTTPAPIMapping[typeof endpoint]['response']>(
+        this.getUrl(endpoint),
+        ShellyGen2DeviceHTTPAPI.defaultRequestConfig,
+      );
+      return rxp.data;
+    } catch (e: unknown) {
+      ShellyGen2DeviceHTTPAPI.throwError(endpoint, this.getUrl(endpoint), e as AxiosError);
+    }
+  }
+
+  private getUrl(endpoint: string = 'rpc') {
+    return `http://${this.ip}/${endpoint}`;
   }
 }

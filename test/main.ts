@@ -75,12 +75,12 @@ async function shelly() {
   // });
   // console.log(Reboot);
 
-  const SetAuth = await gen2Device.post(ShellyMethods.SetAuth, {
-    user: 'admin',
-    realm: 'shellyblugw-a842e33f71f0',
-    ha1: null,
-  });
-  console.log(SetAuth);
+  // const SetAuth = await gen2Device.post(ShellyMethods.SetAuth, {
+  //   user: 'admin',
+  //   realm: 'shellyblugw-a842e33f71f0',
+  //   ha1: null,
+  // });
+  // console.log(SetAuth);
 }
 
 async function main() {

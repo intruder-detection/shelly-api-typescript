@@ -3,7 +3,7 @@ import { WifiAccessPointWithPass, WifiRoaming, WifiStationWithPass } from '@gen2
 import { RestartRequired } from '@gen2/endpoints/responses/common/restart-required.types';
 import { DeepPartial } from 'ts-essentials';
 
-export interface WifiSetConfigRequest {
+export interface WifiSetConfigBody {
   config: DeepPartial<WifiConfigForSetConfiguration>;
 }
 

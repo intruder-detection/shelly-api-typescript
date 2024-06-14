@@ -3,12 +3,18 @@ import { WifiGetConfigResponse } from '@gen2/endpoints/responses/wifi/wifi-get-c
 import { WifiGetStatusResponse } from '@gen2/endpoints/responses/wifi/wifi-get-status-response.interface';
 import { WifiListAPClientsResponse } from '@gen2/endpoints/responses/wifi/wifi-list-ap-clients-response.interface';
 import { WifiScanResponse } from '@gen2/endpoints/responses/wifi/wifi-scan-response.interface';
+import { WifiSetConfigRequest, WifiSetConfigResponse } from '@gen2/endpoints/responses/wifi/wifi-set-config.interface';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
     queryParams: undefined;
     body: undefined;
     response: WifiGetConfigResponse;
+  };
+  [WifiMethods.SetConfig]: {
+    queryParams: undefined;
+    body: WifiSetConfigRequest;
+    response: WifiSetConfigResponse;
   };
   [WifiMethods.GetStatus]: {
     queryParams: undefined;

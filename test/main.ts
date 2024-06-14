@@ -11,6 +11,21 @@ async function wifi() {
   console.log(listAPClients);
   const scan = await gen2Device.post(WifiMethods.Scan);
   console.log(scan);
+  const setConfig = await gen2Device.post(WifiMethods.SetConfig, {
+    config: {
+      ap: {
+        enable: false,
+      },
+      sta: {
+        pass: '<WIFI_PASSWORD>',
+        is_open: false,
+        enable: true,
+        ssid: '<WIFI_SSID>',
+        ipv4mode: 'dhcp',
+      }
+    }
+  });
+  console.log(setConfig);
 }
 
 async function main() {

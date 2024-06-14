@@ -14,7 +14,7 @@ interface WifiAccessPoint {
   range_extender: Observer;
 }
 
-interface WifiAccessPointWithPass {
+export interface WifiAccessPointWithPass extends WifiAccessPoint {
   pass: string;
 }
 
@@ -35,6 +35,6 @@ interface WifiStation {
   nameserver: string;
 }
 
-interface WifiStationWithPass extends WifiStation {
+export interface WifiStationWithPass extends WifiStation {
   pass: string;
 }

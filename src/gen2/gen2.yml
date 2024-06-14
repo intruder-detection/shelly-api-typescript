@@ -19,6 +19,43 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WifiConfigResponse'
+  /rpc/WifiMethods.SetConfig:
+    get:
+      tags:
+        - Wifi Methods
+      summary: Set WiFi configuration
+      description: Set WiFi configuration [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/WiFi#wifisetconfig)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                config:
+                  $ref: '#/components/schemas/WifiConfigForSetConfiguration'
+              example:
+                {
+                  config: {
+                    ap: {
+                      enable: false,
+                    },
+                    sta: {
+                      pass: '<WIFI_PASSWORD>',
+                      is_open: false,
+                      enable: true,
+                      ssid: '<WIFI_SSID>',
+                      ipv4mode: 'dhcp',
+                    }
+                  }
+                }
+      responses:
+        '200':
+          description: Set WiFi configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WifiSetConfigResponse'
   /rpc/WiFi.GetStatus:
     get:
       tags:
@@ -462,4 +499,53 @@ components:
         - rssi
       additionalProperties: false
       title: WifiScan
+      type: object
+
+    # WifiMethods.SetConfig
+    WifiSetConfigResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          properties:
+            restart_required:
+              type: boolean
+      required:
+        - id
+        - src
+        - dst
+        - result
+      additionalProperties: false
+      title: WifiSetConfigResponse
+      example:
+        {
+          "id": 1,
+          "src": "shellyblugw-a842e33f71f0",
+          "dst": "my_self",
+          "result": {
+            "restart_required": false
+          }
+        }
+    # Body
+    WifiConfigForSetConfiguration:
+      properties:
+        ap:
+          $ref: '#/components/schemas/WifiAccessPoint'
+        sta:
+          $ref: '#/components/schemas/WifiStation'
+        sta1:
+          $ref: '#/components/schemas/WifiStation'
+        roam:
+          $ref: '#/components/schemas/WifiRoaming'
+      required:
+        - ap
+        - sta
+        - sta1
+        - roam
+      additionalProperties: false
+      title: WifiConfigForSetConfiguration
       type: object

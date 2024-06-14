@@ -1,12 +1,13 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { ShellyGen2HTTPAPIMapping } from './endpoint-types.types';
 import { BaseRequest } from '@gen2/generic.types';
+import { queryStringify } from '@utils/querystring.utils';
 
 export class ShellyGen2DeviceHTTPAPI {
   constructor(private readonly ip: string) {}
 
-  private get url() {
-    return `http://${this.ip}/rpc`;
+  private getUrl(queryParameters: any) {
+    return `http://${this.ip}/rpc${queryParameters ? `?${queryStringify(queryParameters)}` : ''}`;
   }
 
   static get defaultRequestConfig(): AxiosRequestConfig {
@@ -41,13 +42,13 @@ export class ShellyGen2DeviceHTTPAPI {
   ): Promise<ShellyGen2HTTPAPIMapping[typeof endpoint]['response']> {
     try {
       const rxp = await axios.post<ShellyGen2HTTPAPIMapping[typeof endpoint]['response']>(
-        this.url,
+        this.getUrl(queryParams),
         ShellyGen2DeviceHTTPAPI.buildBodyData(endpoint, body),
         ShellyGen2DeviceHTTPAPI.defaultRequestConfig,
       );
       return rxp.data;
     } catch (e: unknown) {
-      ShellyGen2DeviceHTTPAPI.throwError(endpoint, this.url, e as AxiosError);
+      ShellyGen2DeviceHTTPAPI.throwError(endpoint, this.getUrl(queryParams), e as AxiosError);
     }
   }
 }

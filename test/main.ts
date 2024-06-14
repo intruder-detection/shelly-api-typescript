@@ -7,6 +7,8 @@ async function main() {
   console.log(getConfig);
   const getStatus =  await gen2Device.post(WifiMethods.GetStatus);
   console.log(getStatus);
+  const listAPClients =  await gen2Device.post(WifiMethods.ListAPClients);
+  console.log(listAPClients);
 }
 
 void main();

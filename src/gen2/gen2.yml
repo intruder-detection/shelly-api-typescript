@@ -14,7 +14,7 @@ paths:
       description: Get the Wifi Configuration of the device. [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/WiFi#wifigetstatus)
       responses:
         '200':
-          description: Configuration response
+          description: Get Wifi Configuration response
           content:
             application/json:
               schema:
@@ -27,15 +27,29 @@ paths:
       description: Get the Wifi Status of the device. [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/WiFi#wifigetconfig-example)
       responses:
         '200':
-          description: Configuration response
+          description: Get Wifi Status response
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/WifiStatusResponse'
+  /rpc/Wifi.ListAPClients:
+    get:
+      tags:
+        - Wifi Methods
+      summary: List WiFi AP Clients
+      description: List WiFi AP Clients of the device. [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/WiFi#wifilistapclients)
+      responses:
+        '200':
+          description: WiFi List AP Clients response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WifiListAPClientsResponse'
 
 components:
   schemas:
     # WiFi Methods
+    # WiFi.GetStatus
     WifiStatusResponse:
       properties:
         id:
@@ -89,6 +103,7 @@ components:
       title: WifiStatus
       type: object
 
+    # WiFi.GetConfig
     WifiConfigResponse:
       properties:
         id:
@@ -276,4 +291,59 @@ components:
         - nameserver
       additionalProperties: false
       title: WifiStation
+      type: object
+
+    # Wifi.ListAPClients
+    WifiListAPClientsResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          $ref: '#/components/schemas/ListAPClients'
+      required:
+        - id
+        - src
+        - dst
+        - result
+      additionalProperties: false
+      title: WifiListAPClientsResponse
+    ListAPClients:
+      properties:
+        ts:
+          nullable: true
+          type: number
+        ap_clients:
+          items:
+            $ref: '#/components/schemas/ApClient'
+          type: array
+      required:
+        - ts
+        - ap_clients
+      additionalProperties: false
+      title: ListAPClients
+      type: object
+    ApClient:
+      properties:
+        mac:
+          type: string
+        ip:
+          type: string
+        ip_static:
+          type: boolean
+        mport:
+          type: number
+        since:
+          type: number
+      required:
+        - mac
+        - ip
+        - ip_static
+        - mport
+        - since
+      additionalProperties: false
+      title: ApClient
       type: object

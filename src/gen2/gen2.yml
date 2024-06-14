@@ -407,11 +407,39 @@ paths:
                   default: false
       responses:
         '200':
-          description: SUploading of a custom client key client.key response
+          description: Uploading of a custom client key client.key response
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PutUserCAResponse'
+  /rpc/Shelly.GetComponents:
+    post:
+      tags:
+        - Shelly Methods
+      summary: Get Shelly device components
+      description: Get Shelly device components [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Shelly#shellygetcomponents)
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              properties:
+                offset:
+                  type: number
+                include:
+                  items:
+                    type: string
+                  type: array
+                dynamic_only:
+                  type: boolean
+      responses:
+        '200':
+          description: Get Shelly device components response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetComponentsResponse'
+
 
 
 components:
@@ -1973,7 +2001,7 @@ components:
       example:
         {
           "id": 1,
-          "src": "shellyblugw-a842e33f71f0",
+          "src": "shellyblugw-a642e44f71f1",
           "dst": "my_self",
           "result": {
             "timezones": [
@@ -2365,7 +2393,7 @@ components:
       example:
         {
           "id": 1,
-          "src": "shellyblugw-a842e33f71f0",
+          "src": "shellyblugw-a642e44f71f1",
           "dst": "my_self",
           "result": {
             "tz": "Europe/Lisbon",
@@ -2395,7 +2423,7 @@ components:
       example:
         {
           "id": 1,
-          "src": "shellyblugw-a842e33f71f0",
+          "src": "shellyblugw-a642e44f71f1",
           "dst": "my_self",
           "result": {
             "stable": {
@@ -2448,12 +2476,150 @@ components:
       example:
         {
           "id": 1,
-          "src": "shellyblugw-a842e33f71f0",
+          "src": "shellyblugw-a642e44f71f1",
           "dst": "my_self",
           "result": {
             "len": 0
           }
         }
+
+    # ShellyMethods.GetComponents
+    GetComponentsResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          $ref: '#/components/schemas/GetComponentsResponseResult'
+      required:
+        - id
+        - src
+        - dst
+        - result
+      additionalProperties: false
+      title: GetComponentsResponse
+      example:
+        {
+          "id": 1,
+          "src": "shellyblugw-a642e44f71f1",
+          "dst": "my_self",
+          "result": {
+            "components": [
+              {
+                "key": "ble",
+                "status": {
+                  "dev_list": "ble_devices.json"
+                },
+                "config": {
+                  "enable": true,
+                  "rpc": {
+                    "enable": true
+                  },
+                  "observer": {
+                    "enable": true
+                  }
+                }
+              },
+              {
+                "key": "cloud",
+                "status": {
+                  "connected": true
+                },
+                "config": {
+                  "enable": true,
+                  "server": "shelly-api-eu.shelly.cloud:6022/jrpc"
+                }
+              },
+              {
+                "key": "mqtt",
+                "status": {
+                  "connected": true
+                },
+                "config": {
+                  "enable": true,
+                  "server": "broker.hivemq.com:1883",
+                  "client_id": "shellyblugw-a852f33f71x0",
+                  "user": null,
+                  "ssl_ca": null,
+                  "topic_prefix": "shellyblugw-a852f33f71x0",
+                  "rpc_ntf": true,
+                  "status_ntf": false,
+                  "use_client_cert": false,
+                  "enable_rpc": true,
+                  "enable_control": true
+                }
+              }
+            ],
+            "cfg_rev": 74,
+            "offset": 0,
+            "total": 8
+          }
+        }
+    GetComponentsResponseResult:
+      properties:
+        components:
+          items:
+            $ref: '#/components/schemas/ComponentResult'
+          type: array
+        cfg_rev:
+          type: number
+        offset:
+          type: number
+        total:
+          type: number
+      required:
+        - components
+        - cfg_rev
+        - offset
+        - total
+      additionalProperties: false
+      title: GetComponentsResponseResult
+      type: object
+    ComponentResult:
+      properties:
+        key:
+          type: string
+        status:
+          properties:
+            dev_list:
+              type: string
+            connected:
+              type: boolean
+          additionalProperties: false
+          title: Status
+          type: object
+        config:
+          anyOf:
+            - $ref: '#/components/schemas/BLEConfig'
+            - $ref: '#/components/schemas/MqttConfig'
+            - $ref: '#/components/schemas/WsConfig'
+      required:
+        - key
+        - status
+        - config
+      additionalProperties: false
+      title: Component
+      type: object
+    BLEConfig:
+      properties:
+        enable:
+          type: boolean
+        rpc:
+          $ref: '#/components/schemas/RPCUDP'
+        observer:
+          $ref: '#/components/schemas/Observer'
+      required:
+        - enable
+        - rpc
+        - observer
+      additionalProperties: false
+      title: BLEConfig
+      type: object
+
+
 
     # NullResponse
     NullResponse:
@@ -2474,7 +2640,7 @@ components:
       example:
         {
           "id": 1,
-          "src": "shellyblugw-a842e33f71f0",
+          "src": "shellyblugw-a642e44f71f1",
           "dst": "my_self",
           "result": null
         }

@@ -99,6 +99,11 @@ async function shelly() {
   //   append: false,
   // });
   // console.log(PutTLSClientKey);
+
+  const GetComponents = await gen2Device.post(ShellyMethods.GetComponents, {
+    offset: 0,
+  });
+  console.log(GetComponents);
 }
 
 async function main() {

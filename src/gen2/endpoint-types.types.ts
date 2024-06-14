@@ -19,6 +19,7 @@ import { EmptyResponse } from '@gen2/generic.types';
 import { RebootBody } from '@gen2/endpoints/types/shelly/reboot.interface';
 import { SetAuthBody } from '@gen2/endpoints/types/shelly/set-auth.interface';
 import { PutUserCaBody, PutUserCaResponse } from '@gen2/endpoints/types/shelly/put-user-ca.interface';
+import { GetComponentsBody, GetComponentsResponse } from '@gen2/endpoints/types/shelly/get-components.interface';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -133,6 +134,11 @@ interface ShellyMethodsMapping {
     queryParams: undefined;
     body: PutUserCaBody;
     response: PutUserCaResponse;
+  };
+  [ShellyMethods.GetComponents]: {
+    queryParams: undefined;
+    body: GetComponentsBody;
+    response: GetComponentsResponse;
   };
 }
 

@@ -3,8 +3,10 @@ import { WifiMethods } from '@gen2/methods.enum';
 
 async function main() {
   const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.33.1');
-  const data =  await gen2Device.post(WifiMethods.GetConfig);
-  console.log(data);
+  const getConfig =  await gen2Device.post(WifiMethods.GetConfig);
+  console.log(getConfig);
+  const getStatus =  await gen2Device.post(WifiMethods.GetStatus);
+  console.log(getStatus);
 }
 
 void main();

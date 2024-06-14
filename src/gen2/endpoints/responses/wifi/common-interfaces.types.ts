@@ -1,4 +1,4 @@
-import { Observer } from '@gen2/endpoints/responses/wifi/observer.types';
+import { Observer } from '@gen2/endpoints/responses/common/observer.types';
 
 export interface WifiConfig {
   ap: WifiAccessPoint;
@@ -14,7 +14,7 @@ interface WifiAccessPoint {
   range_extender: Observer;
 }
 
-export interface WifiAccessPointWithPass {
+interface WifiAccessPointWithPass {
   pass: string;
 }
 
@@ -35,6 +35,6 @@ interface WifiStation {
   nameserver: string;
 }
 
-export interface WifiStationWithPass extends WifiStation {
+interface WifiStationWithPass extends WifiStation {
   pass: string;
 }

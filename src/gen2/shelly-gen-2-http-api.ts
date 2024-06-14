@@ -3,10 +3,10 @@ import { ShellyGen2HTTPAPIMapping } from './endpoint-types.types';
 import { BaseRequest } from '@gen2/generic.types';
 
 export class ShellyGen2DeviceHTTPAPI {
-  private readonly url: string;
+  constructor(private readonly ip: string) {}
 
-  constructor(private readonly ip: string) {
-    this.url = `http://${this.ip}/rpc`;
+  private get url() {
+    return `http://${this.ip}/rpc`;
   }
 
   static get defaultRequestConfig(): AxiosRequestConfig {

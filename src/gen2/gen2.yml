@@ -142,6 +142,15 @@ paths:
         - Shelly Methods
       summary: Get Shelly device info
       description: Get Shelly device info [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Shelly#shellygetdeviceinfo)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ident:
+                  type: boolean
       responses:
         '200':
           description: Get Shelly device info response

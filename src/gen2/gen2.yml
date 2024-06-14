@@ -123,6 +123,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetConfigResponse'
+  /rpc/Shelly.ListMethods:
+    get:
+      tags:
+        - Shelly Methods
+      summary: Get Shelly list of available methods
+      description: Get Shelly list of available methods [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Shelly#shellylistmethods)
+      responses:
+        '200':
+          description: Get Shelly list of available methods response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListMethodsResponse'
 
 components:
   schemas:
@@ -1111,3 +1124,118 @@ components:
       additionalProperties: false
       title: Observer
       type: object
+
+    # Shelly.ListMethods
+    ListMethodsResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          $ref: '#/components/schemas/ListMethodsResponseResult'
+      required:
+        - id
+        - src
+        - dst
+        - result
+      additionalProperties: false
+      title: ListMethodsResponse
+      example:
+        {
+          "id": 1,
+          "src": "shellyblugw-a842e33f71f0",
+          "dst": "my_self",
+          "result": {
+            "methods": [
+              "Webhook.ListSupported",
+              "Webhook.List",
+              "Webhook.DeleteAll",
+              "Webhook.Delete",
+              "Webhook.Update",
+              "Webhook.Create",
+              "Schedule.List",
+              "Schedule.DeleteAll",
+              "Schedule.Delete",
+              "Schedule.Update",
+              "Schedule.Create",
+              "Script.Stop",
+              "Script.Start",
+              "Script.Eval",
+              "Script.GetCode",
+              "Script.PutCode",
+              "Script.SetConfig",
+              "Script.GetConfig",
+              "Script.GetStatus",
+              "Script.List",
+              "Script.Delete",
+              "Script.Create",
+              "WS.SetConfig",
+              "WS.GetConfig",
+              "WS.GetStatus",
+              "Mqtt.SetConfig",
+              "Mqtt.GetConfig",
+              "Mqtt.GetStatus",
+              "Cloud.SetConfig",
+              "Cloud.GetConfig",
+              "Cloud.GetStatus",
+              "BLE.CloudRelay.List",
+              "BLE.SetConfig",
+              "BLE.GetConfig",
+              "BLE.GetStatus",
+              "Wifi.Scan",
+              "Wifi.ListAPClients",
+              "Wifi.SetConfig",
+              "Wifi.GetConfig",
+              "Wifi.GetStatus",
+              "Sys.SetConfig",
+              "Sys.GetConfig",
+              "Sys.GetStatus",
+              "KVS.Delete",
+              "KVS.Set",
+              "KVS.GetMany",
+              "KVS.Get",
+              "KVS.List",
+              "HTTP.Request",
+              "HTTP.POST",
+              "HTTP.GET",
+              "Shelly.ListMethods",
+              "Shelly.PutTLSClientKey",
+              "Shelly.PutTLSClientCert",
+              "Shelly.PutUserCA",
+              "Shelly.Reboot",
+              "Shelly.SetAuth",
+              "Shelly.Update",
+              "Shelly.CheckForUpdate",
+              "Shelly.DetectLocation",
+              "Shelly.ListTimezones",
+              "Shelly.GetComponents",
+              "Shelly.GetStatus",
+              "Shelly.FactoryReset",
+              "Shelly.ResetWiFiConfig",
+              "Shelly.GetConfig",
+              "Shelly.GetDeviceInfo",
+              "OTA.Abort",
+              "OTA.Write",
+              "OTA.Data",
+              "OTA.Start",
+              "OTA.Revert",
+              "OTA.Commit",
+              "OTA.Update",
+              "Sys.SetDebug"
+            ]
+          }
+        }
+    ListMethodsResponseResult:
+      additionalProperties: false
+      title: ListMethodsResponseResult
+      type: object
+      properties:
+        methods:
+          items:
+            type: string
+          type: array
+      required:
+        - methods

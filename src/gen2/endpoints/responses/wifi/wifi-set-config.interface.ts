@@ -7,7 +7,7 @@ export interface WifiSetConfigRequest {
   config: DeepPartial<WifiConfigForSetConfiguration>;
 }
 
-export interface WifiConfigForSetConfiguration {
+interface WifiConfigForSetConfiguration {
   ap: WifiAccessPointWithPass;
   sta: WifiStationWithPass;
   sta1: WifiStationWithPass;

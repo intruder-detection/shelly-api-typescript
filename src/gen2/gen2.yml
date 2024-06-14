@@ -323,7 +323,7 @@ paths:
                   description: Must be the id of the device. Only one realm is supported.
                 ha1:
                   type: string
-                  description: "user:realm:password" encoded in SHA256 (null to disable authentication)
+                  description: user:realm:password encoded in SHA256 (null to disable authentication)
       responses:
         '200':
           description: Set device authentication

@@ -1224,7 +1224,7 @@ components:
         mqtt:
           $ref: '#/components/schemas/MqttConfig'
         sys:
-          $ref: '#/components/schemas/Sys'
+          $ref: '#/components/schemas/SystemConfig'
         wifi:
           $ref: '#/components/schemas/WifiConfig'
         ws:
@@ -1239,7 +1239,7 @@ components:
       additionalProperties: false
       title: GetConfigResponseResult
       type: object
-    Sys:
+    SystemConfig:
       properties:
         device:
           $ref: '#/components/schemas/Device'
@@ -2596,6 +2596,9 @@ components:
             - $ref: '#/components/schemas/BLEConfig'
             - $ref: '#/components/schemas/MqttConfig'
             - $ref: '#/components/schemas/WsConfig'
+            - $ref: '#/components/schemas/WifiConfig'
+            - $ref: '#/components/schemas/SystemConfig'
+            - $ref: '#/components/schemas/CloudConfig'
       required:
         - key
         - status
@@ -2617,6 +2620,19 @@ components:
         - observer
       additionalProperties: false
       title: BLEConfig
+      type: object
+    CloudConfig:
+      properties:
+        enable:
+          type: boolean
+        server:
+          type: string
+          nullable: true
+      required:
+        - enable
+        - server
+      additionalProperties: false
+      title: CloudConfig
       type: object
 
 

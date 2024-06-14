@@ -2,6 +2,9 @@ import { BaseResponse } from '@gen2/generic.types';
 import { MqttConfig } from '@gen2/endpoints/types/mqtt/mqtt-common.types';
 import { WsConfig } from '@gen2/endpoints/types/ws/ws-common.types';
 import { BLEConfig } from '@gen2/endpoints/types/ble/ble-common.types';
+import { CloudConfig } from '@gen2/endpoints/types/cloud/cloud-common.types';
+import { WifiConfig } from '@gen2/endpoints/types/wifi/common-interfaces.types';
+import { SystemConfig } from '@gen2/endpoints/types/system/common.types.interfaces';
 
 export interface GetComponentsBody {
   offset?: number;
@@ -21,7 +24,7 @@ export interface GetComponentsResponseResult {
 export interface Component {
   key: string;
   status: Status;
-  config: MqttConfig | WsConfig | BLEConfig;
+  config: MqttConfig | WsConfig | BLEConfig | CloudConfig | WifiConfig | SystemConfig;
 }
 
 

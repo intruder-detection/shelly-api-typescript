@@ -55,6 +55,9 @@ async function shelly() {
 
   const DetectLocation = await gen2Device.post(ShellyMethods.DetectLocation);
   console.log(DetectLocation);
+
+  const CheckForUpdate = await gen2Device.post(ShellyMethods.CheckForUpdate);
+  console.log(CheckForUpdate);
 }
 
 async function main() {

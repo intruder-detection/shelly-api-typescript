@@ -210,6 +210,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DetectLocationResponse'
+  /rpc/Shelly.CheckForUpdate:
+    post:
+      tags:
+        - Shelly Methods
+      summary: Check Shelly device for updates
+      description: Check Shelly device for updates [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Shelly#shellycheckforupdate)
+      responses:
+        '200':
+          description: Check Shelly device for update response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckForUpdateResponse'
 
 components:
   schemas:
@@ -1549,7 +1562,7 @@ components:
       title: Observer
       type: object
 
-    # Shelly.ListMethods
+    # ShellyMethods.ListMethods
     ListMethodsResponse:
       properties:
         id:
@@ -1664,7 +1677,7 @@ components:
       required:
         - methods
     
-    # Shelly.GetDeviceInfo
+    # ShellyMethods.GetDeviceInfo
     GetDeviceInfoResponse:
       properties:
         id:
@@ -1749,7 +1762,7 @@ components:
       title: GetDeviceInfoResponseResult
       type: object
 
-    # Shelly.ListTimezonesResponse
+    # ShellyMethods.ListTimezonesResponse
     ListTimezonesResponse:
       properties:
         id:
@@ -2170,3 +2183,55 @@ components:
             "lon": -9.142685
           }
         }
+
+    # ShellyMethods.CheckForUpdate
+    CheckForUpdateResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          $ref: '#/components/schemas/AvailableUpdates'
+      required:
+        - id
+        - src
+        - dst
+        - result
+      additionalProperties: false
+      title: DetectLocationResponse
+      example:
+        {
+          "id": 1,
+          "src": "shellyblugw-a842e33f71f0",
+          "dst": "my_self",
+          "result": {
+            "stable": {
+              "version": "1.3.2",
+              "build_id": "20240522-112829/1.3.2-g34c651b"
+            }
+          }
+        }
+    AvailableUpdates:
+      properties:
+        stable:
+          $ref: '#/components/schemas/Version'
+        beta:
+          $ref: '#/components/schemas/Version'
+      additionalProperties: false
+      title: AvailableUpdates
+      type: object
+    Version:
+      properties:
+        version:
+          type: string
+        build_id:
+          type: string
+      required:
+        - version
+        - build_id
+      additionalProperties: false
+      title: Version
+      type: object

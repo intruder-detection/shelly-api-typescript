@@ -331,6 +331,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NullResponse'
+  /rpc/Shelly.PutUserCA:
+    post:
+      tags:
+        - Shelly Methods
+      summary: Uploading of a custom certificate authority (CA) PEM bundle
+      description: Uploading of a custom certificate authority (CA) PEM bundle [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Shelly#shellyputuserca)
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: string
+                  description: Contents of the PEM file (null if you want to delete the existing data)
+                append:
+                  type: boolean
+                  description: true if more data will be appended afterwards, default false.
+                  default: false
+      responses:
+        '200':
+          description: Set device authentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutUserCAResponse'
 
 
 components:
@@ -2345,6 +2372,34 @@ components:
       title: Version
       type: object
 
+    # ShellyMethods.PutUserCA
+    PutUserCAResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          type: object
+          properties:
+            len:
+              type: number
+      required:
+        - id
+        - src
+        - dst
+        - result
+      example:
+        {
+          "id": 1,
+          "src": "shellyblugw-a842e33f71f0",
+          "dst": "my_self",
+          "result": {
+            "len": 0
+          }
+        }
 
     # NullResponse
     NullResponse:

@@ -81,6 +81,12 @@ async function shelly() {
   //   ha1: null,
   // });
   // console.log(SetAuth);
+
+  const PutUserCA = await gen2Device.post(ShellyMethods.PutUserCA, {
+    data: null,
+    append: false,
+  });
+  console.log(PutUserCA);
 }
 
 async function main() {

@@ -5,6 +5,7 @@ import { WifiListAPClientsResponse } from '@gen2/endpoints/types/wifi/wifi-list-
 import { WifiScanResponse } from '@gen2/endpoints/types/wifi/wifi-scan-response.interface';
 import { WifiSetConfigBody, WifiSetConfigResponse } from '@gen2/endpoints/types/wifi/wifi-set-config.interface';
 import { GetStatusResponse } from '@gen2/endpoints/types/shelly/get-status-response.interface';
+import { GetConfigResponse } from '@gen2/endpoints/types/shelly/get-config-response.interface';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -39,6 +40,11 @@ interface ShellyMethodsMapping {
     queryParams: undefined;
     body: undefined;
     response: GetStatusResponse;
+  };
+  [ShellyMethods.GetConfig]: {
+    queryParams: undefined;
+    body: undefined;
+    response: GetConfigResponse;
   };
 }
 

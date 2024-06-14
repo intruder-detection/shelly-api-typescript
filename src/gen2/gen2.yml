@@ -110,6 +110,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetStatusResponse'
+  /rpc/Shelly.GetConfig:
+    get:
+      tags:
+        - Shelly Methods
+      summary: Get Shelly device config
+      description: Get Shelly device config. [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Shelly#shellygetconfig)
+      responses:
+        '200':
+          description: Get Shelly device config response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetConfigResponse'
 
 components:
   schemas:
@@ -753,3 +766,348 @@ components:
       title: SystemStatus
       type: object
 
+    # ShellyMethods.GetConfig
+    GetConfigResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          $ref: '#/components/schemas/GetConfigResponseResult'
+      required:
+        - id
+        - src
+        - dst
+        - result
+      additionalProperties: false
+      title: GetConfigResponse
+      example:
+        {
+          "ble": {
+            "enable": true,
+            "rpc": {
+              "enable": true
+            },
+            "observer": {
+              "enable": true
+            }
+          },
+          "cloud": {
+            "enable": true,
+            "server": "shelly-api-eu.shelly.cloud:6022/jrpc"
+          },
+          "mqtt": {
+            "enable": true,
+            "server": "broker.hivemq.com:1883",
+            "client_id": "shellyblugw-a842e33f71f0",
+            "user": null,
+            "ssl_ca": null,
+            "topic_prefix": "shellyblugw-a842e33f71f0",
+            "rpc_ntf": true,
+            "status_ntf": false,
+            "use_client_cert": false,
+            "enable_rpc": true,
+            "enable_control": true
+          },
+          "script:1": {
+            "id": 1,
+            "name": "myNewScript",
+            "enable": true
+          },
+          "script:2": {
+            "id": 2,
+            "name": "script_2",
+            "enable": false
+          },
+          "sys": {
+            "device": {
+              "name": "The Gateway ",
+              "mac": "A842E33F71F0",
+              "fw_id": "20231219-133956/1.1.0-g34b5d4f",
+              "discoverable": true,
+              "eco_mode": false
+            },
+            "location": {
+              "tz": "Europe/Lisbon",
+              "lat": 38.7023,
+              "lon": -8.9793
+            },
+            "debug": {
+              "level": 2,
+              "file_level": null,
+              "mqtt": {
+                "enable": true
+              },
+              "websocket": {
+                "enable": true
+              },
+              "udp": {
+                "addr": null
+              }
+            },
+            "ui_data": { },
+            "rpc_udp": {
+              "dst_addr": null,
+              "listen_port": null
+            },
+            "sntp": {
+              "server": "time.google.com"
+            },
+            "cfg_rev": 66
+          },
+          "wifi": {
+            "ap": {
+              "ssid": "ShellyBluGw-A842E33F71F0",
+              "is_open": true,
+              "enable": false,
+              "range_extender": {
+                "enable": false
+              }
+            },
+            "sta": {
+              "ssid": "HOMERUI",
+              "is_open": false,
+              "enable": true,
+              "ipv4mode": "dhcp",
+              "ip": null,
+              "netmask": null,
+              "gw": null,
+              "nameserver": null
+            },
+            "sta1": {
+              "ssid": "limao",
+              "is_open": true,
+              "enable": false,
+              "ipv4mode": "dhcp",
+              "ip": null,
+              "netmask": null,
+              "gw": null,
+              "nameserver": null
+            },
+            "roam": {
+              "rssi_thr": -80,
+              "interval": 60
+            }
+          },
+          "ws": {
+            "enable": false,
+            "server": null,
+            "ssl_ca": "ca.pem"
+          }
+        }
+    GetConfigResponseResult:
+      properties:
+        ble:
+          $ref: '#/components/schemas/Ble'
+        cloud:
+          $ref: '#/components/schemas/Cloud'
+        mqtt:
+          $ref: '#/components/schemas/MqttConfig'
+        sys:
+          $ref: '#/components/schemas/Sys'
+        wifi:
+          $ref: '#/components/schemas/WifiConfig'
+        ws:
+          $ref: '#/components/schemas/WsConfig'
+      required:
+        - ble
+        - cloud
+        - mqtt
+        - sys
+        - wifi
+        - ws
+      additionalProperties: false
+      title: GetConfigResponseResult
+      type: object
+    Sys:
+      properties:
+        device:
+          $ref: '#/components/schemas/Device'
+        location:
+          $ref: '#/components/schemas/Location'
+        debug:
+          $ref: '#/components/schemas/Debug'
+        ui_data:
+          $ref: '#/components/schemas/UIData'
+        rpc_udp:
+          $ref: '#/components/schemas/RPCUDP'
+        sntp:
+          $ref: '#/components/schemas/SNTP'
+        cfg_rev:
+          type: number
+      required:
+        - device
+        - location
+        - debug
+        - ui_data
+        - rpc_udp
+        - sntp
+        - cfg_rev
+      additionalProperties: false
+      title: Sys
+      type: object
+    RPCUDP:
+      properties:
+        dst_addr:
+          nullable: true
+        listen_port:
+          nullable: true
+      required:
+        - dst_addr
+        - listen_port
+      additionalProperties: false
+      title: RPCUDP
+      type: object
+    SNTP:
+      properties:
+        server:
+          type: string
+      required:
+        - server
+      additionalProperties: false
+      title: SNTP
+      type: object
+    UIData:
+      additionalProperties: false
+      title: UIData
+      type: object
+    MqttConfig:
+      properties:
+        enable:
+          type: boolean
+        server:
+          nullable: true
+          type: string
+        client_id:
+          type: string
+        user:
+          nullable: true
+          type: string
+        ssl_ca:
+          nullable: true
+          type: string
+        topic_prefix:
+          type: string
+        rpc_ntf:
+          type: boolean
+        status_ntf:
+          type: boolean
+        use_client_cert:
+          type: boolean
+        enable_rpc:
+          type: boolean
+        enable_control:
+          type: boolean
+      required:
+        - enable
+        - server
+        - client_id
+        - user
+        - ssl_ca
+        - topic_prefix
+        - rpc_ntf
+        - status_ntf
+        - use_client_cert
+        - enable_rpc
+        - enable_control
+      additionalProperties: false
+      title: MqttConfig
+      type: object
+    WsConfig:
+      properties:
+        enable:
+          type: boolean
+        server:
+          nullable: true
+          type: string
+        ssl_ca:
+          type: string
+      required:
+        - enable
+        - server
+        - ssl_ca
+      additionalProperties: false
+      title: WsConfig
+      type: object
+    Device:
+      properties:
+        name:
+          nullable: true
+        mac:
+          type: string
+        fw_id:
+          type: string
+        discoverable:
+          type: boolean
+        eco_mode:
+          type: boolean
+      required:
+        - name
+        - mac
+        - fw_id
+        - discoverable
+        - eco_mode
+      additionalProperties: false
+      title: Device
+      type: object
+    Location:
+      properties:
+        tz:
+          enum:
+            - UTC
+            - WET
+        lat:
+          type: number
+        lon:
+          type: number
+      required:
+        - tz
+        - lat
+        - lon
+      additionalProperties: false
+      title: Location
+      type: object
+    Debug:
+      properties:
+        level:
+          type: number
+        file_level:
+          nullable: true
+          type: string
+        mqtt:
+          $ref: '#/components/schemas/MqttConfig'
+        websocket:
+          $ref: '#/components/schemas/Observer'
+        udp:
+          $ref: '#/components/schemas/UDP'
+      required:
+        - level
+        - file_level
+        - mqtt
+        - websocket
+        - udp
+      additionalProperties: false
+      title: Debug
+      type: object
+    UDP:
+      properties:
+        addr:
+          nullable: true
+          type: string
+      required:
+        - addr
+      additionalProperties: false
+      title: UDP
+      type: object
+    Observer:
+      properties:
+        enable:
+          type: boolean
+      required:
+        - enable
+      additionalProperties: false
+      title: Observer
+      type: object

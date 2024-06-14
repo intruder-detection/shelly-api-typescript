@@ -35,6 +35,9 @@ async function shelly() {
 
   const getStatus = await gen2Device.post(ShellyMethods.GetStatus);
   console.log(getStatus);
+
+  const getConfig = await gen2Device.post(ShellyMethods.GetConfig);
+  console.log(getConfig);
 }
 
 async function main() {

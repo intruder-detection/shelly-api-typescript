@@ -27,7 +27,7 @@ export class KvsHelpers {
     }
   }
 
-  async setKVS(kvs: KVSSetBody): Promise<KVSSetResponse> {
+  async setKey(kvs: KVSSetBody): Promise<KVSSetResponse> {
     if (kvs.key.length > 42) {
       throw new Error('Maximum key length is 42');
     }

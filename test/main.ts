@@ -370,9 +370,9 @@ async function kvsHelpers() {
 
   await kvsHelpers.deleteAll();
 
-  const created =  await kvsHelpers.setKVS({ key: 'test', value: 10 });
+  const created =  await kvsHelpers.setKey({ key: 'test', value: 10 });
   for (let i = 0; i < 49; i ++) {
-    await kvsHelpers.setKVS({ key: `test_${i}`, value: 10 });
+    await kvsHelpers.setKey({ key: `test_${i}`, value: 10 });
   }
   const list = await kvsHelpers.listAll();
   const hasKey = await kvsHelpers.hasKey('test');

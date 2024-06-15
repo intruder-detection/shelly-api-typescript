@@ -118,6 +118,15 @@ async function ble() {
 
   const GetConfig = await gen2Device.post(BLEMethods.GetConfig);
   console.log(GetConfig);
+
+  const SetConfig = await gen2Device.post(BLEMethods.SetConfig, {
+    config: {
+      enable: true,
+      rpc: { enable: true },
+      observer: { enable: true },
+    },
+  });
+  console.log(SetConfig);
 }
 
 async function main() {

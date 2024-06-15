@@ -480,6 +480,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BleConfigResponse'
+  /rpc/BLE.SetConfig:
+    post:
+      tags:
+        - BLE Methods
+      summary: Update Shelly device BLE config
+      description: Update Shelly device BLE config. [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/BLE#blesetconfig)
+      responses:
+        '200':
+          description: Update Shelly device BLE config response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BLESetConfigResponse'
 
 components:
   schemas:
@@ -2707,7 +2720,34 @@ components:
             }
           }
         }
-
+    # BLE.SetConfig
+    BLESetConfigResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          $ref: '#/components/schemas/RestartRequired'
+      required:
+        - id
+        - src
+        - dst
+        - result
+      additionalProperties: false
+      title: BleConfigResponse
+      example:
+        {
+          "id": 1,
+          "src": "shellyblugw-a842e33f71f0",
+          "dst": "my_self",
+          "result": {
+            "restart_required": false
+          }
+        }
+    # BLE.GetStatus
     BLEGetStatusResponse:
       properties:
         id:
@@ -2770,3 +2810,14 @@ components:
           "dst": "my_self",
           "result": null
         }
+
+    # Reusable
+    RestartRequired:
+      properties:
+        restart_required:
+          type: boolean
+      required:
+        - restart_required
+      additionalProperties: false
+      title: RestartRequired
+      type: object

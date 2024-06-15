@@ -20,6 +20,7 @@ import { GetComponentsBody, GetComponentsResponse } from '@gen2/endpoints/types/
 import { BLEConfig } from '@gen2/endpoints/types/ble/ble-common.types';
 import { BleConfigResponse } from '@gen2/endpoints/types/ble/ble-config-response.interface';
 import { BLEGetStatusResponse } from '@gen2/endpoints/types/ble/ble-get-status-response.interface';
+import { BLESetConfigBody, BLESetConfigResponse } from '@gen2/endpoints/types/ble/ble-set-config-interface';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -160,6 +161,11 @@ interface BLEMethodsMapping {
     queryParams: undefined;
     body: undefined;
     response: BleConfigResponse;
+  };
+  [BLEMethods.SetConfig]: {
+    queryParams: undefined;
+    body: BLESetConfigBody;
+    response: BLESetConfigResponse;
   };
 }
 

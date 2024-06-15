@@ -1,4 +1,4 @@
-import { BLEMethods, ShellyExtraMethods, ShellyMethods, WifiMethods } from './methods.enum';
+import { BLEMethods, CloudMethods, ShellyExtraMethods, ShellyMethods, WifiMethods } from './methods.enum';
 import { WifiGetConfigResponse } from '@gen2/endpoints/types/wifi/wifi-get-config-response.interface';
 import { WifiGetStatusResponse } from '@gen2/endpoints/types/wifi/wifi-get-status-response.interface';
 import { WifiListAPClientsResponse } from '@gen2/endpoints/types/wifi/wifi-list-ap-clients-response.interface';
@@ -17,10 +17,12 @@ import { RebootBody } from '@gen2/endpoints/types/shelly/reboot.interface';
 import { SetAuthBody } from '@gen2/endpoints/types/shelly/set-auth.interface';
 import { PutUserCaBody, PutUserCaResponse } from '@gen2/endpoints/types/shelly/put-user-ca.interface';
 import { GetComponentsBody, GetComponentsResponse } from '@gen2/endpoints/types/shelly/get-components.interface';
-import { BLEConfig } from '@gen2/endpoints/types/ble/ble-common.types';
 import { BleConfigResponse } from '@gen2/endpoints/types/ble/ble-config-response.interface';
 import { BLEGetStatusResponse } from '@gen2/endpoints/types/ble/ble-get-status-response.interface';
 import { BLESetConfigBody, BLESetConfigResponse } from '@gen2/endpoints/types/ble/ble-set-config-interface';
+import { CloudSetConfigBody, CloudSetConfigResponse } from '@gen2/endpoints/types/cloud/cloud-set-config-interface';
+import { CloudGetStatusResponse } from '@gen2/endpoints/types/cloud/cloud-get-status-response.interface';
+import { CloudConfigResponse } from '@gen2/endpoints/types/cloud/cloud-config-response.interface';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -169,4 +171,23 @@ interface BLEMethodsMapping {
   };
 }
 
-export interface ShellyGen2HTTPAPIMapping extends WifiMethodsMapping, ShellyMethodsMapping, ShellyExtraMethodsMapping, BLEMethodsMapping {}
+interface CloudMethodsMapping {
+  [CloudMethods.GetStatus]: {
+    queryParams: undefined;
+    body: undefined;
+    response: CloudGetStatusResponse;
+  };
+  [CloudMethods.GetConfig]: {
+    queryParams: undefined;
+    body: undefined;
+    response: CloudConfigResponse;
+  };
+  [CloudMethods.SetConfig]: {
+    queryParams: undefined;
+    body: CloudSetConfigBody;
+    response: CloudSetConfigResponse;
+  };
+}
+
+
+export interface ShellyGen2HTTPAPIMapping extends WifiMethodsMapping, ShellyMethodsMapping, ShellyExtraMethodsMapping, BLEMethodsMapping, CloudMethodsMapping {}

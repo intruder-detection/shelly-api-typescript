@@ -1,5 +1,5 @@
 import { ShellyGen2DeviceHTTPAPI } from '@gen2/shelly-gen-2-http-api';
-import { BLEMethods, ShellyExtraMethods, ShellyMethods, WifiMethods } from '@gen2/methods.enum';
+import { BLEMethods, CloudMethods, ShellyExtraMethods, ShellyMethods, WifiMethods } from '@gen2/methods.enum';
 
 async function wifi() {
   // By default when the device starts for the first time, the IP of the device on it's AP is 192.168.33.1
@@ -129,13 +129,33 @@ async function ble() {
   console.log(SetConfig);
 }
 
+async function cloud() {
+  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+
+  const GetStatus = await gen2Device.post(CloudMethods.GetStatus);
+  console.log(GetStatus);
+
+  const GetConfig = await gen2Device.post(CloudMethods.GetConfig);
+  console.log(GetConfig);
+
+  const SetConfig = await gen2Device.post(CloudMethods.SetConfig, {
+    config: {
+      enable: true,
+      // server: 'shelly-api-eu.shelly.cloud:6022/jrpc',
+    },
+  });
+  console.log(SetConfig);
+}
+
 async function main() {
   // WifiMethods
   // await wifi();
   // ShellyMethods
-  await shelly();
+  // await shelly();
   // BLEMethods
-  await ble();
+  // await ble();
+  // CloudMethods
+  await cloud();
 }
 
 void main();

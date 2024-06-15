@@ -486,6 +486,23 @@ paths:
         - BLE Methods
       summary: Update Shelly device BLE config
       description: Update Shelly device BLE config. [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/BLE#blesetconfig)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                config:
+                  $ref: '#/components/schemas/BLEConfig'
+              example:
+                {
+                  config: {
+                    enable: true,
+                    rpc: { enable: true },
+                    observer: { enable: true },
+                  },
+                }
       responses:
         '200':
           description: Update Shelly device BLE config response
@@ -493,6 +510,65 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BLESetConfigResponse'
+
+  # CloudMethods
+  /rpc/Cloud.GetStatus:
+    post:
+      tags:
+        - Cloud Methods
+      summary: Get Shelly device Cloud status
+      description: Get Shelly device Cloud status. [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Cloud#cloudgetstatus)
+      responses:
+        '200':
+          description: Get Shelly device Cloud status response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudGetStatusResponse'
+  /rpc/Cloud.GetConfig:
+    post:
+      tags:
+        - Cloud Methods
+      summary: Get Shelly device Cloud config
+      description: Get Shelly device Cloud config. [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Cloud#cloudgetconfig)
+      responses:
+        '200':
+          description: Get Shelly device Cloud config response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudConfigResponse'
+  /rpc/Cloud.SetConfig:
+    post:
+      tags:
+        - Cloud Methods
+      summary: Update Shelly device Cloud config
+      description: Update Shelly device Cloud config. [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Cloud#cloudsetconfig)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                config:
+                  $ref: '#/components/schemas/CloudConfig'
+              example:
+                {
+                  config: {
+                    enable: true,
+                    rpc: { enable: true },
+                    observer: { enable: true },
+                  },
+                }
+      responses:
+        '200':
+          description: Update Shelly device Cloud config response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudSetConfigResponse'
+
 
 components:
   schemas:
@@ -2682,11 +2758,11 @@ components:
           nullable: true
       required:
         - enable
-        - server
       additionalProperties: false
       title: CloudConfig
       type: object
 
+    # ------------------------------------ BLE
     # BLE.GetConfig
     BleConfigResponse:
       properties:
@@ -2786,6 +2862,99 @@ components:
       additionalProperties: false
       title: BLEGetStatusResponseResult
       type: object
+
+    # ------------------------------------ Cloud
+    # BLE.GetConfig
+    CloudConfigResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          $ref: '#/components/schemas/CloudConfig'
+      required:
+        - id
+        - src
+        - dst
+        - result
+      additionalProperties: false
+      title: CloudConfigResponse
+      example:
+        {
+          "id": 1,
+          "src": "shellyblugw-a842e33f71f0",
+          "dst": "my_self",
+          "result": {
+            "enable": true,
+            "server": "shelly-api-eu.shelly.cloud:6022/jrpc"
+          }
+        }
+    # BLE.SetConfig
+    CloudSetConfigResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          $ref: '#/components/schemas/RestartRequired'
+      required:
+        - id
+        - src
+        - dst
+        - result
+      additionalProperties: false
+      title: CloudSetConfigResponse
+      example:
+        {
+          "id": 1,
+          "src": "shellyblugw-a842e33f71f0",
+          "dst": "my_self",
+          "result": {
+            "restart_required": false
+          }
+        }
+    # BLE.GetStatus
+    CloudGetStatusResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          $ref: '#/components/schemas/CloudGetStatusResponseResult'
+      required:
+        - id
+        - src
+        - dst
+        - result
+      additionalProperties: false
+      title: CloudGetStatusResponse
+      example:
+        {
+          "id": 1,
+          "src": "shellyblugw-a842e33f71f0",
+          "dst": "my_self",
+          "result": {
+            "connected": true
+          }
+        }
+    CloudGetStatusResponseResult:
+      properties:
+        connected:
+          type: boolean
+      required:
+        - connected
+      additionalProperties: false
+      type: object
+
 
     # NullResponse
     NullResponse:

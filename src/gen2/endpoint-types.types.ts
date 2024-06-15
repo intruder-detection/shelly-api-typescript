@@ -1,4 +1,4 @@
-import { ShellyExtraMethods, ShellyMethods, WifiMethods } from './methods.enum';
+import { BLEMethods, ShellyExtraMethods, ShellyMethods, WifiMethods } from './methods.enum';
 import { WifiGetConfigResponse } from '@gen2/endpoints/types/wifi/wifi-get-config-response.interface';
 import { WifiGetStatusResponse } from '@gen2/endpoints/types/wifi/wifi-get-status-response.interface';
 import { WifiListAPClientsResponse } from '@gen2/endpoints/types/wifi/wifi-list-ap-clients-response.interface';
@@ -7,10 +7,7 @@ import { WifiSetConfigBody, WifiSetConfigResponse } from '@gen2/endpoints/types/
 import { GetStatusResponse } from '@gen2/endpoints/types/shelly/get-status-response.interface';
 import { GetConfigResponse } from '@gen2/endpoints/types/shelly/get-config-response.interface';
 import { ListMethodsResponse } from '@gen2/endpoints/types/shelly/list-methods-response.interface';
-import {
-  GetDeviceInfoBody,
-  GetDeviceInfoResponse, GetDeviceInfoResponseResult,
-} from '@gen2/endpoints/types/shelly/get-device-info.interface';
+import { GetDeviceInfoBody, GetDeviceInfoResponse, GetDeviceInfoResponseResult } from '@gen2/endpoints/types/shelly/get-device-info.interface';
 import { ListTimezonesResponse } from '@gen2/endpoints/types/shelly/list-timezones-response.interface';
 import { DetectLocationResponse } from '@gen2/endpoints/types/shelly/detect-device-location-response.interface';
 import { CheckForUpdateResponse } from '@gen2/endpoints/types/shelly/check-for-update-response.interface';
@@ -20,6 +17,9 @@ import { RebootBody } from '@gen2/endpoints/types/shelly/reboot.interface';
 import { SetAuthBody } from '@gen2/endpoints/types/shelly/set-auth.interface';
 import { PutUserCaBody, PutUserCaResponse } from '@gen2/endpoints/types/shelly/put-user-ca.interface';
 import { GetComponentsBody, GetComponentsResponse } from '@gen2/endpoints/types/shelly/get-components.interface';
+import { BLEConfig } from '@gen2/endpoints/types/ble/ble-common.types';
+import { BleConfigResponse } from '@gen2/endpoints/types/ble/ble-config-response.interface';
+import { BLEGetStatusResponse } from '@gen2/endpoints/types/ble/ble-get-status-response.interface';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -150,4 +150,17 @@ interface ShellyExtraMethodsMapping {
   };
 }
 
-export interface ShellyGen2HTTPAPIMapping extends WifiMethodsMapping, ShellyMethodsMapping, ShellyExtraMethodsMapping {}
+interface BLEMethodsMapping {
+  [BLEMethods.GetStatus]: {
+    queryParams: undefined;
+    body: undefined;
+    response: BLEGetStatusResponse;
+  };
+  [BLEMethods.GetConfig]: {
+    queryParams: undefined;
+    body: undefined;
+    response: BleConfigResponse;
+  };
+}
+
+export interface ShellyGen2HTTPAPIMapping extends WifiMethodsMapping, ShellyMethodsMapping, ShellyExtraMethodsMapping, BLEMethodsMapping {}

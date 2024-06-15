@@ -110,6 +110,10 @@ export enum ScriptMethods {
   Stop = 'Script.Stop',
 }
 
+export enum SwitchMethods {
+  Set = 'Switch.Set',
+}
+
 export type Gen2Methods =
   | ShellyMethods
   | ShellyExtraMethods
@@ -124,4 +128,5 @@ export type Gen2Methods =
   | CloudMethods
   | MQTTMethods
   | WsMethods
-  | ScriptMethods;
+  | ScriptMethods
+  | SwitchMethods;

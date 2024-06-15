@@ -2,8 +2,10 @@ import { ShellyGen2DeviceHTTPAPI } from '@gen2/shelly-gen-2-http-api';
 import {
   BLEMethods,
   CloudMethods,
+  ScheduleMethods,
   ShellyExtraMethods,
   ShellyMethods,
+  SwitchMethods,
   SystemMethods,
   WifiMethods,
 } from '@gen2/methods.enum';
@@ -168,10 +170,75 @@ async function system() {
       location: {
         lat: 39.99,
         lon: -9.38,
-      }
+      },
     },
   });
   console.log(SetConfig);
+}
+
+async function schedule() {
+  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+
+  function buildSchedule(id: number) {
+    return {
+      id,
+      enable: false,
+      timespec: '0 34 17 * * SUN,MON,TUE,WED,THU,FRI,SAT',
+      calls: [
+        {
+          method: SwitchMethods.Set,
+          params: {
+            id: 0,
+            on: false,
+          },
+        },
+      ],
+    };
+  }
+
+  const job1 = buildSchedule(1);
+  const job2 = buildSchedule(2);
+  const Create = await gen2Device.post(ScheduleMethods.Create, job1);
+  console.log(Create);
+
+  const Update = await gen2Device.post(ScheduleMethods.Update, {
+    ...job1,
+    calls: [
+      {
+        method: SwitchMethods.Set,
+        params: {
+          id: 0,
+          on: false,
+        },
+      },
+      {
+        method: BLEMethods.SetConfig,
+      },
+    ],
+  });
+  console.log(Update);
+
+  const List0 = await gen2Device.post(ScheduleMethods.List);
+  console.log(List0);
+
+  await gen2Device.post(ScheduleMethods.Create, job2);
+
+  const List = await gen2Device.post(ScheduleMethods.List);
+  console.log(List);
+
+  const Delete = await gen2Device.post(ScheduleMethods.Delete, {
+    id: 1,
+  });
+  console.log(Delete);
+
+  const List2 = await gen2Device.post(ScheduleMethods.List);
+  console.log(List2);
+
+  const DeleteAll = await gen2Device.post(ScheduleMethods.DeleteAll);
+  console.log(DeleteAll);
+
+  const List3 = await gen2Device.post(ScheduleMethods.List);
+  console.log(List3);
 }
 
 async function main() {
@@ -184,7 +251,9 @@ async function main() {
   // CloudMethods
   // await cloud();
   // SystemMethods
-  await system();
+  // await system();
+  // ScheduleMethods
+  await schedule();
 }
 
 void main();

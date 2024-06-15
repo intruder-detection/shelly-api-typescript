@@ -1,11 +1,4 @@
-import {
-  BLEMethods,
-  CloudMethods,
-  ShellyExtraMethods,
-  ShellyMethods,
-  SystemMethods,
-  WifiMethods,
-} from './methods.enum';
+import { BLEMethods, CloudMethods, ScheduleMethods, ShellyExtraMethods, ShellyMethods, SystemMethods, WifiMethods } from './methods.enum';
 import { WifiGetConfigResponse } from '@gen2/endpoints/types/wifi/wifi-get-config-response.interface';
 import { WifiGetStatusResponse } from '@gen2/endpoints/types/wifi/wifi-get-status-response.interface';
 import { WifiListAPClientsResponse } from '@gen2/endpoints/types/wifi/wifi-list-ap-clients-response.interface';
@@ -31,10 +24,13 @@ import { CloudSetConfigBody, CloudSetConfigResponse } from '@gen2/endpoints/type
 import { CloudGetStatusResponse } from '@gen2/endpoints/types/cloud/cloud-get-status-response.interface';
 import { CloudConfigResponse } from '@gen2/endpoints/types/cloud/cloud-config-response.interface';
 import { SystemGetStatusResponse } from '@gen2/endpoints/types/system/system-get-status-response.interface';
-import {
-  SystemGetConfigResponse,
-} from '@gen2/endpoints/types/system/system-get-config-response.interface';
+import { SystemGetConfigResponse } from '@gen2/endpoints/types/system/system-get-config-response.interface';
 import { SystemSetConfigBody, SystemSetConfigResponse } from '@gen2/endpoints/types/system/system-set-config-interface';
+import { ListSchedulesResponse } from '@gen2/endpoints/types/schedules/list-schedules.interface';
+import { CreateScheduleBody, CreateScheduleResponse } from '@gen2/endpoints/types/schedules/create-schedule.interface';
+import { UpdateScheduleBody, UpdateScheduleResponse } from '@gen2/endpoints/types/schedules/update-schedule.types';
+import { DeleteScheduleBody, DeleteScheduleResponse } from '@gen2/endpoints/types/schedules/delete-schedule.interface';
+import { DeleteAllSchedulesResponse } from '@gen2/endpoints/types/schedules/delete-all-schedules.interface';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -219,10 +215,39 @@ interface SystemMethodsMapping {
   };
 }
 
+interface ScheduleMethodMapping {
+  [ScheduleMethods.List]: {
+    queryParams: undefined;
+    body: undefined;
+    response: ListSchedulesResponse;
+  };
+  [ScheduleMethods.Create]: {
+    queryParams: undefined;
+    body: CreateScheduleBody;
+    response: CreateScheduleResponse;
+  };
+  [ScheduleMethods.Update]: {
+    queryParams: undefined;
+    body: UpdateScheduleBody;
+    response: UpdateScheduleResponse;
+  };
+  [ScheduleMethods.Delete]: {
+    queryParams: undefined;
+    body: DeleteScheduleBody;
+    response: DeleteScheduleResponse;
+  };
+  [ScheduleMethods.DeleteAll]: {
+    queryParams: undefined;
+    body: undefined;
+    response: DeleteAllSchedulesResponse;
+  };
+}
+
 export interface ShellyGen2HTTPAPIMapping
   extends WifiMethodsMapping,
     ShellyMethodsMapping,
     ShellyExtraMethodsMapping,
     BLEMethodsMapping,
     CloudMethodsMapping,
-    SystemMethodsMapping {}
+    SystemMethodsMapping,
+    ScheduleMethodMapping {}

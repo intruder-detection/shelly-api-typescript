@@ -1,7 +1,7 @@
 import { ShellyGen2DeviceHTTPAPI } from '@gen2/shelly-gen-2-http-api';
 import {
   BLEMethods,
-  CloudMethods, EthernetMethods,
+  CloudMethods, EthernetMethods, KVSMethods,
   ScheduleMethods,
   ScriptMethods,
   ShellyExtraMethods,
@@ -10,38 +10,10 @@ import {
   SystemMethods,
   WifiMethods,
 } from '@gen2/methods.enum';
-import { ScriptHelpers } from '@gen2/helpers/scripts/script-helpers';
+import { ScriptHelpers } from '@gen2/helpers/scripts/script.helpers';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-
-async function wifi() {
-  // By default when the device starts for the first time, the IP of the device on it's AP is 192.168.33.1
-  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.33.1');
-
-  const getConfig = await gen2Device.post(WifiMethods.GetConfig);
-  console.log(getConfig);
-  const getStatus = await gen2Device.post(WifiMethods.GetStatus);
-  console.log(getStatus);
-  const listAPClients = await gen2Device.post(WifiMethods.ListAPClients);
-  console.log(listAPClients);
-  const scan = await gen2Device.post(WifiMethods.Scan);
-  console.log(scan);
-  const setConfig = await gen2Device.post(WifiMethods.SetConfig, {
-    config: {
-      ap: {
-        enable: false,
-      },
-      sta: {
-        pass: '<WIFI_PASSWORD>',
-        is_open: false,
-        enable: true,
-        ssid: '<WIFI_SSID>',
-        ipv4mode: 'dhcp',
-      },
-    },
-  });
-  console.log(setConfig);
-}
+import { KvsHelpers } from '@gen2/helpers/kvs/kvs.helpers';
 
 async function shelly() {
   const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
@@ -121,6 +93,35 @@ async function shelly() {
 
   const Shelly = await gen2Device.get(ShellyExtraMethods.Shelly);
   console.log(Shelly);
+}
+
+async function wifi() {
+  // By default when the device starts for the first time, the IP of the device on it's AP is 192.168.33.1
+  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.33.1');
+
+  const getConfig = await gen2Device.post(WifiMethods.GetConfig);
+  console.log(getConfig);
+  const getStatus = await gen2Device.post(WifiMethods.GetStatus);
+  console.log(getStatus);
+  const listAPClients = await gen2Device.post(WifiMethods.ListAPClients);
+  console.log(listAPClients);
+  const scan = await gen2Device.post(WifiMethods.Scan);
+  console.log(scan);
+  const setConfig = await gen2Device.post(WifiMethods.SetConfig, {
+    config: {
+      ap: {
+        enable: false,
+      },
+      sta: {
+        pass: '<WIFI_PASSWORD>',
+        is_open: false,
+        enable: true,
+        ssid: '<WIFI_SSID>',
+        ipv4mode: 'dhcp',
+      },
+    },
+  });
+  console.log(setConfig);
 }
 
 async function ble() {
@@ -309,7 +310,7 @@ async function script() {
 }
 
 // Test all script methods but using the helper methods
-async function scriptWithHelpers() {
+async function scriptHelpers() {
   const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
   const scriptHelpers = new ScriptHelpers(gen2Device);
   await scriptHelpers.listScripts();
@@ -335,18 +336,55 @@ async function eth() {
   const SetConfig = await gen2Device.post(EthernetMethods.SetConfig, {
     config: {
       enable: false,
-      nameserver: '',
+      ipv4mode: 'dhcp',
+      ip: null,
+      netmask: null,
+      gw: null,
+      nameserver: null,
     },
   });
   console.log(SetConfig);
 }
 
-async function main() {
-  // WifiMethods
-  // await wifi();
+async function kvs() {
+  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
 
+  const List = await gen2Device.post(KVSMethods.List);
+  const GetMany = await gen2Device.post(KVSMethods.GetMany, {
+    match: 'lordy'
+  });
+  const Set = await gen2Device.post(KVSMethods.Set, {
+    key: 'my-key',
+    value: 101,
+    // etag: 'my-e-tag',
+  });
+  const Get = await gen2Device.post(KVSMethods.Get, {
+    key: 'my-key',
+  });
+  console.log(Get);
+}
+
+async function kvsHelpers() {
+  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+  const kvsHelpers = new KvsHelpers(gen2Device);
+
+  await kvsHelpers.deleteAll();
+
+  const created =  await kvsHelpers.setKVS({ key: 'test', value: 10 });
+  for (let i = 0; i < 49; i ++) {
+    await kvsHelpers.setKVS({ key: `test_${i}`, value: 10 });
+  }
+  const list = await kvsHelpers.listAll();
+  const hasKey = await kvsHelpers.hasKey('test');
+  const deleteAll = await kvsHelpers.deleteAll();
+}
+
+async function main() {
   // ShellyMethods
   // await shelly();
+
+  // WifiMethods
+  // await wifi();
 
   // BLEMethods
   // await ble();
@@ -362,10 +400,14 @@ async function main() {
 
   // ScriptMethods
   // await script();
-  // await scriptWithHelpers();
+  // await scriptHelpers();
 
   // EthernetMethods TODO: Test with device that has ethernet
-  await eth();
+  // await eth();
+
+  // KVSMethods
+  // await kvs();
+  // await kvsHelpers();
 }
 
 void main();

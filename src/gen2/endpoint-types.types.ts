@@ -1,7 +1,7 @@
 import {
   BLEMethods,
   CloudMethods,
-  EthernetMethods,
+  EthernetMethods, KVSMethods,
   ScheduleMethods,
   ScriptMethods,
   ShellyExtraMethods,
@@ -54,6 +54,11 @@ import { ScriptPutCodeBody, ScriptPutCodeResponse } from '@gen2/endpoints/types/
 import { EthSetConfigBody, EthSetConfigResponse } from '@gen2/endpoints/types/ethernet/eth-set-config.types';
 import { EthGetConfigResponse } from '@gen2/endpoints/types/ethernet/eth-get-config.types';
 import { EthGetStatusResponse } from '@gen2/endpoints/types/ethernet/eth-get-status.types';
+import { KVSListBody, KVSListResponse } from '@gen2/endpoints/types/kvs/kvs-list.types';
+import { KVSGetManyBody, KVSGetManyResponse } from '@gen2/endpoints/types/kvs/kvs-get-many.types';
+import { KVSGetBody, KVSGetResponse } from '@gen2/endpoints/types/kvs/kvs-get.types';
+import { KVSDeleteBody, KVSDeleteResponse } from '@gen2/endpoints/types/kvs/kvs-delete.types';
+import { KVSSetBody, KVSSetResponse } from '@gen2/endpoints/types/kvs/kvs-set.types';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -319,6 +324,34 @@ interface ScriptMethodsMapping {
   };
 }
 
+export interface KVSMethodsMapping {
+  [KVSMethods.List]: {
+    queryParams: undefined;
+    body: KVSListBody;
+    response: KVSListResponse;
+  };
+  [KVSMethods.GetMany]: {
+    queryParams: undefined;
+    body: KVSGetManyBody;
+    response: KVSGetManyResponse;
+  };
+  [KVSMethods.Get]: {
+    queryParams: undefined;
+    body: KVSGetBody;
+    response: KVSGetResponse;
+  };
+  [KVSMethods.Delete]: {
+    queryParams: undefined;
+    body: KVSDeleteBody;
+    response: KVSDeleteResponse;
+  };
+  [KVSMethods.Set]: {
+    queryParams: undefined;
+    body: KVSSetBody;
+    response: KVSSetResponse;
+  };
+}
+
 export interface EthernetMethodsMapping {
   [EthernetMethods.GetStatus]: {
     queryParams: undefined;
@@ -341,6 +374,7 @@ export interface ShellyGen2HTTPAPIMapping
   extends BLEMethodsMapping,
     CloudMethodsMapping,
     EthernetMethodsMapping,
+    KVSMethodsMapping,
     ScheduleMethodMapping,
     ScriptMethodsMapping,
     ShellyMethodsMapping,

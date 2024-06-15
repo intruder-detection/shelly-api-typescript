@@ -5,9 +5,9 @@ export interface PutUserCaBody {
   append: boolean;
 }
 
-export interface PutUserCaResponse extends BaseShellyResponse<Result> {}
+export interface PutUserCaResponse extends BaseShellyResponse<PutUserCaResponseResult> {}
 
-interface Result {
+interface PutUserCaResponseResult {
   // TODO: https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Shelly#shellyputuserca
   // It's not clear from the documentation what the response is
   len: number;

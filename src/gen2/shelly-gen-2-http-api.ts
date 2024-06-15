@@ -25,9 +25,9 @@ export class ShellyGen2DeviceHTTPAPI {
     } as BaseRequest;
   }
 
-  static throwError(endpoint: string, url: string, e: AxiosError) {
+  private throwError(endpoint: string, e: AxiosError) {
     throw new Error(
-      `Failed to run command ${endpoint}. URL: ${url}. Error is: ${e.message}. Error code: ${e.code} (See CommonErrors enum for more information).`,
+      `Failed to run command ${endpoint} on device ${this.ip}. Error is: ${e.message}. Error code: ${e.code} (See CommonErrors enum for more information).`,
     );
   }
 
@@ -47,7 +47,7 @@ export class ShellyGen2DeviceHTTPAPI {
       }
       return rxp.data;
     } catch (e: unknown) {
-      ShellyGen2DeviceHTTPAPI.throwError(endpoint, this.getUrl(), e as AxiosError);
+      this.throwError(endpoint, e as AxiosError);
     }
   }
 
@@ -63,7 +63,7 @@ export class ShellyGen2DeviceHTTPAPI {
       }
       return rxp.data;
     } catch (e: unknown) {
-      ShellyGen2DeviceHTTPAPI.throwError(endpoint, this.getUrl(endpoint), e as AxiosError);
+      this.throwError(endpoint, e as AxiosError);
     }
   }
 

@@ -1,7 +1,7 @@
 import { BaseShellyResponse } from '@gen2/generic.types';
 
-export interface ListTimezonesResponse extends BaseShellyResponse<Result> {}
+export interface ListTimezonesResponse extends BaseShellyResponse<ListTimezonesResponseResult> {}
 
-interface Result {
+interface ListTimezonesResponseResult {
   timezones: string[];
 }

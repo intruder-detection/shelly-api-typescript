@@ -1,7 +1,7 @@
 import { ShellyGen2DeviceHTTPAPI } from '@gen2/shelly-gen-2-http-api';
 import {
   BLEMethods,
-  CloudMethods,
+  CloudMethods, EthernetMethods,
   ScheduleMethods,
   ScriptMethods,
   ShellyExtraMethods,
@@ -323,22 +323,49 @@ async function scriptWithHelpers() {
   await scriptHelpers.startScript(idOfScript);
 }
 
+async function eth() {
+  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+
+  const GetStatus = await gen2Device.post(EthernetMethods.GetStatus);
+  console.log(GetStatus);
+
+  const GetConfig = await gen2Device.post(EthernetMethods.GetConfig);
+  console.log(GetConfig);
+
+  const SetConfig = await gen2Device.post(EthernetMethods.SetConfig, {
+    config: {
+      enable: false,
+      nameserver: '',
+    },
+  });
+  console.log(SetConfig);
+}
+
 async function main() {
   // WifiMethods
   // await wifi();
+
   // ShellyMethods
   // await shelly();
+
   // BLEMethods
   // await ble();
+
   // CloudMethods
   // await cloud();
+
   // SystemMethods
   // await system();
+
   // ScheduleMethods
   // await schedule();
+
   // ScriptMethods
   // await script();
-  await scriptWithHelpers();
+  // await scriptWithHelpers();
+
+  // EthernetMethods TODO: Test with device that has ethernet
+  await eth();
 }
 
 void main();

@@ -1,6 +1,7 @@
 import {
   BLEMethods,
   CloudMethods,
+  EthernetMethods,
   ScheduleMethods,
   ScriptMethods,
   ShellyExtraMethods,
@@ -48,9 +49,11 @@ import { ScriptSetConfigBody, ScriptSetConfigResponse } from '@gen2/endpoints/ty
 import { ScriptCreateBody, ScriptCreateResponse } from '@gen2/endpoints/types/script/script-create.types';
 import { ScriptEvalBody, ScriptEvalResponse } from '@gen2/endpoints/types/script/script-eval.types';
 import { ScriptDeleteBody, ScriptDeleteResponse } from '@gen2/endpoints/types/script/script-delete.types';
-import { ScriptStopBody } from '@gen2/endpoints/types/script/script-stop.types';
 import { ScriptStartBody, ScriptStartResponse } from '@gen2/endpoints/types/script/script-start.types';
 import { ScriptPutCodeBody, ScriptPutCodeResponse } from '@gen2/endpoints/types/script/script-put-code.types';
+import { EthSetConfigBody, EthSetConfigResponse } from '@gen2/endpoints/types/ethernet/eth-set-config.types';
+import { EthGetConfigResponse } from '@gen2/endpoints/types/ethernet/eth-get-config.types';
+import { EthGetStatusResponse } from '@gen2/endpoints/types/ethernet/eth-get-status.types';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -316,9 +319,28 @@ interface ScriptMethodsMapping {
   };
 }
 
+export interface EthernetMethodsMapping {
+  [EthernetMethods.GetStatus]: {
+    queryParams: undefined;
+    body: undefined;
+    response: EthGetStatusResponse;
+  };
+  [EthernetMethods.GetConfig]: {
+    queryParams: undefined;
+    body: undefined;
+    response: EthGetConfigResponse;
+  };
+  [EthernetMethods.SetConfig]: {
+    queryParams: undefined;
+    body: EthSetConfigBody;
+    response: EthSetConfigResponse;
+  };
+}
+
 export interface ShellyGen2HTTPAPIMapping
   extends BLEMethodsMapping,
     CloudMethodsMapping,
+    EthernetMethodsMapping,
     ScheduleMethodMapping,
     ScriptMethodsMapping,
     ShellyMethodsMapping,

@@ -629,6 +629,22 @@ paths:
               schema:
                 $ref: '#/components/schemas/SystemSetConfigResponse'
 
+  # Schedule
+  /rpc/Schedule.List:
+    post:
+      tags:
+        - Schedule Methods
+      summary: List Schedules of the device
+      description: List Schedules of the device. [Docs]()
+      responses:
+        '200':
+          description: List Schedules of the device response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListScheduleResponse'
+
+
 components:
   schemas:
     # ---------------------------------- WiFiMethods
@@ -3138,6 +3154,113 @@ components:
             "reset_reason": 3
           }
         }
+
+    # ------------------------------------ Schedule
+    ListScheduleResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          type: object
+          properties:
+            jobs:
+              type: array
+              items:
+                $ref: '#/components/schemas/ScheduleJob'
+      required:
+        - id
+        - src
+        - dst
+        - result
+      additionalProperties: false
+      title: ListScheduleResponse
+      example:
+        {
+          "id": 1,
+          "src": "shellyblugw-a842e33f71f0",
+          "dst": "my_self",
+          "result": {
+            "jobs": [
+              {
+                "id": 2,
+                "enable": false,
+                "timespec": "0 34 17 * * SUN,MON,TUE,WED,THU,FRI,SAT",
+                "calls": [
+                  {
+                    "method": "Switch.Set",
+                    "params": {
+                      "id": 0,
+                      "on": false
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "enable": false,
+                "timespec": "0 34 17 * * SUN,MON,TUE,WED,THU,FRI,SAT",
+                "calls": [
+                  {
+                    "method": "Switch.Set",
+                    "params": {
+                      "id": 0,
+                      "on": false
+                    }
+                  }
+                ]
+              },
+            ],
+            "rev": 45
+          }
+        }
+    ScheduleRevision:
+      properties:
+        id:
+          type: number
+        rev:
+          type: number
+      required:
+        - rev
+      additionalProperties: false
+      title: ScheduleRevision
+      type: object
+    ScheduleJobCall:
+      properties:
+        method:
+          type: string
+        params:
+          additionalProperties: { }
+          type: object
+      required:
+        - method
+      additionalProperties: false
+      title: ScheduleJobCall
+      type: object
+    ScheduleJob:
+      properties:
+        id:
+          type: number
+        enable:
+          type: boolean
+        timespec:
+          type: string
+        calls:
+          items:
+            $ref: '#/components/schemas/ScheduleJobCall'
+          title: ScheduleJob.calls
+          type: array
+      required:
+        - id
+        - enable
+        - timespec
+        - calls
+      additionalProperties: false
+      title: ScheduleJob
+      type: object
 
     # NullResponse
     NullResponse:

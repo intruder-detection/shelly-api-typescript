@@ -3,6 +3,6 @@ import { BaseResponse } from '@gen2/generic.types';
 
 export interface ListSchedulesResponse extends BaseResponse<ListSchedulesResponseResult> {}
 
-export interface ListSchedulesResponseResult extends ScheduleRevision {
+interface ListSchedulesResponseResult extends ScheduleRevision {
   jobs: ScheduleJob[];
 }

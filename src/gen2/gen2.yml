@@ -635,7 +635,7 @@ paths:
       tags:
         - Schedule Methods
       summary: List Schedules of the device
-      description: List Schedules of the device. [Docs]()
+      description: List Schedules of the device. [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Schedule#schedulelist)
       responses:
         '200':
           description: List Schedules of the device response
@@ -643,6 +643,84 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListScheduleResponse'
+  /rpc/Schedule.Create:
+    post:
+      tags:
+        - Schedule Methods
+      summary: Create Schedule method in the device
+      description: Create Schedule method in the device [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Schedule#schedulecreate)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduleJob'
+      responses:
+        '200':
+          description: Create Schedule method in the device response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateScheduleResponse'
+  /rpc/Schedule.Update:
+    post:
+      tags:
+        - Schedule Methods
+      summary: Update a Schedule of the device
+      description: Update a Schedule of the device [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Schedule#scheduleupdate)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduleJob'
+      responses:
+        '200':
+          description: Update a Schedule of the device response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateScheduleResponse'
+  /rpc/Schedule.Delete:
+    post:
+      tags:
+        - Schedule Methods
+      summary: Delete a Schedule of the device
+      description: Delete a Schedule of the device [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Schedule#scheduledelete)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                id:
+                  type: string
+              required:
+                - id
+            example:
+              {
+                "id": 1
+              }
+      responses:
+        '200':
+          description: List Schedules of the device response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteScheduleResponse'
+  /rpc/Schedule.DeleteAll:
+    post:
+      tags:
+        - Schedule Methods
+      summary: Delete all Schedules of the device
+      description: Delete all Schedules of the device [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Schedule#scheduledeleteall)
+      responses:
+        '200':
+          description: Delete all Schedules of the device response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteAllScheduleResponse'
 
 
 components:
@@ -3156,6 +3234,7 @@ components:
         }
 
     # ------------------------------------ Schedule
+    # ScheduleMethods.List
     ListScheduleResponse:
       properties:
         id:
@@ -3186,6 +3265,23 @@ components:
           "result": {
             "jobs": [
               {
+                "id": 1,
+                "enable": false,
+                "timespec": "0 34 17 * * SUN,MON,TUE,WED,THU,FRI,SAT",
+                "calls": [
+                  {
+                    "method": "Switch.Set",
+                    "params": {
+                      "id": 0,
+                      "on": false
+                    }
+                  },
+                  {
+                    "method": "BLE.SetConfig"
+                  }
+                ]
+              },
+              {
                 "id": 2,
                 "enable": false,
                 "timespec": "0 34 17 * * SUN,MON,TUE,WED,THU,FRI,SAT",
@@ -3198,25 +3294,129 @@ components:
                     }
                   }
                 ]
-              },
-              {
-                "id": 3,
-                "enable": false,
-                "timespec": "0 34 17 * * SUN,MON,TUE,WED,THU,FRI,SAT",
-                "calls": [
-                  {
-                    "method": "Switch.Set",
-                    "params": {
-                      "id": 0,
-                      "on": false
-                    }
-                  }
-                ]
-              },
+              }
             ],
-            "rev": 45
+            "rev": 51
           }
         }
+    CreateScheduleResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          type: object
+          properties:
+            jobs:
+              type: array
+              items:
+                $ref: '#/components/schemas/ScheduleJob'
+      required:
+        - id
+        - src
+        - dst
+        - result
+      additionalProperties: false
+      title: CreateScheduleResponse
+      example:
+        {
+          "id": 1,
+          "src": "shellyblugw-a842e33f71f0",
+          "dst": "my_self",
+          "result": {
+            "id": 1,
+            "rev": 49
+          }
+        }
+    UpdateScheduleResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          type: object
+          properties:
+            jobs:
+              type: array
+              items:
+                $ref: '#/components/schemas/ScheduleRevision'
+      required:
+        - id
+        - src
+        - dst
+        - result
+      additionalProperties: false
+      example:
+        {
+          "id": 1,
+          "src": "shellyblugw-a842e33f71f0",
+          "dst": "my_self",
+          "result": {
+            "rev": 50
+          }
+        }
+    DeleteScheduleResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          type: object
+          properties:
+            jobs:
+              type: array
+              items:
+                $ref: '#/components/schemas/ScheduleRevision'
+      required:
+        - id
+        - src
+        - dst
+        - result
+      additionalProperties: false
+      example:
+        {
+          "id": 1,
+          "src": "shellyblugw-a842e33f71f0",
+          "dst": "my_self",
+          "result": {
+            "rev": 52
+          }
+        }
+    DeleteAllScheduleResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          $ref: '#/components/schemas/ScheduleRevision'
+      required:
+        - id
+        - src
+        - dst
+        - result
+      additionalProperties: false
+      example:
+        {
+          "id": 1,
+          "src": "shellyblugw-a842e33f71f0",
+          "dst": "my_self",
+          "result": {
+            "rev": 53
+          }
+        }
+
     ScheduleRevision:
       properties:
         id:
@@ -3227,18 +3427,6 @@ components:
         - rev
       additionalProperties: false
       title: ScheduleRevision
-      type: object
-    ScheduleJobCall:
-      properties:
-        method:
-          type: string
-        params:
-          additionalProperties: { }
-          type: object
-      required:
-        - method
-      additionalProperties: false
-      title: ScheduleJobCall
       type: object
     ScheduleJob:
       properties:
@@ -3260,6 +3448,33 @@ components:
         - calls
       additionalProperties: false
       title: ScheduleJob
+      type: object
+      example:
+        {
+          "id": 1,
+          "enable": false,
+          "timespec": "0 34 17 * * SUN,MON,TUE,WED,THU,FRI,SAT",
+          "calls": [
+            {
+              "method": "Switch.Set",
+              "params": {
+                "id": 0,
+                "on": false
+              }
+            }
+          ]
+        }
+    ScheduleJobCall:
+      properties:
+        method:
+          type: string
+        params:
+          additionalProperties: { }
+          type: object
+      required:
+        - method
+      additionalProperties: false
+      title: ScheduleJobCall
       type: object
 
     # NullResponse

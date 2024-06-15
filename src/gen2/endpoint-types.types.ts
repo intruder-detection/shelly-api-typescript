@@ -1,4 +1,11 @@
-import { BLEMethods, CloudMethods, ShellyExtraMethods, ShellyMethods, WifiMethods } from './methods.enum';
+import {
+  BLEMethods,
+  CloudMethods,
+  ShellyExtraMethods,
+  ShellyMethods,
+  SystemMethods,
+  WifiMethods,
+} from './methods.enum';
 import { WifiGetConfigResponse } from '@gen2/endpoints/types/wifi/wifi-get-config-response.interface';
 import { WifiGetStatusResponse } from '@gen2/endpoints/types/wifi/wifi-get-status-response.interface';
 import { WifiListAPClientsResponse } from '@gen2/endpoints/types/wifi/wifi-list-ap-clients-response.interface';
@@ -23,6 +30,11 @@ import { BLESetConfigBody, BLESetConfigResponse } from '@gen2/endpoints/types/bl
 import { CloudSetConfigBody, CloudSetConfigResponse } from '@gen2/endpoints/types/cloud/cloud-set-config-interface';
 import { CloudGetStatusResponse } from '@gen2/endpoints/types/cloud/cloud-get-status-response.interface';
 import { CloudConfigResponse } from '@gen2/endpoints/types/cloud/cloud-config-response.interface';
+import { SystemGetStatusResponse } from '@gen2/endpoints/types/system/system-get-status-response.interface';
+import {
+  SystemGetConfigResponse,
+} from '@gen2/endpoints/types/system/system-get-config-response.interface';
+import { SystemSetConfigBody, SystemSetConfigResponse } from '@gen2/endpoints/types/system/system-set-config-interface';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -189,5 +201,28 @@ interface CloudMethodsMapping {
   };
 }
 
+interface SystemMethodsMapping {
+  [SystemMethods.GetStatus]: {
+    queryParams: undefined;
+    body: undefined;
+    response: SystemGetStatusResponse;
+  };
+  [SystemMethods.GetConfig]: {
+    queryParams: undefined;
+    body: undefined;
+    response: SystemGetConfigResponse;
+  };
+  [SystemMethods.SetConfig]: {
+    queryParams: undefined;
+    body: SystemSetConfigBody;
+    response: SystemSetConfigResponse;
+  };
+}
 
-export interface ShellyGen2HTTPAPIMapping extends WifiMethodsMapping, ShellyMethodsMapping, ShellyExtraMethodsMapping, BLEMethodsMapping, CloudMethodsMapping {}
+export interface ShellyGen2HTTPAPIMapping
+  extends WifiMethodsMapping,
+    ShellyMethodsMapping,
+    ShellyExtraMethodsMapping,
+    BLEMethodsMapping,
+    CloudMethodsMapping,
+    SystemMethodsMapping {}

@@ -569,6 +569,57 @@ paths:
               schema:
                 $ref: '#/components/schemas/CloudSetConfigResponse'
 
+  # SystemMethods
+  /rpc/Sys.GetStatus:
+    post:
+      tags:
+        - System Methods
+      summary: Get Shelly device System status
+      description: Get Shelly device System status. [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Sys#sysgetstatus)
+      responses:
+        '200':
+          description: Get Shelly device System status response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemGetStatusResponse'
+  /rpc/Sys.GetConfig:
+    post:
+      tags:
+        - System Methods
+      summary: Get Shelly device System config
+      description: Get Shelly device System config. [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Sys#sysgetconfig)
+      responses:
+        '200':
+          description: Get Shelly device System config response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemConfigResponse'
+  /rpc/Sys.SetConfig:
+    post:
+      tags:
+        - System Methods
+      summary: Update Shelly device System config
+      description: Update Shelly device System config. [Docs](https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Sys#syssetconfig)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                config:
+                  $ref: '#/components/schemas/SystemConfig'
+              example:
+                # TODO:
+      responses:
+        '200':
+          description: Update Shelly device System config response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemSetConfigResponse'
 
 components:
   schemas:
@@ -1277,8 +1328,8 @@ components:
             },
             "location": {
               "tz": "Europe/Lisbon",
-              "lat": 38.7023,
-              "lon": -8.9793
+              "lat": 39.9875,
+              "lon": -9.4422
             },
             "debug": {
               "level": 2,
@@ -2525,8 +2576,8 @@ components:
           "dst": "my_self",
           "result": {
             "tz": "Europe/Lisbon",
-            "lat": 38.7223,
-            "lon": -9.142685
+            "lat": 39.7823,
+            "lon": -8.3424
           }
         }
 
@@ -2784,7 +2835,7 @@ components:
       example:
         {
           "id": 1,
-          "src": "shellyblugw-a842e33f71f0",
+          "src": "shellyblugw-a142e33x7xf1",
           "dst": "my_self",
           "result": {
             "enable": true,
@@ -2817,7 +2868,7 @@ components:
       example:
         {
           "id": 1,
-          "src": "shellyblugw-a842e33f71f0",
+          "src": "shellyblugw-a142e33x7xf1",
           "dst": "my_self",
           "result": {
             "restart_required": false
@@ -2844,7 +2895,7 @@ components:
       example:
         {
           "id": 1,
-          "src": "shellyblugw-a842e33f71f0",
+          "src": "shellyblugw-a142e33x7xf1",
           "dst": "my_self",
           "result": {
             "dev_list": "ble_devices.json"
@@ -2885,7 +2936,7 @@ components:
       example:
         {
           "id": 1,
-          "src": "shellyblugw-a842e33f71f0",
+          "src": "shellyblugw-a142e33x7xf1",
           "dst": "my_self",
           "result": {
             "enable": true,
@@ -2913,7 +2964,7 @@ components:
       example:
         {
           "id": 1,
-          "src": "shellyblugw-a842e33f71f0",
+          "src": "shellyblugw-a142e33x7xf1",
           "dst": "my_self",
           "result": {
             "restart_required": false
@@ -2940,7 +2991,7 @@ components:
       example:
         {
           "id": 1,
-          "src": "shellyblugw-a842e33f71f0",
+          "src": "shellyblugw-a142e33x7xf1",
           "dst": "my_self",
           "result": {
             "connected": true
@@ -2955,6 +3006,130 @@ components:
       additionalProperties: false
       type: object
 
+    # ------------------------------------ System
+    # Sys.GetConfig
+    SystemConfigResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          $ref: '#/components/schemas/SystemConfig'
+      required:
+        - id
+        - src
+        - dst
+        - result
+      additionalProperties: false
+      title: SystemConfigResponse
+      example:
+        {
+          "id": 1,
+          "src": "shellyblugw-a142e33x7xf1",
+          "dst": "my_self",
+          "result": {
+            "device": {
+              "name": "The Gateway ",
+              "mac": "A142E33X7XF1",
+              "fw_id": "20231219-133956/1.1.0-g34b5d4f",
+              "discoverable": true,
+              "eco_mode": false
+            },
+            "location": {
+              "tz": "Europe/Lisbon",
+              "lat": 39.4444,
+              "lon": -9.3399
+            },
+            "debug": {
+              "level": 2,
+              "file_level": null,
+              "mqtt": {
+                "enable": true
+              },
+              "websocket": {
+                "enable": true
+              },
+              "udp": {
+                "addr": null
+              }
+            },
+            "ui_data": { },
+            "rpc_udp": {
+              "dst_addr": null,
+              "listen_port": null
+            },
+            "sntp": {
+              "server": "time.google.com"
+            },
+            "cfg_rev": 82
+          }
+        }
+    # Sys.SetConfig
+    SystemSetConfigResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          $ref: '#/components/schemas/RestartRequired'
+      required:
+        - id
+        - src
+        - dst
+        - result
+      additionalProperties: false
+      title: CloudSetConfigResponse
+    # Sys.GetStatus
+    SystemGetStatusResponse:
+      properties:
+        id:
+          type: number
+        src:
+          type: string
+        dst:
+          type: string
+        result:
+          $ref: '#/components/schemas/SystemStatus'
+      required:
+        - id
+        - src
+        - dst
+        - result
+      additionalProperties: false
+      title: CloudGetStatusResponse
+      example:
+        {
+          "id": 1,
+          "src": "shellyblugw-a442e33f71f0",
+          "dst": "my_self",
+          "result": {
+            "mac": "A142E33X7XF1",
+            "restart_required": false,
+            "time": "10:09",
+            "unixtime": 1718442544,
+            "uptime": 63478,
+            "ram_size": 261324,
+            "ram_free": 110792,
+            "fs_size": 458752,
+            "fs_free": 131072,
+            "cfg_rev": 82,
+            "kvs_rev": 51,
+            "schedule_rev": 2,
+            "webhook_rev": 12,
+            "available_updates": {
+              "stable": {
+                "version": "1.3.2"
+              }
+            },
+            "reset_reason": 3
+          }
+        }
 
     # NullResponse
     NullResponse:

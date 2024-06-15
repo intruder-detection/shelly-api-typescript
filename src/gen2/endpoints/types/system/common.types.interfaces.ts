@@ -1,6 +1,7 @@
 import { AvailableUpdates } from '@gen2/endpoints/types/common/available-updates.types';
 import { Device } from '@gen2/endpoints/types/common/device.types';
 import { Debug } from '@gen2/endpoints/types/common/debug.types';
+import { Location } from '@gen2/endpoints/types/common/location.types';
 
 export interface SystemStatus {
   mac: string;

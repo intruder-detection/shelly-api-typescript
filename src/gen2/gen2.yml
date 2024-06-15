@@ -612,7 +612,15 @@ paths:
                 config:
                   $ref: '#/components/schemas/SystemConfig'
               example:
-                # TODO:
+                example:
+                  {
+                    config: {
+                      location: {
+                        lat: 39.99,
+                        lon: -9.38,
+                      }
+                    },
+                  }
       responses:
         '200':
           description: Update Shelly device System config response
@@ -3084,7 +3092,7 @@ components:
         - dst
         - result
       additionalProperties: false
-      title: CloudSetConfigResponse
+      title: SystemSetConfigResponse
     # Sys.GetStatus
     SystemGetStatusResponse:
       properties:

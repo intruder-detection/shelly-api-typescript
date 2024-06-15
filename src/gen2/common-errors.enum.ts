@@ -8,6 +8,7 @@ export enum CommonErrors {
   DeadlineExceeded = -104,
   // https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/KVS/#kvsdelete
   KeyNotFound = -105,
+  ResourceAlreadyExists = -106,
   // https://shelly-api-docs.shelly.cloud/gen2/General/CommonErrors#-108-resource-exhausted
   ResourceExausted = -108,
   // https://shelly-api-docs.shelly.cloud/gen2/General/CommonErrors#-109-failed-precondition

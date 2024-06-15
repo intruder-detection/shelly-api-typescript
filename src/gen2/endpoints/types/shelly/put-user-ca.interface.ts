@@ -1,11 +1,11 @@
-import { BaseResponse } from '@gen2/generic.types';
+import { BaseShellyResponse } from '@gen2/generic.types';
 
 export interface PutUserCaBody {
   data: string | null;
   append: boolean;
 }
 
-export interface PutUserCaResponse extends BaseResponse<Result> {}
+export interface PutUserCaResponse extends BaseShellyResponse<Result> {}
 
 interface Result {
   // TODO: https://shelly-api-docs.shelly.cloud/gen2/ComponentsAndServices/Shelly#shellyputuserca

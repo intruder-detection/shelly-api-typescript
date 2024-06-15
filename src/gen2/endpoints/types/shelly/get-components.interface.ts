@@ -1,4 +1,4 @@
-import { BaseResponse } from '@gen2/generic.types';
+import { BaseShellyResponse } from '@gen2/generic.types';
 import { MqttConfig } from '@gen2/endpoints/types/mqtt/mqtt-common.types';
 import { WsConfig } from '@gen2/endpoints/types/ws/ws-common.types';
 import { BLEConfig } from '@gen2/endpoints/types/ble/ble-common.types';
@@ -12,7 +12,7 @@ export interface GetComponentsBody {
   dynamic_only?: boolean;
 }
 
-export interface GetComponentsResponse extends BaseResponse<GetComponentsResponseResult> {}
+export interface GetComponentsResponse extends BaseShellyResponse<GetComponentsResponseResult> {}
 
 export interface GetComponentsResponseResult {
   components: Component[];

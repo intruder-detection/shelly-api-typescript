@@ -1,6 +1,6 @@
-import { BaseResponse } from '@gen2/generic.types';
+import { BaseShellyResponse } from '@gen2/generic.types';
 
-export interface WifiGetStatusResponse extends BaseResponse<WifiStatus> {}
+export interface WifiGetStatusResponse extends BaseShellyResponse<WifiStatus> {}
 
 interface WifiStatus {
   sta_ip: string | null;

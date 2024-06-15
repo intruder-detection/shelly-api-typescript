@@ -1,6 +1,6 @@
-import { BaseResponse } from '@gen2/generic.types';
+import { BaseShellyResponse } from '@gen2/generic.types';
 
-export interface BLEGetStatusResponse extends BaseResponse<BLEGetStatusResponseResult> {}
+export interface BLEGetStatusResponse extends BaseShellyResponse<BLEGetStatusResponseResult> {}
 
 export interface BLEGetStatusResponseResult {
   ip?: string | null;

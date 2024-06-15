@@ -1,6 +1,6 @@
-import { BaseResponse } from '@gen2/generic.types';
+import { BaseShellyResponse } from '@gen2/generic.types';
 
-export interface WifiListAPClientsResponse extends BaseResponse<ListAPClients> {}
+export interface WifiListAPClientsResponse extends BaseShellyResponse<ListAPClients> {}
 
 interface ListAPClients {
   ts: number | null;

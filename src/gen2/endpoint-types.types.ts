@@ -1,4 +1,13 @@
-import { BLEMethods, CloudMethods, ScheduleMethods, ShellyExtraMethods, ShellyMethods, SystemMethods, WifiMethods } from './methods.enum';
+import {
+  BLEMethods,
+  CloudMethods,
+  ScheduleMethods,
+  ScriptMethods,
+  ShellyExtraMethods,
+  ShellyMethods,
+  SystemMethods,
+  WifiMethods,
+} from './methods.enum';
 import { WifiGetConfigResponse } from '@gen2/endpoints/types/wifi/wifi-get-config-response.interface';
 import { WifiGetStatusResponse } from '@gen2/endpoints/types/wifi/wifi-get-status-response.interface';
 import { WifiListAPClientsResponse } from '@gen2/endpoints/types/wifi/wifi-list-ap-clients-response.interface';
@@ -31,6 +40,17 @@ import { CreateScheduleBody, CreateScheduleResponse } from '@gen2/endpoints/type
 import { UpdateScheduleBody, UpdateScheduleResponse } from '@gen2/endpoints/types/schedules/update-schedule.types';
 import { DeleteScheduleBody, DeleteScheduleResponse } from '@gen2/endpoints/types/schedules/delete-schedule.interface';
 import { DeleteAllSchedulesResponse } from '@gen2/endpoints/types/schedules/delete-all-schedules.interface';
+import { ScriptListResponse } from '@gen2/endpoints/types/script/script-list.types';
+import { ScriptGetCodeBody, ScriptGetCodeResponse } from '@gen2/endpoints/types/script/script-get-code.types';
+import { ScriptGetConfigBody, ScriptGetConfigResponse } from '@gen2/endpoints/types/script/script-get-config.types';
+import { ScriptGetStatusBody, ScriptGetStatusResponse } from '@gen2/endpoints/types/script/script-get-status.types';
+import { ScriptSetConfigBody, ScriptSetConfigResponse } from '@gen2/endpoints/types/script/script-set-config.types';
+import { ScriptCreateBody, ScriptCreateResponse } from '@gen2/endpoints/types/script/script-create.types';
+import { ScriptEvalBody, ScriptEvalResponse } from '@gen2/endpoints/types/script/script-eval.types';
+import { ScriptDeleteBody, ScriptDeleteResponse } from '@gen2/endpoints/types/script/script-delete.types';
+import { ScriptStopBody } from '@gen2/endpoints/types/script/script-stop.types';
+import { ScriptStartBody, ScriptStartResponse } from '@gen2/endpoints/types/script/script-start.types';
+import { ScriptPutCodeBody, ScriptPutCodeResponse } from '@gen2/endpoints/types/script/script-put-code.types';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -243,11 +263,65 @@ interface ScheduleMethodMapping {
   };
 }
 
+interface ScriptMethodsMapping {
+  [ScriptMethods.List]: {
+    queryParams: undefined;
+    body: undefined;
+    response: ScriptListResponse;
+  };
+  [ScriptMethods.GetCode]: {
+    queryParams: undefined;
+    body: ScriptGetCodeBody;
+    response: ScriptGetCodeResponse;
+  };
+  [ScriptMethods.GetConfig]: {
+    queryParams: undefined;
+    body: ScriptGetConfigBody;
+    response: ScriptGetConfigResponse;
+  };
+  [ScriptMethods.SetConfig]: {
+    queryParams: undefined;
+    body: ScriptSetConfigBody;
+    response: ScriptSetConfigResponse;
+  };
+  [ScriptMethods.GetStatus]: {
+    queryParams: undefined;
+    body: ScriptGetStatusBody;
+    response: ScriptGetStatusResponse;
+  };
+  [ScriptMethods.Create]: {
+    queryParams: undefined;
+    body: ScriptCreateBody;
+    response: ScriptCreateResponse;
+  };
+  [ScriptMethods.PutCode]: {
+    queryParams: undefined;
+    body: ScriptPutCodeBody;
+    response: ScriptPutCodeResponse;
+  };
+  [ScriptMethods.Eval]: {
+    queryParams: undefined;
+    body: ScriptEvalBody;
+    response: ScriptEvalResponse;
+  };
+  [ScriptMethods.Start]: {
+    queryParams: undefined;
+    body: ScriptStartBody;
+    response: ScriptStartResponse;
+  };
+  [ScriptMethods.Delete]: {
+    queryParams: undefined;
+    body: ScriptDeleteBody;
+    response: ScriptDeleteResponse;
+  };
+}
+
 export interface ShellyGen2HTTPAPIMapping
-  extends WifiMethodsMapping,
+  extends BLEMethodsMapping,
+    CloudMethodsMapping,
+    ScheduleMethodMapping,
+    ScriptMethodsMapping,
     ShellyMethodsMapping,
     ShellyExtraMethodsMapping,
-    BLEMethodsMapping,
-    CloudMethodsMapping,
     SystemMethodsMapping,
-    ScheduleMethodMapping {}
+    WifiMethodsMapping {}

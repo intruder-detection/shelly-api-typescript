@@ -3,12 +3,16 @@ import {
   BLEMethods,
   CloudMethods,
   ScheduleMethods,
+  ScriptMethods,
   ShellyExtraMethods,
   ShellyMethods,
   SwitchMethods,
   SystemMethods,
   WifiMethods,
 } from '@gen2/methods.enum';
+import { ScriptHelpers } from '@gen2/helpers/scripts/script-helpers';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 
 async function wifi() {
   // By default when the device starts for the first time, the IP of the device on it's AP is 192.168.33.1
@@ -241,6 +245,84 @@ async function schedule() {
   console.log(List3);
 }
 
+// Test all script methods
+async function script() {
+  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+
+  const List = await gen2Device.post(ScriptMethods.List);
+  console.log(List);
+
+  const GetStatus = await gen2Device.post(ScriptMethods.GetStatus, {
+    id: 1,
+  });
+  console.log(GetStatus);
+
+  const SetConfig = await gen2Device.post(ScriptMethods.SetConfig, {
+    id: 1,
+    config: {
+      id: 1,
+      name: 'TestingStuff',
+      enable: true,
+    },
+  });
+  console.log(SetConfig);
+
+  const GetConfig = await gen2Device.post(ScriptMethods.GetConfig, {
+    id: 1,
+  });
+  console.log(GetConfig);
+
+  const GetCode = await gen2Device.post(ScriptMethods.GetCode, {
+    id: 1,
+    offset: 500,
+  });
+  console.log(GetCode);
+
+  const Create = await gen2Device.post(ScriptMethods.Create, {
+    name: 'testin2',
+  });
+  const idOfCreatedScript = Create.result.id;
+  console.log(Create);
+
+  const PutCode = await gen2Device.post(ScriptMethods.PutCode, {
+    id: idOfCreatedScript,
+    code: 'let a = 5 +5',
+    append: false,
+  });
+  console.log(PutCode);
+
+  const Start = await gen2Device.post(ScriptMethods.Start, {
+    id: idOfCreatedScript,
+  });
+  console.log(Start);
+
+  const Eval = await gen2Device.post(ScriptMethods.Eval, {
+    id: idOfCreatedScript,
+    code: 'let a = 5+5',
+  });
+  console.log(Eval);
+
+  const Delete = await gen2Device.post(ScriptMethods.Delete, {
+    id: idOfCreatedScript,
+  });
+  console.log(Delete);
+}
+
+// Test all script methods but using the helper methods
+async function scriptWithHelpers() {
+  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+  const scriptHelpers = new ScriptHelpers(gen2Device);
+  await scriptHelpers.listScripts();
+  await scriptHelpers.deleteAllScripts();
+  const createdScript = await scriptHelpers.createScript('Test Bluetooth');
+  const idOfScript = createdScript.result.id;
+  await scriptHelpers.uploadScriptInChunks(idOfScript, fs.readFileSync(path.join(__dirname, 'code-to-upload.js'), 'utf8'));
+
+  const updatedScript = await scriptHelpers.getScriptFullData(idOfScript);
+  console.log(updatedScript);
+  await scriptHelpers.startScript(idOfScript);
+}
+
 async function main() {
   // WifiMethods
   // await wifi();
@@ -253,7 +335,10 @@ async function main() {
   // SystemMethods
   // await system();
   // ScheduleMethods
-  await schedule();
+  // await schedule();
+  // ScriptMethods
+  // await script();
+  await scriptWithHelpers();
 }
 
 void main();

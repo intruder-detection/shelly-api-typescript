@@ -1,6 +1,6 @@
-import { BaseResponse } from '@gen2/generic.types';
+import { BaseShellyResponse } from '@gen2/generic.types';
 
-export interface WifiScanResponse extends BaseResponse<WifiScan[]> {}
+export interface WifiScanResponse extends BaseShellyResponse<WifiScan[]> {}
 
 interface WifiScan {
   ssid: string | null;

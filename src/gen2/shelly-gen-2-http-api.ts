@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { ShellyGen2HTTPAPIMapping } from './endpoint-types.types';
-import { BaseRequest } from '@gen2/generic.types';
+import { BaseRequest, BaseShellyResponse } from '@gen2/generic.types';
 
 export class ShellyGen2DeviceHTTPAPI {
   constructor(private readonly ip: string) {}
@@ -26,8 +26,9 @@ export class ShellyGen2DeviceHTTPAPI {
   }
 
   static throwError(endpoint: string, url: string, e: AxiosError) {
-    const errorMessage = (e.response?.data as { message: string }).message;
-    throw new Error(`Failed to run command ${endpoint}. URL: ${url}. Status: ${e.response.status}. Error is: ${errorMessage}`);
+    throw new Error(
+      `Failed to run command ${endpoint}. URL: ${url}. Error is: ${e.message}. Error code: ${e.code} (See CommonErrors enum for more information).`,
+    );
   }
 
   async post<E extends keyof ShellyGen2HTTPAPIMapping>(
@@ -40,6 +41,10 @@ export class ShellyGen2DeviceHTTPAPI {
         ShellyGen2DeviceHTTPAPI.buildBodyData(endpoint, body),
         ShellyGen2DeviceHTTPAPI.defaultRequestConfig,
       );
+      const data = rxp.data as BaseShellyResponse;
+      if (data.error) {
+        throw new AxiosError(data.error.message, String(data.error.code));
+      }
       return rxp.data;
     } catch (e: unknown) {
       ShellyGen2DeviceHTTPAPI.throwError(endpoint, this.getUrl(), e as AxiosError);
@@ -52,6 +57,10 @@ export class ShellyGen2DeviceHTTPAPI {
         this.getUrl(endpoint),
         ShellyGen2DeviceHTTPAPI.defaultRequestConfig,
       );
+      const data = rxp.data as BaseShellyResponse;
+      if (data.error) {
+        throw new AxiosError(data.error.message, String(data.error.code));
+      }
       return rxp.data;
     } catch (e: unknown) {
       ShellyGen2DeviceHTTPAPI.throwError(endpoint, this.getUrl(endpoint), e as AxiosError);

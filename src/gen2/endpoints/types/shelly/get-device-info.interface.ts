@@ -1,10 +1,10 @@
-import { BaseResponse } from '@gen2/generic.types';
+import { BaseShellyResponse } from '@gen2/generic.types';
 
 export interface GetDeviceInfoBody {
   ident: boolean;
 }
 
-export interface GetDeviceInfoResponse extends BaseResponse<GetDeviceInfoResponseResult> {}
+export interface GetDeviceInfoResponse extends BaseShellyResponse<GetDeviceInfoResponseResult> {}
 
 export interface GetDeviceInfoResponseResult {
   name: string;

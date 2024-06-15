@@ -1,3 +1,3 @@
-import { BaseResponse } from '@gen2/generic.types';
+import { BaseShellyResponse } from '@gen2/generic.types';
 
-export interface DetectLocationResponse extends BaseResponse<Location> {}
+export interface DetectLocationResponse extends BaseShellyResponse<Location> {}

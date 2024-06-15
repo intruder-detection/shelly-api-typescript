@@ -1,9 +1,7 @@
-import { CommonErrors } from '@gen2/common-errors.enum';
-
 /**
  * @see: https://shelly-api-docs.shelly.cloud/gen2/General/RPCProtocol#response-frame
  */
-export interface BaseResponse<T = undefined> {
+export interface BaseShellyResponse<T = undefined> {
   id: number;
   /**
    * Name of the device
@@ -23,8 +21,8 @@ export interface BaseResponse<T = undefined> {
   error?: BaseError;
 }
 
-interface BaseError {
-  code: CommonErrors;
+export interface BaseError {
+  code: number; // See CommonErrors
   message: string;
 }
 
@@ -40,4 +38,4 @@ export enum AxiosErrorCodes {
   ConnectionAborted = 'ECONNABORTED',
 }
 
-export type EmptyResponse = BaseResponse<null>;
+export type EmptyResponse = BaseShellyResponse<null>;

@@ -1,4 +1,4 @@
-import { BaseResponse } from '@gen2/generic.types';
+import { BaseShellyResponse } from '@gen2/generic.types';
 import { WifiConfig } from '@gen2/endpoints/types/wifi/common-interfaces.types';
 import { Device } from '@gen2/endpoints/types/common/device.types';
 import { Location } from '@gen2/endpoints/types/common/location.types';
@@ -8,7 +8,7 @@ import { CloudConfig } from '@gen2/endpoints/types/cloud/cloud-common.types';
 import { MqttConfig } from '@gen2/endpoints/types/mqtt/mqtt-common.types';
 import { WsConfig } from '@gen2/endpoints/types/ws/ws-common.types';
 
-export interface GetConfigResponse extends BaseResponse<GetConfigResponseResult> {}
+export interface GetConfigResponse extends BaseShellyResponse<GetConfigResponseResult> {}
 
 export interface GetConfigResponseResult {
   ble: BLEConfig;

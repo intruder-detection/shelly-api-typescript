@@ -3,6 +3,7 @@ export interface MqttConfig {
   server: string | null;
   client_id: string;
   user: string | null;
+  pass: string | null;
   ssl_ca: string | null;
   topic_prefix: string;
   rpc_ntf: boolean;

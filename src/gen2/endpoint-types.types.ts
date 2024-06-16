@@ -4,6 +4,7 @@ import {
   EthernetMethods,
   InputMethods,
   KVSMethods,
+  MQTTMethods,
   ScheduleMethods,
   ScriptMethods,
   ShellyExtraMethods,
@@ -65,15 +66,12 @@ import { InputGetStatusResponse } from '@gen2/endpoints/types/input/input-get-st
 import { InputIdBody } from '@gen2/endpoints/types/input/input-common.types';
 import { InputGetConfigResponse } from '@gen2/endpoints/types/input/input-get-config.types';
 import { InputSetConfigBody, InputSetConfigResponse } from '@gen2/endpoints/types/input/input-set-config.types';
-import {
-  InputCheckExpressionBody,
-  InputCheckExpressionResponse,
-} from '@gen2/endpoints/types/input/input-check-expression.types';
-import {
-  InputResetCountersBody,
-  InputResetCountersResponse,
-} from '@gen2/endpoints/types/input/input-reset-counters.types';
+import { InputCheckExpressionBody, InputCheckExpressionResponse } from '@gen2/endpoints/types/input/input-check-expression.types';
+import { InputResetCountersBody, InputResetCountersResponse } from '@gen2/endpoints/types/input/input-reset-counters.types';
 import { InputTriggerBody, InputTriggerResponse } from '@gen2/endpoints/types/input/input-trigger.types';
+import { MQTTSetConfigBody, MQTTSetConfigResponse } from '@gen2/endpoints/types/mqtt/mqtt-set-config.types';
+import { MQTTGetStatusResponse } from '@gen2/endpoints/types/mqtt/mqtt-get-status.types';
+import { MQTTGetConfigResponse } from '@gen2/endpoints/types/mqtt/mqtt-get-config.types';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -339,7 +337,7 @@ interface ScriptMethodsMapping {
   };
 }
 
-export interface KVSMethodsMapping {
+interface KVSMethodsMapping {
   [KVSMethods.List]: {
     queryParams: undefined;
     body: KVSListBody;
@@ -367,7 +365,7 @@ export interface KVSMethodsMapping {
   };
 }
 
-export interface EthernetMethodsMapping {
+interface EthernetMethodsMapping {
   [EthernetMethods.GetStatus]: {
     queryParams: undefined;
     body: undefined;
@@ -385,7 +383,7 @@ export interface EthernetMethodsMapping {
   };
 }
 
-export interface InputMethodsMapping {
+interface InputMethodsMapping {
   [InputMethods.GetStatus]: {
     queryParams: undefined;
     body: InputIdBody;
@@ -418,12 +416,31 @@ export interface InputMethodsMapping {
   };
 }
 
+interface MQTTMethodsMapping {
+  [MQTTMethods.GetStatus]: {
+    queryParams: undefined;
+    body: undefined;
+    response: MQTTGetStatusResponse;
+  };
+  [MQTTMethods.GetConfig]: {
+    queryParams: undefined;
+    body: undefined;
+    response: MQTTGetConfigResponse;
+  };
+  [MQTTMethods.SetConfig]: {
+    queryParams: undefined;
+    body: MQTTSetConfigBody;
+    response: MQTTSetConfigResponse;
+  };
+}
+
 export interface ShellyGen2HTTPAPIMapping
   extends BLEMethodsMapping,
     CloudMethodsMapping,
     EthernetMethodsMapping,
     InputMethodsMapping,
     KVSMethodsMapping,
+    MQTTMethodsMapping,
     ScheduleMethodMapping,
     ScriptMethodsMapping,
     ShellyMethodsMapping,

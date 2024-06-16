@@ -5,6 +5,7 @@ import {
   EthernetMethods,
   InputMethods,
   KVSMethods,
+  MQTTMethods,
   ScheduleMethods,
   ScriptMethods,
   ShellyExtraMethods,
@@ -18,6 +19,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { KvsHelpers } from '@gen2/helpers/kvs/kvs.helpers';
 import { InputHelpers } from '@gen2/helpers/input/input.helpers';
+import { ShellyHelpers } from '@gen2/helpers/shelly/shelly.helpers';
 
 async function shelly() {
   const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
@@ -400,10 +402,11 @@ async function input() {
   }
 
   const SetConfig = await gen2Device.post(InputMethods.SetConfig, {
-    id: 1,
+    id: 2,
     config: {
-      id: 1,
-      name: 'input uno',
+      id: 2,
+      name: 'input dos',
+      type: 'button',
       enable: true,
     },
   });
@@ -429,6 +432,33 @@ async function input() {
   //   event_type: 'single_push',
   // });
   // console.log(Trigger);
+}
+
+async function mqtt() {
+  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.9');
+  const shellyHelpers = new ShellyHelpers(gen2Device);
+
+  const [deviceConfig, deviceStatus] = await Promise.all([shellyHelpers.getConfig(), shellyHelpers.getStatus()]);
+
+  const GetStatus = await gen2Device.post(MQTTMethods.GetStatus);
+  console.log(GetStatus);
+
+  const GetConfig = await gen2Device.post(MQTTMethods.GetConfig);
+  console.log(GetConfig);
+
+  const SetConfig = await gen2Device.post(MQTTMethods.SetConfig, {
+    config: {
+      enable: true,
+      server: '192.168.1.6',
+      client_id: 'shelly-gateway',
+      topic_prefix: deviceConfig.src,
+      rpc_ntf: true,
+      status_ntf: true,
+    },
+  });
+  console.log(SetConfig);
+
+  // await shellyHelpers.reboot({ delay_ms: 500 });
 }
 
 async function main() {
@@ -463,6 +493,9 @@ async function main() {
 
   // InputMethods
   await input();
+
+  // MQTTMethods
+  // await mqtt();
 }
 
 void main();

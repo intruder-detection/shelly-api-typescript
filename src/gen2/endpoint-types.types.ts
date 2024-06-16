@@ -1,7 +1,9 @@
 import {
   BLEMethods,
   CloudMethods,
-  EthernetMethods, KVSMethods,
+  EthernetMethods,
+  InputMethods,
+  KVSMethods,
   ScheduleMethods,
   ScriptMethods,
   ShellyExtraMethods,
@@ -59,6 +61,19 @@ import { KVSGetManyBody, KVSGetManyResponse } from '@gen2/endpoints/types/kvs/kv
 import { KVSGetBody, KVSGetResponse } from '@gen2/endpoints/types/kvs/kvs-get.types';
 import { KVSDeleteBody, KVSDeleteResponse } from '@gen2/endpoints/types/kvs/kvs-delete.types';
 import { KVSSetBody, KVSSetResponse } from '@gen2/endpoints/types/kvs/kvs-set.types';
+import { InputGetStatusResponse } from '@gen2/endpoints/types/input/input-get-status.types';
+import { InputIdBody } from '@gen2/endpoints/types/input/input-common.types';
+import { InputGetConfigResponse } from '@gen2/endpoints/types/input/input-get-config.types';
+import { InputSetConfigBody, InputSetConfigResponse } from '@gen2/endpoints/types/input/input-set-config.types';
+import {
+  InputCheckExpressionBody,
+  InputCheckExpressionResponse,
+} from '@gen2/endpoints/types/input/input-check-expression.types';
+import {
+  InputResetCountersBody,
+  InputResetCountersResponse,
+} from '@gen2/endpoints/types/input/input-reset-counters.types';
+import { InputTriggerBody, InputTriggerResponse } from '@gen2/endpoints/types/input/input-trigger.types';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -370,10 +385,44 @@ export interface EthernetMethodsMapping {
   };
 }
 
+export interface InputMethodsMapping {
+  [InputMethods.GetStatus]: {
+    queryParams: undefined;
+    body: InputIdBody;
+    response: InputGetStatusResponse;
+  };
+  [InputMethods.GetConfig]: {
+    queryParams: undefined;
+    body: InputIdBody;
+    response: InputGetConfigResponse;
+  };
+  [InputMethods.SetConfig]: {
+    queryParams: undefined;
+    body: InputSetConfigBody;
+    response: InputSetConfigResponse;
+  };
+  [InputMethods.CheckExpression]: {
+    queryParams: undefined;
+    body: InputCheckExpressionBody;
+    response: InputCheckExpressionResponse; // TODO: Need device to test
+  };
+  [InputMethods.ResetCounters]: {
+    queryParams: undefined;
+    body: InputResetCountersBody;
+    response: InputResetCountersResponse; // TODO: Need device to test
+  };
+  [InputMethods.Trigger]: {
+    queryParams: undefined;
+    body: InputTriggerBody;
+    response: InputTriggerResponse; // TODO: Need device to test
+  };
+}
+
 export interface ShellyGen2HTTPAPIMapping
   extends BLEMethodsMapping,
     CloudMethodsMapping,
     EthernetMethodsMapping,
+    InputMethodsMapping,
     KVSMethodsMapping,
     ScheduleMethodMapping,
     ScriptMethodsMapping,

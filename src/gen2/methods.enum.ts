@@ -114,19 +114,30 @@ export enum SwitchMethods {
   Set = 'Switch.Set',
 }
 
+export enum InputMethods {
+  GetConfig = 'Input.GetConfig',
+  SetConfig = 'Input.SetConfig',
+  GetStatus = 'Input.GetStatus',
+  CheckExpression = 'Input.CheckExpression',
+  ResetCounters = 'Input.ResetCounters',
+  Trigger = 'Input.Trigger',
+}
+
 export type Gen2Methods =
-  | ShellyMethods
-  | ShellyExtraMethods
-  | ScheduleMethods
-  | WebhookMethods
-  | HTTPMethods
-  | KVSMethods
-  | SystemMethods
-  | WifiMethods
-  | EthernetMethods
   | BLEMethods
   | CloudMethods
+  | EthernetMethods
+  | HTTPMethods
+  | InputMethods
+  | KVSMethods
   | MQTTMethods
-  | WsMethods
+  | ScheduleMethods
   | ScriptMethods
-  | SwitchMethods;
+  | ShellyMethods
+  | ShellyExtraMethods
+  | SwitchMethods
+  | SystemMethods
+  | WebhookMethods
+  | WifiMethods
+  | WsMethods
+  ;

@@ -7,10 +7,11 @@ import { BLEConfig } from '@gen2/endpoints/types/ble/ble-common.types';
 import { CloudConfig } from '@gen2/endpoints/types/cloud/cloud-common.types';
 import { MqttConfig } from '@gen2/endpoints/types/mqtt/mqtt-common.types';
 import { WsConfig } from '@gen2/endpoints/types/ws/ws-common.types';
+import { FourInputsDeviceConfig } from '@gen2/endpoints/types/input/input-common.types';
 
 export interface GetConfigResponse extends BaseShellyResponse<GetConfigResponseResult> {}
 
-export interface GetConfigResponseResult {
+export interface GetConfigResponseResult extends FourInputsDeviceConfig {
   ble: BLEConfig;
   cloud: CloudConfig;
   mqtt: MqttConfig;

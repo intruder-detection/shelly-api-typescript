@@ -1,7 +1,10 @@
 import { ShellyGen2DeviceHTTPAPI } from '@gen2/shelly-gen-2-http-api';
 import {
   BLEMethods,
-  CloudMethods, EthernetMethods, KVSMethods,
+  CloudMethods,
+  EthernetMethods,
+  InputMethods,
+  KVSMethods,
   ScheduleMethods,
   ScriptMethods,
   ShellyExtraMethods,
@@ -14,6 +17,7 @@ import { ScriptHelpers } from '@gen2/helpers/scripts/script.helpers';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { KvsHelpers } from '@gen2/helpers/kvs/kvs.helpers';
+import { InputHelpers } from '@gen2/helpers/input/input.helpers';
 
 async function shelly() {
   const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
@@ -351,7 +355,7 @@ async function kvs() {
 
   const List = await gen2Device.post(KVSMethods.List);
   const GetMany = await gen2Device.post(KVSMethods.GetMany, {
-    match: 'lordy'
+    match: 'lordy',
   });
   const Set = await gen2Device.post(KVSMethods.Set, {
     key: 'my-key',
@@ -370,13 +374,61 @@ async function kvsHelpers() {
 
   await kvsHelpers.deleteAll();
 
-  const created =  await kvsHelpers.setKey({ key: 'test', value: 10 });
-  for (let i = 0; i < 49; i ++) {
+  const created = await kvsHelpers.setKey({ key: 'test', value: 10 });
+  for (let i = 0; i < 49; i++) {
     await kvsHelpers.setKey({ key: `test_${i}`, value: 10 });
   }
   const list = await kvsHelpers.listAll();
   const hasKey = await kvsHelpers.hasKey('test');
   const deleteAll = await kvsHelpers.deleteAll();
+}
+
+async function input() {
+  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.9');
+
+  const GetStatusOfDevice = await gen2Device.post(ShellyMethods.GetStatus);
+  console.log(GetStatusOfDevice);
+
+  const GetConfigOfDevice = await gen2Device.post(ShellyMethods.GetConfig);
+  console.log(GetConfigOfDevice);
+
+  const inputHelpers = new InputHelpers(gen2Device);
+  const inputs = await inputHelpers.getInputs();
+  for (const input of inputs) {
+    const [config, status] = await Promise.all([inputHelpers.getStatus(input.id), inputHelpers.getConfig(input.id)]);
+    console.log(config, status);
+  }
+
+  const SetConfig = await gen2Device.post(InputMethods.SetConfig, {
+    id: 1,
+    config: {
+      id: 1,
+      name: 'input uno',
+      enable: true,
+    },
+  });
+  console.log(SetConfig);
+
+  // TODO: Need device to test
+  // const ResetCounters = await gen2Device.post(InputMethods.ResetCounters, {
+  //   id: 1,
+  //   type: ['test'],
+  // });
+  // console.log(ResetCounters);
+
+  // TODO: Need device to test
+  // const CheckExpression = await gen2Device.post(InputMethods.CheckExpression, {
+  //   expr: 'let x=5+5',
+  //   inputs: [],
+  // });
+  // console.log(CheckExpression);
+
+  // TODO: Need device to test
+  // const Trigger = await gen2Device.post(InputMethods.Trigger, {
+  //   id: 1,
+  //   event_type: 'single_push',
+  // });
+  // console.log(Trigger);
 }
 
 async function main() {
@@ -408,6 +460,9 @@ async function main() {
   // KVSMethods
   // await kvs();
   // await kvsHelpers();
+
+  // InputMethods
+  await input();
 }
 
 void main();

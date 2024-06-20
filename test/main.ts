@@ -11,8 +11,10 @@ import {
   ShellyExtraMethods,
   ShellyMethods,
   SwitchMethods,
-  SystemMethods, WebhookMethods,
+  SystemMethods,
+  WebhookMethods,
   WifiMethods,
+  WsMethods,
 } from '@gen2/methods.enum';
 import { ScriptHelpers } from '@gen2/helpers/scripts/script.helpers';
 import * as fs from 'node:fs';
@@ -486,6 +488,25 @@ async function webhooks() {
   const DeleteAll = await gen2Device.post(WebhookMethods.DeleteAll);
 }
 
+async function websocket() {
+  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+
+  const GetStatus = await gen2Device.post(WsMethods.GetStatus);
+  console.log(GetStatus);
+
+  const GetConfig = await gen2Device.post(WsMethods.GetConfig);
+  console.log(GetConfig);
+
+  const SetConfig = await gen2Device.post(WsMethods.SetConfig, {
+    config: {
+      enable: false,
+      server: 'http://www.google.com',
+      ssl_ca: '*',
+    },
+  });
+  console.log(SetConfig);
+}
+
 async function main() {
   // ShellyMethods
   // await shelly();
@@ -522,8 +543,11 @@ async function main() {
   // MQTTMethods
   // await mqtt();
 
-  // WebhookMethods
-  await webhooks();
+  // WebhookMethods TODO: Test with device that has webhooks
+  // await webhooks();
+
+  // WsMethods
+  // await websocket();
 }
 
 void main();

@@ -9,8 +9,10 @@ import {
   ScriptMethods,
   ShellyExtraMethods,
   ShellyMethods,
-  SystemMethods, WebhookMethods,
+  SystemMethods,
+  WebhookMethods,
   WifiMethods,
+  WsMethods,
 } from './methods.enum';
 import { WifiGetConfigResponse } from '@gen2/endpoints/types/wifi/wifi-get-config-response.interface';
 import { WifiGetStatusResponse } from '@gen2/endpoints/types/wifi/wifi-get-status-response.interface';
@@ -78,6 +80,9 @@ import { CreateWebhookBody, CreateWebhookResponse } from '@gen2/endpoints/types/
 import { DeleteWebhookBody, DeleteWebhookResponse } from '@gen2/endpoints/types/webhooks/delete-webhook.types';
 import { DeleteAllWebhooksResponse } from '@gen2/endpoints/types/webhooks/delete-all-webhooks.types';
 import { UpdateWebhookBody, UpdateWebhookResponse } from '@gen2/endpoints/types/webhooks/update-webhook.types';
+import { WsSetConfigBody, WsSetConfigResponse } from '@gen2/endpoints/types/ws/ws-set-config.types';
+import { WsGetStatusResponse } from '@gen2/endpoints/types/ws/ws-get-status.types';
+import { WsGetConfigResponse } from '@gen2/endpoints/types/ws/ws-get-config.types';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -473,6 +478,24 @@ interface WebhooksMethodsMapping {
   };
 }
 
+export interface WebsocketMethodsMapping {
+  [WsMethods.GetConfig]: {
+    queryParams: undefined;
+    body: undefined;
+    response: WsGetConfigResponse;
+  };
+  [WsMethods.GetStatus]: {
+    queryParams: undefined;
+    body: undefined;
+    response: WsGetStatusResponse;
+  };
+  [WsMethods.SetConfig]: {
+    queryParams: undefined;
+    body: WsSetConfigBody;
+    response: WsSetConfigResponse;
+  };
+}
+
 export interface ShellyGen2HTTPAPIMapping
   extends BLEMethodsMapping,
     CloudMethodsMapping,
@@ -486,4 +509,5 @@ export interface ShellyGen2HTTPAPIMapping
     ShellyExtraMethodsMapping,
     SystemMethodsMapping,
     WebhooksMethodsMapping,
+    WebsocketMethodsMapping,
     WifiMethodsMapping {}

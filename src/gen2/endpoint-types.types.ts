@@ -9,7 +9,7 @@ import {
   ScriptMethods,
   ShellyExtraMethods,
   ShellyMethods,
-  SystemMethods,
+  SystemMethods, WebhookMethods,
   WifiMethods,
 } from './methods.enum';
 import { WifiGetConfigResponse } from '@gen2/endpoints/types/wifi/wifi-get-config-response.interface';
@@ -72,6 +72,12 @@ import { InputTriggerBody, InputTriggerResponse } from '@gen2/endpoints/types/in
 import { MQTTSetConfigBody, MQTTSetConfigResponse } from '@gen2/endpoints/types/mqtt/mqtt-set-config.types';
 import { MQTTGetStatusResponse } from '@gen2/endpoints/types/mqtt/mqtt-get-status.types';
 import { MQTTGetConfigResponse } from '@gen2/endpoints/types/mqtt/mqtt-get-config.types';
+import { ListSupportedWebhooksResponse } from '@gen2/endpoints/types/webhooks/list-supported-webhooks.types';
+import { ListWebhooksResponse } from '@gen2/endpoints/types/webhooks/list-webhooks.types';
+import { CreateWebhookBody, CreateWebhookResponse } from '@gen2/endpoints/types/webhooks/create-webhook.types';
+import { DeleteWebhookBody, DeleteWebhookResponse } from '@gen2/endpoints/types/webhooks/delete-webhook.types';
+import { DeleteAllWebhooksResponse } from '@gen2/endpoints/types/webhooks/delete-all-webhooks.types';
+import { UpdateWebhookBody, UpdateWebhookResponse } from '@gen2/endpoints/types/webhooks/update-webhook.types';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -434,6 +440,39 @@ interface MQTTMethodsMapping {
   };
 }
 
+interface WebhooksMethodsMapping {
+  [WebhookMethods.ListSupported]: {
+    queryParams: undefined;
+    body: undefined;
+    response: ListSupportedWebhooksResponse;
+  };
+  [WebhookMethods.List]: {
+    queryParams: undefined;
+    body: undefined;
+    response: ListWebhooksResponse;
+  };
+  [WebhookMethods.Delete]: {
+    queryParams: undefined;
+    body: DeleteWebhookBody;
+    response: DeleteWebhookResponse;
+  };
+  [WebhookMethods.DeleteAll]: {
+    queryParams: undefined;
+    body: undefined;
+    response: DeleteAllWebhooksResponse;
+  };
+  [WebhookMethods.Create]: {
+    queryParams: undefined;
+    body: CreateWebhookBody;
+    response: CreateWebhookResponse; // TODO: Need device to test
+  };
+  [WebhookMethods.Update]: {
+    queryParams: undefined;
+    body: UpdateWebhookBody;
+    response: UpdateWebhookResponse; // TODO: Need device to test
+  };
+}
+
 export interface ShellyGen2HTTPAPIMapping
   extends BLEMethodsMapping,
     CloudMethodsMapping,
@@ -446,4 +485,5 @@ export interface ShellyGen2HTTPAPIMapping
     ShellyMethodsMapping,
     ShellyExtraMethodsMapping,
     SystemMethodsMapping,
+    WebhooksMethodsMapping,
     WifiMethodsMapping {}

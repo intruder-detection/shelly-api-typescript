@@ -14,10 +14,8 @@ export class ShellyHelpers {
   }
 
   async reboot(rebootBody?: RebootBody) {
-    if (rebootBody) {
-      if (rebootBody.delay_ms < 500) {
-        throw new Error(`Reboot delay_ms provided was ${rebootBody.delay_ms} but must be equal or greater than 500`);
-      }
+    if (rebootBody && rebootBody.delay_ms < 500) {
+      throw new Error(`Reboot delay_ms provided was ${rebootBody.delay_ms} but must be equal or greater than 500`);
     }
     return this.gen2Device.post(ShellyMethods.Reboot, rebootBody);
   }

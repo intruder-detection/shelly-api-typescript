@@ -11,7 +11,7 @@ import {
   ShellyExtraMethods,
   ShellyMethods,
   SwitchMethods,
-  SystemMethods,
+  SystemMethods, WebhookMethods,
   WifiMethods,
 } from '@gen2/methods.enum';
 import { ScriptHelpers } from '@gen2/helpers/scripts/script.helpers';
@@ -20,6 +20,7 @@ import * as path from 'node:path';
 import { KvsHelpers } from '@gen2/helpers/kvs/kvs.helpers';
 import { InputHelpers } from '@gen2/helpers/input/input.helpers';
 import { ShellyHelpers } from '@gen2/helpers/shelly/shelly.helpers';
+import { WebhooksHelpers } from '@gen2/helpers/webhooks/webhooks.helpers';
 
 async function shelly() {
   const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
@@ -461,6 +462,30 @@ async function mqtt() {
   // await shellyHelpers.reboot({ delay_ms: 500 });
 }
 
+async function webhooks() {
+  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+
+  const ListSupported = await gen2Device.post(WebhookMethods.ListSupported);
+  const List = await gen2Device.post(WebhookMethods.List);
+  const webhookHelpers = new WebhooksHelpers(gen2Device);
+  const Create = await webhookHelpers.creatWebhook({
+    id: 1,
+    event: '',
+    name: 'A'.repeat(300),
+    cid: 1,
+    enable: false,
+    ssl_ca: null,
+    urls: ['https://www.google.com'],
+    active_between: [],
+    condition: null,
+    repeat_period: 0,
+  });
+  // TODO: Need device to test
+  const Delete = await gen2Device.post(WebhookMethods.Delete, { id: 1 });
+  // TODO: Need device to test
+  const DeleteAll = await gen2Device.post(WebhookMethods.DeleteAll);
+}
+
 async function main() {
   // ShellyMethods
   // await shelly();
@@ -492,10 +517,13 @@ async function main() {
   // await kvsHelpers();
 
   // InputMethods
-  await input();
+  // await input();
 
   // MQTTMethods
   // await mqtt();
+
+  // WebhookMethods
+  await webhooks();
 }
 
 void main();

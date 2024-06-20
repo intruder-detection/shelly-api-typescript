@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "debug": "dotenv -- npx tsx --inspect-brk test/main.ts",
+    "connect-new-device": "dotenv -- npx tsx --inspect-brk test/connect-from-scratch.ts",
     "build": "tsc"
   },
   "author": "Rui Alves",

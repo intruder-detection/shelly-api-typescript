@@ -1,9 +1,11 @@
 import { ShellyGen2DeviceHTTPAPI } from '@gen2/shelly-gen-2-http-api';
 import { WifiMethods } from '@gen2/methods.enum';
+import * as process from 'node:process';
 
 /**
- * To run this script you must be connected to Shelly device Access Point (AP) WiFi network.
- * 1. It will force the device to turn off the Access Point (AP) and move to the STA (station) of your WiFi Network
+ * To run this script, you must be connected to Shelly device Access Point (AP) Wi-Fi network.
+ * If you want to connect to the Shelly AP Wi-Fi network you could do it manually or using a script like: github.com/friedrith/node-wifi
+ * 1. It will force the device to turn off the Access Point (AP) and move to the STA (station) of your Wi-Fi Network
  */
 async function main() {
   const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.33.1');
@@ -30,6 +32,7 @@ async function main() {
     },
   });
   console.log(SetConfig);
+  console.log(`Connected device ${SetConfig.src} to Wi-Fi network ${process.env.WIFI_SSID}`)
 }
 
 void main();

@@ -8,7 +8,7 @@ import {
   ScheduleMethods,
   ScriptMethods,
   ShellyExtraMethods,
-  ShellyMethods,
+  ShellyMethods, SwitchMethods,
   SystemMethods,
   WebhookMethods,
   WifiMethods,
@@ -83,6 +83,16 @@ import { UpdateWebhookBody, UpdateWebhookResponse } from '@gen2/endpoints/types/
 import { WsSetConfigBody, WsSetConfigResponse } from '@gen2/endpoints/types/ws/ws-set-config.types';
 import { WsGetStatusResponse } from '@gen2/endpoints/types/ws/ws-get-status.types';
 import { WsGetConfigResponse } from '@gen2/endpoints/types/ws/ws-get-config.types';
+import { SwitchGetStatusBody, SwitchGetStatusResponse } from '@gen2/endpoints/types/switch/switch-get-status.types';
+import { ScriptStopBody, ScriptStopResponse } from '@gen2/endpoints/types/script/script-stop.types';
+import { SwitchGetConfigBody, SwitchGetConfigResponse } from '@gen2/endpoints/types/switch/switch-get-config.types';
+import { SwitchSetConfigBody, SwitchSetConfigResponse } from '@gen2/endpoints/types/switch/switch-set-config.types';
+import { SwitchSetBody, SwitchSetResponse } from '@gen2/endpoints/types/switch/switch-set.types';
+import { SwitchToggleBody, SwitchToggleResponse } from '@gen2/endpoints/types/switch/switch-toggle.types';
+import {
+  SwitchResetCountersBody,
+  SwitchResetCountersResponse,
+} from '@gen2/endpoints/types/switch/switch-reset-counters.types';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -346,6 +356,11 @@ interface ScriptMethodsMapping {
     body: ScriptDeleteBody;
     response: ScriptDeleteResponse;
   };
+  [ScriptMethods.Stop]: {
+    queryParams: undefined;
+    body: ScriptStopBody;
+    response: ScriptStopResponse;
+  };
 }
 
 interface KVSMethodsMapping {
@@ -496,6 +511,39 @@ export interface WebsocketMethodsMapping {
   };
 }
 
+export interface SwitchMethodsMapping {
+  [SwitchMethods.GetConfig]: {
+    queryParams: undefined;
+    body: SwitchGetConfigBody;
+    response: SwitchGetConfigResponse;
+  };
+  [SwitchMethods.GetStatus]: {
+    queryParams: undefined;
+    body: SwitchGetStatusBody;
+    response: SwitchGetStatusResponse;
+  };
+  [SwitchMethods.SetConfig]: {
+    queryParams: undefined;
+    body: SwitchSetConfigBody;
+    response: SwitchSetConfigResponse;
+  };
+  [SwitchMethods.Set]: {
+    queryParams: undefined;
+    body: SwitchSetBody;
+    response: SwitchSetResponse;
+  };
+  [SwitchMethods.Toggle]: {
+    queryParams: undefined;
+    body: SwitchToggleBody;
+    response: SwitchToggleResponse;
+  };
+  [SwitchMethods.ResetCounters]: {
+    queryParams: undefined;
+    body: SwitchResetCountersBody;
+    response: SwitchResetCountersResponse;
+  };
+}
+
 export interface ShellyGen2HTTPAPIMapping
   extends BLEMethodsMapping,
     CloudMethodsMapping,
@@ -507,6 +555,7 @@ export interface ShellyGen2HTTPAPIMapping
     ScriptMethodsMapping,
     ShellyMethodsMapping,
     ShellyExtraMethodsMapping,
+    SwitchMethodsMapping,
     SystemMethodsMapping,
     WebhooksMethodsMapping,
     WebsocketMethodsMapping,

@@ -112,6 +112,11 @@ export enum ScriptMethods {
 
 export enum SwitchMethods {
   Set = 'Switch.Set',
+  Toggle = 'Switch.Toggle',
+  SetConfig = 'Switch.SetConfig',
+  GetConfig = 'Switch.GetConfig',
+  GetStatus = 'Switch.GetStatus',
+  ResetCounters = 'Switch.ResetCounters',
 }
 
 export enum InputMethods {

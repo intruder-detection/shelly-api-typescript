@@ -507,6 +507,52 @@ async function websocket() {
   console.log(SetConfig);
 }
 
+async function switch_() {
+  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+
+  const GetStatus = await gen2Device.post(SwitchMethods.GetStatus);
+  console.log(GetStatus);
+
+  const GetConfig = await gen2Device.post(SwitchMethods.GetConfig);
+  console.log(GetConfig);
+
+  const SetConfig = await gen2Device.post(SwitchMethods.SetConfig, {
+    config: {
+      enable: false,
+      server: 'http://www.google.com',
+      ssl_ca: '*',
+    },
+  });
+  console.log(SetConfig);
+
+  const Set = await gen2Device.post(SwitchMethods.Set, {
+    config: {
+      enable: false,
+      server: 'http://www.google.com',
+      ssl_ca: '*',
+    },
+  });
+  console.log(Set);
+
+  const Toggle = await gen2Device.post(SwitchMethods.Toggle, {
+    config: {
+      enable: false,
+      server: 'http://www.google.com',
+      ssl_ca: '*',
+    },
+  });
+  console.log(Toggle);
+
+  const ResetCounters = await gen2Device.post(SwitchMethods.ResetCounters, {
+    config: {
+      enable: false,
+      server: 'http://www.google.com',
+      ssl_ca: '*',
+    },
+  });
+  console.log(ResetCounters);
+}
+
 async function main() {
   // ShellyMethods
   // await shelly();
@@ -548,6 +594,9 @@ async function main() {
 
   // WsMethods
   // await websocket();
+
+  // SwitchMethods
+  await switch_();
 }
 
 void main();

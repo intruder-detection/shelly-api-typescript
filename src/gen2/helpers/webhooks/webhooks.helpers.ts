@@ -1,9 +1,9 @@
-import { ShellyGen2DeviceHTTPAPI } from '@gen2/shelly-gen-2-http-api';
 import { WebhookMethods } from '@gen2/methods.enum';
 import { CreateWebhookBody } from '@gen2/endpoints/types/webhooks/create-webhook.types';
+import { ShellyGen2PlusHTTPAPI } from '@common/shelly-gen-2-plus-http-api';
 
 export class WebhooksHelpers {
-  constructor(private readonly gen2Device: ShellyGen2DeviceHTTPAPI) {}
+  constructor(private readonly gen2Device: ShellyGen2PlusHTTPAPI) {}
 
   async creatWebhook(webhookBody: CreateWebhookBody) {
     this.validateName(webhookBody.name);

@@ -1,11 +1,11 @@
-import { ShellyGen2DeviceHTTPAPI } from '@gen2/shelly-gen-2-http-api';
 import { KVSMethods } from '@gen2/methods.enum';
 import { KVSListResponse } from '@gen2/endpoints/types/kvs/kvs-list.types';
 import { KVSDeleteResponse } from '@gen2/endpoints/types/kvs/kvs-delete.types';
 import { KVSSetBody, KVSSetResponse, KVSValue } from '@gen2/endpoints/types/kvs/kvs-set.types';
+import { ShellyGen2PlusHTTPAPI } from '@common/shelly-gen-2-plus-http-api';
 
 export class KvsHelpers {
-  constructor(private readonly gen2Device: ShellyGen2DeviceHTTPAPI) {}
+  constructor(private readonly gen2Device: ShellyGen2PlusHTTPAPI) {}
 
   async listAll(): Promise<KVSListResponse> {
     return this.gen2Device.post(KVSMethods.List);

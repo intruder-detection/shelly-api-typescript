@@ -1,4 +1,3 @@
-import { ShellyGen2DeviceHTTPAPI } from '@gen2/shelly-gen-2-http-api';
 import {
   BLEMethods,
   CloudMethods,
@@ -23,9 +22,10 @@ import { KvsHelpers } from '@gen2/helpers/kvs/kvs.helpers';
 import { InputHelpers } from '@gen2/helpers/input/input.helpers';
 import { ShellyHelpers } from '@gen2/helpers/shelly/shelly.helpers';
 import { WebhooksHelpers } from '@gen2/helpers/webhooks/webhooks.helpers';
+import { ShellyGen2PlusHTTPAPI } from '@common/shelly-gen-2-plus-http-api';
 
 async function shelly() {
-  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+  const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.10');
 
   const getStatus = await gen2Device.post(ShellyMethods.GetStatus);
   console.log(getStatus);
@@ -106,7 +106,7 @@ async function shelly() {
 
 async function wifi() {
   // By default when the device starts for the first time, the IP of the device on it's AP is 192.168.33.1
-  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.33.1');
+  const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.33.1');
 
   const getConfig = await gen2Device.post(WifiMethods.GetConfig);
   console.log(getConfig);
@@ -134,7 +134,7 @@ async function wifi() {
 }
 
 async function ble() {
-  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+  const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.10');
 
   const GetStatus = await gen2Device.post(BLEMethods.GetStatus);
   console.log(GetStatus);
@@ -153,7 +153,7 @@ async function ble() {
 }
 
 async function cloud() {
-  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+  const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.10');
 
   const GetStatus = await gen2Device.post(CloudMethods.GetStatus);
   console.log(GetStatus);
@@ -171,7 +171,7 @@ async function cloud() {
 }
 
 async function system() {
-  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+  const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.10');
 
   const GetStatus = await gen2Device.post(SystemMethods.GetStatus);
   console.log(GetStatus);
@@ -191,7 +191,7 @@ async function system() {
 }
 
 async function schedule() {
-  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+  const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.10');
 
   function buildSchedule(id: number) {
     return {
@@ -257,7 +257,7 @@ async function schedule() {
 
 // Test all script methods
 async function script() {
-  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+  const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.10');
 
   const List = await gen2Device.post(ScriptMethods.List);
   console.log(List);
@@ -320,7 +320,7 @@ async function script() {
 
 // Test all script methods but using the helper methods
 async function scriptHelpers() {
-  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+  const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.10');
   const scriptHelpers = new ScriptHelpers(gen2Device);
   await scriptHelpers.listScripts();
   await scriptHelpers.deleteAllScripts();
@@ -334,7 +334,7 @@ async function scriptHelpers() {
 }
 
 async function eth() {
-  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+  const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.10');
 
   const GetStatus = await gen2Device.post(EthernetMethods.GetStatus);
   console.log(GetStatus);
@@ -356,7 +356,7 @@ async function eth() {
 }
 
 async function kvs() {
-  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+  const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.10');
 
   const List = await gen2Device.post(KVSMethods.List);
   const GetMany = await gen2Device.post(KVSMethods.GetMany, {
@@ -374,7 +374,7 @@ async function kvs() {
 }
 
 async function kvsHelpers() {
-  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+  const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.10');
   const kvsHelpers = new KvsHelpers(gen2Device);
 
   await kvsHelpers.deleteAll();
@@ -389,7 +389,7 @@ async function kvsHelpers() {
 }
 
 async function input() {
-  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.9');
+  const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.9');
 
   const GetStatusOfDevice = await gen2Device.post(ShellyMethods.GetStatus);
   console.log(GetStatusOfDevice);
@@ -438,7 +438,7 @@ async function input() {
 }
 
 async function mqtt() {
-  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.9');
+  const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.9');
   const shellyHelpers = new ShellyHelpers(gen2Device);
 
   const [deviceConfig, deviceStatus] = await Promise.all([shellyHelpers.getConfig(), shellyHelpers.getStatus()]);
@@ -465,7 +465,7 @@ async function mqtt() {
 }
 
 async function webhooks() {
-  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+  const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.10');
 
   const ListSupported = await gen2Device.post(WebhookMethods.ListSupported);
   const List = await gen2Device.post(WebhookMethods.List);
@@ -489,7 +489,7 @@ async function webhooks() {
 }
 
 async function websocket() {
-  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+  const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.10');
 
   const GetStatus = await gen2Device.post(WsMethods.GetStatus);
   console.log(GetStatus);
@@ -508,7 +508,7 @@ async function websocket() {
 }
 
 async function switch_() {
-  const gen2Device = new ShellyGen2DeviceHTTPAPI('192.168.1.10');
+  const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.10');
 
   const GetStatus = await gen2Device.post(SwitchMethods.GetStatus);
   console.log(GetStatus);

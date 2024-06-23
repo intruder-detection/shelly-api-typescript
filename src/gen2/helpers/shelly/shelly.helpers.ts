@@ -1,9 +1,9 @@
-import { ShellyGen2DeviceHTTPAPI } from '@gen2/shelly-gen-2-http-api';
 import { ShellyMethods } from '@gen2/methods.enum';
 import { RebootBody } from '@gen2/endpoints/types/shelly/reboot.interface';
+import { ShellyGen2PlusHTTPAPI } from '@common/shelly-gen-2-plus-http-api';
 
 export class ShellyHelpers {
-  constructor(private readonly gen2Device: ShellyGen2DeviceHTTPAPI) {}
+  constructor(private readonly gen2Device: ShellyGen2PlusHTTPAPI) {}
 
   async getConfig() {
     return this.gen2Device.post(ShellyMethods.GetConfig);

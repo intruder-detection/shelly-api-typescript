@@ -1,12 +1,12 @@
 import { ScriptInformation, ScriptListResponse } from '@gen2/endpoints/types/script/script-list.types';
-import { ShellyGen2DeviceHTTPAPI } from '@gen2/shelly-gen-2-http-api';
 import { ScriptMethods } from '@gen2/methods.enum';
 import { ScriptCreateResponse } from '@gen2/endpoints/types/script/script-create.types';
 import { ScriptDeleteResponse } from '@gen2/endpoints/types/script/script-delete.types';
 import { ScriptStartResponse } from '@gen2/endpoints/types/script/script-start.types';
+import { ShellyGen2PlusHTTPAPI } from '@common/shelly-gen-2-plus-http-api';
 
 export class ScriptHelpers {
-  constructor(private readonly gen2Device: ShellyGen2DeviceHTTPAPI) {}
+  constructor(private readonly gen2Device: ShellyGen2PlusHTTPAPI) {}
 
   async listScripts(): Promise<ScriptListResponse> {
     return this.gen2Device.post(ScriptMethods.List);

@@ -8,8 +8,9 @@
     "dist/src/**"
   ],
   "scripts": {
-    "debug": "dotenv -- npx tsx --inspect-brk test/main.ts",
-    "connect-new-device": "dotenv -- npx tsx --inspect-brk test/connect-from-scratch.ts",
+    "debug": "dotenv -- npx tsx --inspect-brk test/gen2/main.ts",
+    "debug_gen3": "dotenv -- npx tsx --inspect-brk test/gen3/main.ts",
+    "connect-new-device": "dotenv -- npx tsx --inspect-brk test/gen2/connect-from-scratch.ts",
     "build": "tsc"
   },
   "author": "Rui Alves",

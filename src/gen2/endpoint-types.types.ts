@@ -96,27 +96,22 @@ import {
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
-    queryParams: undefined;
     body: undefined;
     response: WifiGetConfigResponse;
   };
   [WifiMethods.SetConfig]: {
-    queryParams: undefined;
     body: WifiSetConfigBody;
     response: WifiSetConfigResponse;
   };
   [WifiMethods.GetStatus]: {
-    queryParams: undefined;
     body: undefined;
     response: WifiGetStatusResponse;
   };
   [WifiMethods.ListAPClients]: {
-    queryParams: undefined;
     body: undefined;
     response: WifiListAPClientsResponse;
   };
   [WifiMethods.Scan]: {
-    queryParams: undefined;
     body: undefined;
     response: WifiScanResponse;
   };
@@ -124,92 +119,74 @@ interface WifiMethodsMapping {
 
 interface ShellyMethodsMapping {
   [ShellyMethods.GetStatus]: {
-    queryParams: undefined;
     body: undefined;
     response: GetStatusResponse;
   };
   [ShellyMethods.GetConfig]: {
-    queryParams: undefined;
     body: undefined;
     response: GetConfigResponse;
   };
   [ShellyMethods.ListMethods]: {
-    queryParams: undefined;
     body: undefined;
     response: ListMethodsResponse;
   };
   [ShellyMethods.GetDeviceInfo]: {
-    queryParams: undefined;
     body?: GetDeviceInfoBody;
     response: GetDeviceInfoResponse;
   };
   [ShellyMethods.ListProfiles]: {
-    queryParams: undefined;
     body: undefined;
     response: EmptyResponse; // TODO: Test with multi-profile device
   };
   [ShellyMethods.SetProfile]: {
-    queryParams: undefined;
     body: undefined;
     response: EmptyResponse; // TODO: Test with multi-profile device
   };
   [ShellyMethods.ListTimezones]: {
-    queryParams: undefined;
     body: undefined;
     response: ListTimezonesResponse;
   };
   [ShellyMethods.DetectLocation]: {
-    queryParams: undefined;
     body: undefined;
     response: DetectLocationResponse;
   };
   [ShellyMethods.CheckForUpdate]: {
-    queryParams: undefined;
     body: undefined;
     response: CheckForUpdateResponse;
   };
   [ShellyMethods.Update]: {
-    queryParams: undefined;
     body: UpdateBody;
     response: EmptyResponse; // TODO: Verify what's the response
   };
   [ShellyMethods.FactoryReset]: {
-    queryParams: undefined;
     body: undefined;
     response: EmptyResponse; // TODO: Verify what's the response
   };
   [ShellyMethods.ResetWiFiConfig]: {
-    queryParams: undefined;
     body: undefined;
     response: EmptyResponse;
   };
   [ShellyMethods.Reboot]: {
-    queryParams: undefined;
     body: RebootBody;
     response: EmptyResponse;
   };
   [ShellyMethods.SetAuth]: {
-    queryParams: undefined;
     body: SetAuthBody;
     response: EmptyResponse;
   };
   [ShellyMethods.PutUserCA]: {
-    queryParams: undefined;
     body: PutUserCaBody;
     response: PutUserCaResponse;
   };
   [ShellyMethods.PutTLSClientCert]: {
-    queryParams: undefined;
     body: PutUserCaBody;
     response: PutUserCaResponse;
   };
   [ShellyMethods.PutTLSClientKey]: {
-    queryParams: undefined;
     body: PutUserCaBody;
     response: PutUserCaResponse;
   };
   [ShellyMethods.GetComponents]: {
-    queryParams: undefined;
     body: GetComponentsBody;
     response: GetComponentsResponse;
   };
@@ -217,7 +194,6 @@ interface ShellyMethodsMapping {
 
 interface ShellyExtraMethodsMapping {
   [ShellyExtraMethods.Shelly]: {
-    queryParams: undefined;
     body: undefined;
     response: GetDeviceInfoResponseResult;
   };
@@ -225,17 +201,14 @@ interface ShellyExtraMethodsMapping {
 
 interface BLEMethodsMapping {
   [BLEMethods.GetStatus]: {
-    queryParams: undefined;
     body: undefined;
     response: BLEGetStatusResponse;
   };
   [BLEMethods.GetConfig]: {
-    queryParams: undefined;
     body: undefined;
     response: BleConfigResponse;
   };
   [BLEMethods.SetConfig]: {
-    queryParams: undefined;
     body: BLESetConfigBody;
     response: BLESetConfigResponse;
   };
@@ -243,17 +216,14 @@ interface BLEMethodsMapping {
 
 interface CloudMethodsMapping {
   [CloudMethods.GetStatus]: {
-    queryParams: undefined;
     body: undefined;
     response: CloudGetStatusResponse;
   };
   [CloudMethods.GetConfig]: {
-    queryParams: undefined;
     body: undefined;
     response: CloudConfigResponse;
   };
   [CloudMethods.SetConfig]: {
-    queryParams: undefined;
     body: CloudSetConfigBody;
     response: CloudSetConfigResponse;
   };
@@ -261,17 +231,14 @@ interface CloudMethodsMapping {
 
 interface SystemMethodsMapping {
   [SystemMethods.GetStatus]: {
-    queryParams: undefined;
     body: undefined;
     response: SystemGetStatusResponse;
   };
   [SystemMethods.GetConfig]: {
-    queryParams: undefined;
     body: undefined;
     response: SystemGetConfigResponse;
   };
   [SystemMethods.SetConfig]: {
-    queryParams: undefined;
     body: SystemSetConfigBody;
     response: SystemSetConfigResponse;
   };
@@ -279,27 +246,22 @@ interface SystemMethodsMapping {
 
 interface ScheduleMethodMapping {
   [ScheduleMethods.List]: {
-    queryParams: undefined;
     body: undefined;
     response: ListSchedulesResponse;
   };
   [ScheduleMethods.Create]: {
-    queryParams: undefined;
     body: CreateScheduleBody;
     response: CreateScheduleResponse;
   };
   [ScheduleMethods.Update]: {
-    queryParams: undefined;
     body: UpdateScheduleBody;
     response: UpdateScheduleResponse;
   };
   [ScheduleMethods.Delete]: {
-    queryParams: undefined;
     body: DeleteScheduleBody;
     response: DeleteScheduleResponse;
   };
   [ScheduleMethods.DeleteAll]: {
-    queryParams: undefined;
     body: undefined;
     response: DeleteAllSchedulesResponse;
   };
@@ -307,57 +269,46 @@ interface ScheduleMethodMapping {
 
 interface ScriptMethodsMapping {
   [ScriptMethods.List]: {
-    queryParams: undefined;
     body: undefined;
     response: ScriptListResponse;
   };
   [ScriptMethods.GetCode]: {
-    queryParams: undefined;
     body: ScriptGetCodeBody;
     response: ScriptGetCodeResponse;
   };
   [ScriptMethods.GetConfig]: {
-    queryParams: undefined;
     body: ScriptGetConfigBody;
     response: ScriptGetConfigResponse;
   };
   [ScriptMethods.SetConfig]: {
-    queryParams: undefined;
     body: ScriptSetConfigBody;
     response: ScriptSetConfigResponse;
   };
   [ScriptMethods.GetStatus]: {
-    queryParams: undefined;
     body: ScriptGetStatusBody;
     response: ScriptGetStatusResponse;
   };
   [ScriptMethods.Create]: {
-    queryParams: undefined;
     body: ScriptCreateBody;
     response: ScriptCreateResponse;
   };
   [ScriptMethods.PutCode]: {
-    queryParams: undefined;
     body: ScriptPutCodeBody;
     response: ScriptPutCodeResponse;
   };
   [ScriptMethods.Eval]: {
-    queryParams: undefined;
     body: ScriptEvalBody;
     response: ScriptEvalResponse;
   };
   [ScriptMethods.Start]: {
-    queryParams: undefined;
     body: ScriptStartBody;
     response: ScriptStartResponse;
   };
   [ScriptMethods.Delete]: {
-    queryParams: undefined;
     body: ScriptDeleteBody;
     response: ScriptDeleteResponse;
   };
   [ScriptMethods.Stop]: {
-    queryParams: undefined;
     body: ScriptStopBody;
     response: ScriptStopResponse;
   };
@@ -365,27 +316,22 @@ interface ScriptMethodsMapping {
 
 interface KVSMethodsMapping {
   [KVSMethods.List]: {
-    queryParams: undefined;
     body: KVSListBody;
     response: KVSListResponse;
   };
   [KVSMethods.GetMany]: {
-    queryParams: undefined;
     body: KVSGetManyBody;
     response: KVSGetManyResponse;
   };
   [KVSMethods.Get]: {
-    queryParams: undefined;
     body: KVSGetBody;
     response: KVSGetResponse;
   };
   [KVSMethods.Delete]: {
-    queryParams: undefined;
     body: KVSDeleteBody;
     response: KVSDeleteResponse;
   };
   [KVSMethods.Set]: {
-    queryParams: undefined;
     body: KVSSetBody;
     response: KVSSetResponse;
   };
@@ -393,17 +339,14 @@ interface KVSMethodsMapping {
 
 interface EthernetMethodsMapping {
   [EthernetMethods.GetStatus]: {
-    queryParams: undefined;
     body: undefined;
     response: EthGetStatusResponse;
   };
   [EthernetMethods.GetConfig]: {
-    queryParams: undefined;
     body: undefined;
     response: EthGetConfigResponse;
   };
   [EthernetMethods.SetConfig]: {
-    queryParams: undefined;
     body: EthSetConfigBody;
     response: EthSetConfigResponse;
   };
@@ -411,32 +354,26 @@ interface EthernetMethodsMapping {
 
 interface InputMethodsMapping {
   [InputMethods.GetStatus]: {
-    queryParams: undefined;
     body: InputIdBody;
     response: InputGetStatusResponse;
   };
   [InputMethods.GetConfig]: {
-    queryParams: undefined;
     body: InputIdBody;
     response: InputGetConfigResponse;
   };
   [InputMethods.SetConfig]: {
-    queryParams: undefined;
     body: InputSetConfigBody;
     response: InputSetConfigResponse;
   };
   [InputMethods.CheckExpression]: {
-    queryParams: undefined;
     body: InputCheckExpressionBody;
     response: InputCheckExpressionResponse; // TODO: Need device to test
   };
   [InputMethods.ResetCounters]: {
-    queryParams: undefined;
     body: InputResetCountersBody;
     response: InputResetCountersResponse; // TODO: Need device to test
   };
   [InputMethods.Trigger]: {
-    queryParams: undefined;
     body: InputTriggerBody;
     response: InputTriggerResponse; // TODO: Need device to test
   };
@@ -444,17 +381,14 @@ interface InputMethodsMapping {
 
 interface MQTTMethodsMapping {
   [MQTTMethods.GetStatus]: {
-    queryParams: undefined;
     body: undefined;
     response: MQTTGetStatusResponse;
   };
   [MQTTMethods.GetConfig]: {
-    queryParams: undefined;
     body: undefined;
     response: MQTTGetConfigResponse;
   };
   [MQTTMethods.SetConfig]: {
-    queryParams: undefined;
     body: MQTTSetConfigBody;
     response: MQTTSetConfigResponse;
   };
@@ -462,32 +396,26 @@ interface MQTTMethodsMapping {
 
 interface WebhooksMethodsMapping {
   [WebhookMethods.ListSupported]: {
-    queryParams: undefined;
     body: undefined;
     response: ListSupportedWebhooksResponse;
   };
   [WebhookMethods.List]: {
-    queryParams: undefined;
     body: undefined;
     response: ListWebhooksResponse;
   };
   [WebhookMethods.Delete]: {
-    queryParams: undefined;
     body: DeleteWebhookBody;
     response: DeleteWebhookResponse;
   };
   [WebhookMethods.DeleteAll]: {
-    queryParams: undefined;
     body: undefined;
     response: DeleteAllWebhooksResponse;
   };
   [WebhookMethods.Create]: {
-    queryParams: undefined;
     body: CreateWebhookBody;
     response: CreateWebhookResponse; // TODO: Need device to test
   };
   [WebhookMethods.Update]: {
-    queryParams: undefined;
     body: UpdateWebhookBody;
     response: UpdateWebhookResponse; // TODO: Need device to test
   };
@@ -495,17 +423,14 @@ interface WebhooksMethodsMapping {
 
 export interface WebsocketMethodsMapping {
   [WsMethods.GetConfig]: {
-    queryParams: undefined;
     body: undefined;
     response: WsGetConfigResponse;
   };
   [WsMethods.GetStatus]: {
-    queryParams: undefined;
     body: undefined;
     response: WsGetStatusResponse;
   };
   [WsMethods.SetConfig]: {
-    queryParams: undefined;
     body: WsSetConfigBody;
     response: WsSetConfigResponse;
   };
@@ -514,32 +439,26 @@ export interface WebsocketMethodsMapping {
 // TODO: Need device to test Switch
 export interface SwitchMethodsMapping {
   [SwitchMethods.GetConfig]: {
-    queryParams: undefined;
     body: SwitchGetConfigBody;
     response: SwitchGetConfigResponse;
   };
   [SwitchMethods.GetStatus]: {
-    queryParams: undefined;
     body: SwitchGetStatusBody;
     response: SwitchGetStatusResponse;
   };
   [SwitchMethods.SetConfig]: {
-    queryParams: undefined;
     body: SwitchSetConfigBody;
     response: SwitchSetConfigResponse;
   };
   [SwitchMethods.Set]: {
-    queryParams: undefined;
     body: SwitchSetBody;
     response: SwitchSetResponse;
   };
   [SwitchMethods.Toggle]: {
-    queryParams: undefined;
     body: SwitchToggleBody;
     response: SwitchToggleResponse;
   };
   [SwitchMethods.ResetCounters]: {
-    queryParams: undefined;
     body: SwitchResetCountersBody;
     response: SwitchResetCountersResponse;
   };

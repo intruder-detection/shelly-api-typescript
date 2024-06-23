@@ -511,6 +511,7 @@ export interface WebsocketMethodsMapping {
   };
 }
 
+// TODO: Need device to test Switch
 export interface SwitchMethodsMapping {
   [SwitchMethods.GetConfig]: {
     queryParams: undefined;

@@ -596,7 +596,7 @@ async function main() {
   // await websocket();
 
   // SwitchMethods
-  await switch_();
+  // await switch_();
 }
 
 void main();

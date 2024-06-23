@@ -15,7 +15,12 @@ interface UIProperties {
   buttonIcons: [string, string] | null;
 }
 
-
 export interface VirtualSetValue<T> {
   value: T;
+}
+
+export interface GetStatusResponseResult<T> {
+  source: string;
+  value: T;
+  last_update_ts: number;
 }

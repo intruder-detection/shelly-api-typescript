@@ -1,10 +1,10 @@
-import { BooleanMethods, VirtualMethods } from './methods.enum';
-import { VirtualDeleteBody, VirtualDeleteResponse } from './endpoints/dynamic/virtual/virtual-delete.types';
-import { VirtualAddBody, VirtualAddResponse } from './endpoints/dynamic/virtual/virtual-add.types';
-import { BooleanSetConfigBody, BooleanSetConfigResponse } from './endpoints/dynamic/virtual/boolean/boolean-set-config.types';
-import { BooleanGetConfigBody, BooleanGetConfigResponse } from './endpoints/dynamic/virtual/boolean/boolean-get-config.types';
-import { BooleanGetStatusBody, BooleanGetStatusResponse } from './endpoints/dynamic/virtual/boolean/boolean-get-status.types';
-import { BooleanSetBody, BooleanSetResponse } from './endpoints/dynamic/virtual/boolean/boolean-set.types';
+import { BooleanMethods, VirtualMethods } from '@gen3/methods.enum';
+import { VirtualDeleteBody, VirtualDeleteResponse } from '@gen3/endpoints/dynamic/virtual/virtual-delete.types';
+import { VirtualAddBody, VirtualAddResponse } from '@gen3/endpoints/dynamic/virtual/virtual-add.types';
+import { BooleanSetConfigBody, BooleanSetConfigResponse } from '@gen3/endpoints/dynamic/virtual/boolean/boolean-set-config.types';
+import { BooleanGetConfigBody, BooleanGetConfigResponse } from '@gen3/endpoints/dynamic/virtual/boolean/boolean-get-config.types';
+import { BooleanGetStatusBody, BooleanGetStatusResponse } from '@gen3/endpoints/dynamic/virtual/boolean/boolean-get-status.types';
+import { BooleanSetBody, BooleanSetResponse } from '@gen3/endpoints/dynamic/virtual/boolean/boolean-set.types';
 
 export interface VirtualComponentMethodsMapping {
   [VirtualMethods.Add]: {

@@ -23,3 +23,10 @@ export enum TextMethods {
   GetStatus = 'Text.GetStatus',
   Set = 'Text.Set',
 }
+
+export enum EnumMethods {
+  SetConfig = 'Enum.SetConfig',
+  GetConfig = 'Enum.GetConfig',
+  GetStatus = 'Enum.GetStatus',
+  Set = 'Enum.Set',
+}

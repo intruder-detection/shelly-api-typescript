@@ -9,10 +9,13 @@ export interface VirtualComponentConfig<T> {
 }
 
 interface UIProperties {
-  view: '' | 'toggle' | 'label';
+  view: '' | 'toggle' | 'label' | 'dropdown' | 'field' | 'image' | 'slider' | 'progressbar';
   icon: string | null;
-  titles: [string, string] | null;
-  buttonIcons: [string, string] | null;
+  titles?: [string, string] | null;
+  buttonIcons?: [string, string] | null;
+  images?: object;
+  unit?: string;
+  step?: number;
 }
 
 export interface VirtualSetValue<T> {

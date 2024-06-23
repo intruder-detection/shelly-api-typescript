@@ -1,4 +1,4 @@
-import { BooleanMethods, NumberMethods, TextMethods, VirtualMethods } from '@gen3/methods.enum';
+import { BooleanMethods, EnumMethods, NumberMethods, TextMethods, VirtualMethods } from '@gen3/methods.enum';
 import { VirtualDeleteBody, VirtualDeleteResponse } from '@gen3/endpoints/dynamic/virtual/virtual-delete.types';
 import { VirtualAddBody, VirtualAddResponse } from '@gen3/endpoints/dynamic/virtual/virtual-add.types';
 import { BooleanSetConfigBody, BooleanSetConfigResponse } from '@gen3/endpoints/dynamic/virtual/boolean/boolean-set-config.types';
@@ -13,6 +13,10 @@ import { TextGetConfigBody, TextGetConfigResponse } from '@gen3/endpoints/dynami
 import { TextSetConfigBody, TextSetConfigResponse } from '@gen3/endpoints/dynamic/virtual/text/text-set-config.types';
 import { TextSetBody, TextSetResponse } from '@gen3/endpoints/dynamic/virtual/text/text-set.types';
 import { TextGetStatusBody, TextGetStatusResponse } from '@gen3/endpoints/dynamic/virtual/text/text-get-status.types';
+import { EnumGetConfigBody, EnumGetConfigResponse } from '@gen3/endpoints/dynamic/virtual/enum/enum-get-config.types';
+import { EnumGetStatusBody, EnumGetStatusResponse } from '@gen3/endpoints/dynamic/virtual/enum/enum-get-status.types';
+import { EnumSetBody, EnumSetResponse } from '@gen3/endpoints/dynamic/virtual/enum/enum-set.types';
+import { EnumSetConfigBody, EnumSetConfigResponse } from '@gen3/endpoints/dynamic/virtual/enum/enum-set-config.types';
 
 export interface VirtualComponentMethodsMapping {
   [VirtualMethods.Add]: {
@@ -82,4 +86,28 @@ export interface TextMethodsMapping {
   };
 }
 
-export interface ShellyGen3HTTPAPIMapping extends VirtualComponentMethodsMapping, BooleanMethodsMapping, NumberMethodsMapping, TextMethodsMapping {}
+export interface EnumMethodsMapping {
+  [EnumMethods.GetConfig]: {
+    body: EnumGetConfigBody;
+    response: EnumGetConfigResponse;
+  };
+  [EnumMethods.GetStatus]: {
+    body: EnumGetStatusBody;
+    response: EnumGetStatusResponse;
+  };
+  [EnumMethods.SetConfig]: {
+    body: EnumSetConfigBody;
+    response: EnumSetConfigResponse;
+  };
+  [EnumMethods.Set]: {
+    body: EnumSetBody;
+    response: EnumSetResponse;
+  };
+}
+
+export interface ShellyGen3HTTPAPIMapping
+  extends VirtualComponentMethodsMapping,
+    BooleanMethodsMapping,
+    NumberMethodsMapping,
+    TextMethodsMapping,
+    EnumMethodsMapping {}

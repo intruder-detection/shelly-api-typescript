@@ -1,10 +1,14 @@
-import { BooleanMethods, VirtualMethods } from '@gen3/methods.enum';
+import { BooleanMethods, NumberMethods, VirtualMethods } from '@gen3/methods.enum';
 import { VirtualDeleteBody, VirtualDeleteResponse } from '@gen3/endpoints/dynamic/virtual/virtual-delete.types';
 import { VirtualAddBody, VirtualAddResponse } from '@gen3/endpoints/dynamic/virtual/virtual-add.types';
 import { BooleanSetConfigBody, BooleanSetConfigResponse } from '@gen3/endpoints/dynamic/virtual/boolean/boolean-set-config.types';
 import { BooleanGetConfigBody, BooleanGetConfigResponse } from '@gen3/endpoints/dynamic/virtual/boolean/boolean-get-config.types';
 import { BooleanGetStatusBody, BooleanGetStatusResponse } from '@gen3/endpoints/dynamic/virtual/boolean/boolean-get-status.types';
 import { BooleanSetBody, BooleanSetResponse } from '@gen3/endpoints/dynamic/virtual/boolean/boolean-set.types';
+import { NumberGetConfigBody, NumberGetConfigResponse } from '@gen3/endpoints/dynamic/virtual/number/number-get-config.types';
+import { NumberSetConfigBody, NumberSetConfigResponse } from '@gen3/endpoints/dynamic/virtual/number/number-set-config.types';
+import { NumberSetBody, NumberSetResponse } from '@gen3/endpoints/dynamic/virtual/number/number-set.types';
+import { NumberGetStatusBody, NumberGetStatusResponse } from '@gen3/endpoints/dynamic/virtual/number/number-get-status.types';
 
 export interface VirtualComponentMethodsMapping {
   [VirtualMethods.Add]: {
@@ -36,4 +40,23 @@ export interface BooleanMethodsMapping {
   };
 }
 
-export interface ShellyGen3HTTPAPIMapping extends VirtualComponentMethodsMapping, BooleanMethodsMapping {}
+export interface NumberMethodsMapping {
+  [NumberMethods.GetConfig]: {
+    body: NumberGetConfigBody;
+    response: NumberGetConfigResponse;
+  };
+  [NumberMethods.GetStatus]: {
+    body: NumberGetStatusBody;
+    response: NumberGetStatusResponse;
+  };
+  [NumberMethods.SetConfig]: {
+    body: NumberSetConfigBody;
+    response: NumberSetConfigResponse;
+  };
+  [NumberMethods.Set]: {
+    body: NumberSetBody;
+    response: NumberSetResponse;
+  };
+}
+
+export interface ShellyGen3HTTPAPIMapping extends VirtualComponentMethodsMapping, BooleanMethodsMapping, NumberMethodsMapping {}

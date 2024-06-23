@@ -9,3 +9,10 @@ export enum BooleanMethods {
   GetStatus = 'Boolean.GetStatus',
   Set = 'Boolean.Set',
 }
+
+export enum NumberMethods {
+  SetConfig = 'Number.SetConfig',
+  GetConfig = 'Number.GetConfig',
+  GetStatus = 'Number.GetStatus',
+  Set = 'Number.Set',
+}

@@ -2,10 +2,10 @@ import { BaseIdType } from '@gen2/endpoints/types/common/base-id.types';
 import { BaseShellyResponse } from '@gen2/generic.types';
 import { VirtualComponentConfig } from '@gen3/endpoints/dynamic/virtual/common/virtual-common.types';
 
-export interface BooleanSetConfigBody extends BaseIdType {
-  config: VirtualComponentConfig<boolean>;
+export interface NumberSetConfigBody extends BaseIdType {
+  config: VirtualComponentConfig<number>;
 }
 
-export interface BooleanSetConfigResponse extends BaseShellyResponse<BaseIdType> {}
+export interface NumberSetConfigResponse extends BaseShellyResponse<BaseIdType> {}
 
 

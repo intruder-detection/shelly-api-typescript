@@ -5,7 +5,7 @@ import { BaseRequest, BaseShellyResponse } from '@gen2/generic.types';
 export class ShellyGen2DeviceHTTPAPI {
   constructor(private readonly ip: string) {}
 
-  static get defaultRequestConfig(): AxiosRequestConfig {
+  private static get defaultRequestConfig(): AxiosRequestConfig {
     return {
       headers: {
         contentType: 'application/json',
@@ -16,7 +16,7 @@ export class ShellyGen2DeviceHTTPAPI {
     };
   }
 
-  static buildBodyData<E extends keyof ShellyGen2HTTPAPIMapping>(endpoint: E, bodyData: ShellyGen2HTTPAPIMapping[typeof endpoint]['body']) {
+  private static buildBodyData<E extends keyof ShellyGen2HTTPAPIMapping>(endpoint: E, bodyData: ShellyGen2HTTPAPIMapping[typeof endpoint]['body']) {
     return {
       id: 1,
       method: endpoint,

@@ -5,7 +5,12 @@ export interface VirtualComponentConfig<T> extends VirtualMetaComponent {
   default_value: T;
 }
 
-export interface VirtualMetaComponent {
+export interface ButtonOrGroupVirtualComponentConfig extends VirtualMetaComponent {
+  id: number;
+  name: string | null;
+}
+
+interface VirtualMetaComponent {
   meta: {
     ui: MetaUIProperties;
   };

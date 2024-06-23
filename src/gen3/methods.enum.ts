@@ -36,3 +36,10 @@ export enum ButtonMethods {
   GetConfig = 'Button.GetConfig',
   Trigger = 'Button.Trigger',
 }
+
+export enum GroupMethods {
+  SetConfig = 'Group.SetConfig',
+  GetConfig = 'Group.GetConfig',
+  GetStatus = 'Group.GetStatus',
+  Set = 'Group.Set',
+}

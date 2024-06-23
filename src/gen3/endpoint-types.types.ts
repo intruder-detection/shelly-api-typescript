@@ -1,11 +1,4 @@
-import {
-  BooleanMethods,
-  ButtonMethods,
-  EnumMethods,
-  NumberMethods,
-  TextMethods,
-  VirtualMethods,
-} from '@gen3/methods.enum';
+import { BooleanMethods, ButtonMethods, EnumMethods, GroupMethods, NumberMethods, TextMethods, VirtualMethods } from '@gen3/methods.enum';
 import { VirtualDeleteBody, VirtualDeleteResponse } from '@gen3/endpoints/dynamic/virtual/virtual-delete.types';
 import { VirtualAddBody, VirtualAddResponse } from '@gen3/endpoints/dynamic/virtual/virtual-add.types';
 import { BooleanSetConfigBody, BooleanSetConfigResponse } from '@gen3/endpoints/dynamic/virtual/boolean/boolean-set-config.types';
@@ -24,15 +17,13 @@ import { EnumGetConfigBody, EnumGetConfigResponse } from '@gen3/endpoints/dynami
 import { EnumGetStatusBody, EnumGetStatusResponse } from '@gen3/endpoints/dynamic/virtual/enum/enum-get-status.types';
 import { EnumSetBody, EnumSetResponse } from '@gen3/endpoints/dynamic/virtual/enum/enum-set.types';
 import { EnumSetConfigBody, EnumSetConfigResponse } from '@gen3/endpoints/dynamic/virtual/enum/enum-set-config.types';
-import {
-  ButtonGetConfigBody,
-  ButtonGetConfigResponse,
-} from '@gen3/endpoints/dynamic/virtual/button/button-get-config.types';
-import {
-  ButtonSetConfigBody,
-  ButtonSetConfigResponse,
-} from '@gen3/endpoints/dynamic/virtual/button/button-set-config.types';
+import { ButtonGetConfigBody, ButtonGetConfigResponse } from '@gen3/endpoints/dynamic/virtual/button/button-get-config.types';
+import { ButtonSetConfigBody, ButtonSetConfigResponse } from '@gen3/endpoints/dynamic/virtual/button/button-set-config.types';
 import { ButtonTriggerBody, ButtonTriggerResponse } from '@gen3/endpoints/dynamic/virtual/button/button-trigger.types';
+import { GroupGetConfigBody, GroupGetConfigResponse } from '@gen3/endpoints/dynamic/virtual/group/group-get-config.types';
+import { GroupGetStatusBody, GroupGetStatusResponse } from '@gen3/endpoints/dynamic/virtual/group/group-get-status.types';
+import { GroupSetBody, GroupSetResponse } from '@gen3/endpoints/dynamic/virtual/group/group-set.types';
+import { GroupSetConfigBody, GroupSetConfigResponse } from '@gen3/endpoints/dynamic/virtual/group/group-set-config.types';
 
 export interface VirtualComponentMethodsMapping {
   [VirtualMethods.Add]: {
@@ -136,10 +127,30 @@ export interface ButtonMethodsMapping {
   };
 }
 
+export interface GroupMethodsMapping {
+  [GroupMethods.GetConfig]: {
+    body: GroupGetConfigBody;
+    response: GroupGetConfigResponse;
+  };
+  [GroupMethods.GetStatus]: {
+    body: GroupGetStatusBody;
+    response: GroupGetStatusResponse;
+  };
+  [GroupMethods.SetConfig]: {
+    body: GroupSetConfigBody;
+    response: GroupSetConfigResponse;
+  };
+  [GroupMethods.Set]: {
+    body: GroupSetBody;
+    response: GroupSetResponse;
+  };
+}
+
 export interface ShellyGen3HTTPAPIMapping
   extends VirtualComponentMethodsMapping,
     BooleanMethodsMapping,
     NumberMethodsMapping,
     TextMethodsMapping,
     EnumMethodsMapping,
-    ButtonMethodsMapping {}
+    ButtonMethodsMapping,
+    GroupMethodsMapping {}

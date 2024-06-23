@@ -1,4 +1,11 @@
-import { BooleanMethods, EnumMethods, NumberMethods, TextMethods, VirtualMethods } from '@gen3/methods.enum';
+import {
+  BooleanMethods,
+  ButtonMethods,
+  EnumMethods,
+  NumberMethods,
+  TextMethods,
+  VirtualMethods,
+} from '@gen3/methods.enum';
 import { VirtualDeleteBody, VirtualDeleteResponse } from '@gen3/endpoints/dynamic/virtual/virtual-delete.types';
 import { VirtualAddBody, VirtualAddResponse } from '@gen3/endpoints/dynamic/virtual/virtual-add.types';
 import { BooleanSetConfigBody, BooleanSetConfigResponse } from '@gen3/endpoints/dynamic/virtual/boolean/boolean-set-config.types';
@@ -17,6 +24,15 @@ import { EnumGetConfigBody, EnumGetConfigResponse } from '@gen3/endpoints/dynami
 import { EnumGetStatusBody, EnumGetStatusResponse } from '@gen3/endpoints/dynamic/virtual/enum/enum-get-status.types';
 import { EnumSetBody, EnumSetResponse } from '@gen3/endpoints/dynamic/virtual/enum/enum-set.types';
 import { EnumSetConfigBody, EnumSetConfigResponse } from '@gen3/endpoints/dynamic/virtual/enum/enum-set-config.types';
+import {
+  ButtonGetConfigBody,
+  ButtonGetConfigResponse,
+} from '@gen3/endpoints/dynamic/virtual/button/button-get-config.types';
+import {
+  ButtonSetConfigBody,
+  ButtonSetConfigResponse,
+} from '@gen3/endpoints/dynamic/virtual/button/button-set-config.types';
+import { ButtonTriggerBody, ButtonTriggerResponse } from '@gen3/endpoints/dynamic/virtual/button/button-trigger.types';
 
 export interface VirtualComponentMethodsMapping {
   [VirtualMethods.Add]: {
@@ -105,9 +121,25 @@ export interface EnumMethodsMapping {
   };
 }
 
+export interface ButtonMethodsMapping {
+  [ButtonMethods.GetConfig]: {
+    body: ButtonGetConfigBody;
+    response: ButtonGetConfigResponse;
+  };
+  [ButtonMethods.SetConfig]: {
+    body: ButtonSetConfigBody;
+    response: ButtonSetConfigResponse;
+  };
+  [ButtonMethods.Trigger]: {
+    body: ButtonTriggerBody;
+    response: ButtonTriggerResponse;
+  };
+}
+
 export interface ShellyGen3HTTPAPIMapping
   extends VirtualComponentMethodsMapping,
     BooleanMethodsMapping,
     NumberMethodsMapping,
     TextMethodsMapping,
-    EnumMethodsMapping {}
+    EnumMethodsMapping,
+    ButtonMethodsMapping {}

@@ -30,3 +30,9 @@ export enum EnumMethods {
   GetStatus = 'Enum.GetStatus',
   Set = 'Enum.Set',
 }
+
+export enum ButtonMethods {
+  SetConfig = 'Button.SetConfig',
+  GetConfig = 'Button.GetConfig',
+  Trigger = 'Button.Trigger',
+}

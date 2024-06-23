@@ -1,14 +1,17 @@
-export interface VirtualComponentConfig<T> {
+export interface VirtualComponentConfig<T> extends VirtualMetaComponent {
   id: number;
   name: string | null;
   persisted: boolean;
   default_value: T;
+}
+
+export interface VirtualMetaComponent {
   meta: {
-    ui: UIProperties;
+    ui: MetaUIProperties;
   };
 }
 
-interface UIProperties {
+interface MetaUIProperties {
   view: '' | 'toggle' | 'label' | 'dropdown' | 'field' | 'image' | 'slider' | 'progressbar';
   icon: string | null;
   titles?: [string, string] | null;

@@ -1,4 +1,13 @@
-import { BooleanMethods, ButtonMethods, EnumMethods, GroupMethods, NumberMethods, TextMethods, VirtualMethods } from '@gen3/methods.enum';
+import {
+  BooleanMethods,
+  BTHomeMethods,
+  ButtonMethods,
+  EnumMethods,
+  GroupMethods,
+  NumberMethods,
+  TextMethods,
+  VirtualMethods,
+} from '@gen3/methods.enum';
 import { VirtualDeleteBody, VirtualDeleteResponse } from '@gen3/endpoints/dynamic/virtual/virtual-delete.types';
 import { VirtualAddBody, VirtualAddResponse } from '@gen3/endpoints/dynamic/virtual/virtual-add.types';
 import { BooleanSetConfigBody, BooleanSetConfigResponse } from '@gen3/endpoints/dynamic/virtual/boolean/boolean-set-config.types';
@@ -24,6 +33,17 @@ import { GroupGetConfigBody, GroupGetConfigResponse } from '@gen3/endpoints/dyna
 import { GroupGetStatusBody, GroupGetStatusResponse } from '@gen3/endpoints/dynamic/virtual/group/group-get-status.types';
 import { GroupSetBody, GroupSetResponse } from '@gen3/endpoints/dynamic/virtual/group/group-set.types';
 import { GroupSetConfigBody, GroupSetConfigResponse } from '@gen3/endpoints/dynamic/virtual/group/group-set-config.types';
+import { BaseShellyResponse } from '@gen2/generic.types';
+import { BTHomeGetStatusResponse } from '@gen3/endpoints/dynamic/bthome/bthome/bthome-get-status.types';
+import { BTHomeAddDeviceBody, BTHomeAddDeviceResponse } from '@gen3/endpoints/dynamic/bthome/bthome/bthome-add-device.types';
+import { BTHomeDeleteDeviceBody, BTHomeDeleteDeviceResponse } from '@gen3/endpoints/dynamic/bthome/bthome/bthome-delete-device.types';
+import { BTHomeDeleteSensorBody, BTHomeDeleteSensorResponse } from '@gen3/endpoints/dynamic/bthome/bthome/bthome-delete-sensor.types';
+import { BTHomeAddSensorBody, BTHomeAddSensorResponse } from '@gen3/endpoints/dynamic/bthome/bthome/bthome-add-sensor.types';
+import {
+  BTHomeStartDeviceDiscoveryBody,
+  BTHomeStartDeviceDiscoveryResponse,
+} from '@gen3/endpoints/dynamic/bthome/bthome/bthome-start-device-discovery.types';
+import { BTHomeGetObjectInfosBody, BTHomeGetObjectInfosResponse } from '@gen3/endpoints/dynamic/bthome/bthome/bthome-get-object-infos.types';
 
 export interface VirtualComponentMethodsMapping {
   [VirtualMethods.Add]: {
@@ -146,11 +166,51 @@ export interface GroupMethodsMapping {
   };
 }
 
+export interface BTHomeMethodsMapping {
+  [BTHomeMethods.GetConfig]: {
+    body: undefined;
+    response: BaseShellyResponse<{}>;
+  };
+  [BTHomeMethods.GetStatus]: {
+    body: undefined;
+    response: BTHomeGetStatusResponse;
+  };
+  [BTHomeMethods.SetConfig]: {
+    body: undefined;
+    response: BaseShellyResponse<null>;
+  };
+  [BTHomeMethods.AddDevice]: {
+    body: BTHomeAddDeviceBody;
+    response: BTHomeAddDeviceResponse;
+  };
+  [BTHomeMethods.DeleteDevice]: {
+    body: BTHomeDeleteDeviceBody;
+    response: BTHomeDeleteDeviceResponse;
+  };
+  [BTHomeMethods.AddSensor]: {
+    body: BTHomeAddSensorBody;
+    response: BTHomeAddSensorResponse;
+  };
+  [BTHomeMethods.DeleteSensor]: {
+    body: BTHomeDeleteSensorBody;
+    response: BTHomeDeleteSensorResponse;
+  };
+  [BTHomeMethods.StartDeviceDiscovery]: {
+    body: BTHomeStartDeviceDiscoveryBody;
+    response: BTHomeStartDeviceDiscoveryResponse;
+  };
+  [BTHomeMethods.GetObjectInfos]: {
+    body: BTHomeGetObjectInfosBody;
+    response: BTHomeGetObjectInfosResponse;
+  };
+}
+
 export interface ShellyGen3HTTPAPIMapping
-  extends VirtualComponentMethodsMapping,
-    BooleanMethodsMapping,
+  extends BooleanMethodsMapping,
+    BTHomeMethodsMapping,
+    ButtonMethodsMapping,
+    EnumMethodsMapping,
+    GroupMethodsMapping,
     NumberMethodsMapping,
     TextMethodsMapping,
-    EnumMethodsMapping,
-    ButtonMethodsMapping,
-    GroupMethodsMapping {}
+    VirtualComponentMethodsMapping {}

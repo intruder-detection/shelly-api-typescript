@@ -1,0 +1,6 @@
+import { BaseShellyResponse } from '@gen2/generic.types';
+import { BaseIdType } from '@gen2/endpoints/types/common/base-id.types';
+
+export interface BTHomeDeleteSensorBody extends BaseIdType {}
+
+export interface BTHomeDeleteSensorResponse extends BaseShellyResponse<null> {}

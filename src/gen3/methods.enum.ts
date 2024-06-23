@@ -43,3 +43,15 @@ export enum GroupMethods {
   GetStatus = 'Group.GetStatus',
   Set = 'Group.Set',
 }
+
+export enum BTHomeMethods {
+  SetConfig = 'BTHome.SetConfig',
+  GetConfig = 'BTHome.GetConfig',
+  GetStatus = 'BTHome.GetStatus',
+  AddDevice = 'BTHome.AddDevice',
+  DeleteDevice = 'BTHome.DeleteDevice',
+  AddSensor = 'BTHome.AddSensor',
+  DeleteSensor = 'BTHome.DeleteSensor',
+  StartDeviceDiscovery = 'BTHome.StartDeviceDiscovery',
+  GetObjectInfos = 'BTHome.GetObjectInfos',
+}

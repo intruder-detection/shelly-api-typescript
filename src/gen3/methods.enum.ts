@@ -16,3 +16,10 @@ export enum NumberMethods {
   GetStatus = 'Number.GetStatus',
   Set = 'Number.Set',
 }
+
+export enum TextMethods {
+  SetConfig = 'Text.SetConfig',
+  GetConfig = 'Text.GetConfig',
+  GetStatus = 'Text.GetStatus',
+  Set = 'Text.Set',
+}

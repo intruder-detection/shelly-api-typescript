@@ -513,42 +513,45 @@ async function switch_() {
   const GetStatus = await gen2Device.post(SwitchMethods.GetStatus);
   console.log(GetStatus);
 
-  const GetConfig = await gen2Device.post(SwitchMethods.GetConfig);
+  const GetConfig = await gen2Device.post(SwitchMethods.GetConfig, { id: 1 });
   console.log(GetConfig);
 
   const SetConfig = await gen2Device.post(SwitchMethods.SetConfig, {
+    id: 1,
     config: {
-      enable: false,
-      server: 'http://www.google.com',
-      ssl_ca: '*',
+      id: 1,
+      name: 'Some switch',
+      in_mode: 'activate',
+      initial_state: 'off',
+      auto_on: false,
+      auto_on_delay: -1,
+      auto_off: false,
+      auto_off_delay: -1,
+      autorecover_voltage_errors: false,
+      input_id: 0,
+      power_limit: 2500,
+      voltage_limit: 10,
+      undervoltage_limit: 5,
+      current_limit: 1,
     },
   });
   console.log(SetConfig);
 
   const Set = await gen2Device.post(SwitchMethods.Set, {
-    config: {
-      enable: false,
-      server: 'http://www.google.com',
-      ssl_ca: '*',
-    },
+    id: 1,
+    on: true,
+    toggle_after: 10,
   });
   console.log(Set);
 
   const Toggle = await gen2Device.post(SwitchMethods.Toggle, {
-    config: {
-      enable: false,
-      server: 'http://www.google.com',
-      ssl_ca: '*',
-    },
+    id: 1,
   });
   console.log(Toggle);
 
   const ResetCounters = await gen2Device.post(SwitchMethods.ResetCounters, {
-    config: {
-      enable: false,
-      server: 'http://www.google.com',
-      ssl_ca: '*',
-    },
+    id: 1,
+    type: [],
   });
   console.log(ResetCounters);
 }
@@ -556,45 +559,32 @@ async function switch_() {
 async function main() {
   // ShellyMethods
   // await shelly();
-
   // WifiMethods
   // await wifi();
-
   // BLEMethods
   // await ble();
-
   // CloudMethods
   // await cloud();
-
   // SystemMethods
   // await system();
-
   // ScheduleMethods
   // await schedule();
-
   // ScriptMethods
   // await script();
   // await scriptHelpers();
-
   // EthernetMethods TODO: Test with device that has ethernet
   // await eth();
-
   // KVSMethods
   // await kvs();
   // await kvsHelpers();
-
   // InputMethods
   // await input();
-
   // MQTTMethods
   // await mqtt();
-
   // WebhookMethods TODO: Test with device that has webhooks
   // await webhooks();
-
   // WsMethods
   // await websocket();
-
   // SwitchMethods
   // await switch_();
 }

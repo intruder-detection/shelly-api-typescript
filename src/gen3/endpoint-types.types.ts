@@ -33,7 +33,7 @@ import { GroupGetConfigBody, GroupGetConfigResponse } from '@gen3/endpoints/dyna
 import { GroupGetStatusBody, GroupGetStatusResponse } from '@gen3/endpoints/dynamic/virtual/group/group-get-status.types';
 import { GroupSetBody, GroupSetResponse } from '@gen3/endpoints/dynamic/virtual/group/group-set.types';
 import { GroupSetConfigBody, GroupSetConfigResponse } from '@gen3/endpoints/dynamic/virtual/group/group-set-config.types';
-import { BaseShellyResponse } from '@gen2/generic.types';
+import { BaseShellyResponse } from '@common/generic.types';
 import { BTHomeGetStatusResponse } from '@gen3/endpoints/dynamic/bthome/bthome/bthome-get-status.types';
 import { BTHomeAddDeviceBody, BTHomeAddDeviceResponse } from '@gen3/endpoints/dynamic/bthome/bthome/bthome-add-device.types';
 import { BTHomeDeleteDeviceBody, BTHomeDeleteDeviceResponse } from '@gen3/endpoints/dynamic/bthome/bthome/bthome-delete-device.types';

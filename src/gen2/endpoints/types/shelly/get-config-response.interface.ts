@@ -1,4 +1,4 @@
-import { BaseShellyResponse } from '@gen2/generic.types';
+import { BaseShellyResponse } from '@common/generic.types';
 import { WifiConfig } from '@gen2/endpoints/types/wifi/common-interfaces.types';
 import { Device } from '@gen2/endpoints/types/common/device.types';
 import { Location } from '@gen2/endpoints/types/common/location.types';

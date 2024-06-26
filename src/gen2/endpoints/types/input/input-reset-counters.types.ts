@@ -1,5 +1,5 @@
 import { InputIdBody } from '@gen2/endpoints/types/input/input-common.types';
-import { BaseShellyResponse } from '@gen2/generic.types';
+import { BaseShellyResponse } from '@common/generic.types';
 
 export interface InputResetCountersBody extends InputIdBody {
   // Array of strings, selects which counter to reset Optional

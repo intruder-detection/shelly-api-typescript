@@ -1,4 +1,4 @@
-import { BaseShellyResponse } from '@gen2/generic.types';
+import { BaseShellyResponse } from '@common/generic.types';
 
 export interface EthGetStatusResponse extends BaseShellyResponse<EthGetStatusResponseResult> {}
 

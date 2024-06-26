@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
-import { BaseRequest, BaseShellyResponse } from '@gen2/generic.types';
+import { BaseRequest, BaseShellyResponse } from '@common/generic.types';
 import { Shelly2PlusMapping } from './shelly-2-plus.common.interface';
 
 export class ShellyGen2PlusHTTPAPI {

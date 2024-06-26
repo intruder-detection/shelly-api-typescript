@@ -1,4 +1,4 @@
-import { BaseShellyResponse } from '@gen2/generic.types';
+import { BaseShellyResponse } from '@common/generic.types';
 import { DeepPartial } from 'ts-essentials';
 import { ScriptConfig } from '@gen2/endpoints/types/script/script-common.types';
 

@@ -1,4 +1,4 @@
-import { BaseShellyResponse } from '@gen2/generic.types';
+import { BaseShellyResponse } from '@common/generic.types';
 import { MqttConfig } from '@gen2/endpoints/types/mqtt/mqtt-common.types';
 import { WsConfig } from '@gen2/endpoints/types/ws/ws-common.types';
 import { BLEConfig } from '@gen2/endpoints/types/ble/ble-common.types';

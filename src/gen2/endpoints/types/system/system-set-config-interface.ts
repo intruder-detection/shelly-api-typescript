@@ -1,4 +1,4 @@
-import { BaseShellyResponse } from '@gen2/generic.types';
+import { BaseShellyResponse } from '@common/generic.types';
 import { RestartRequired } from '@gen2/endpoints/types/common/restart-required.types';
 import { SystemConfig } from '@gen2/endpoints/types/system/common.types.interfaces';
 import { DeepPartial } from 'ts-essentials';

@@ -1,5 +1,5 @@
 import { WebhookRev } from '@gen2/endpoints/types/webhooks/webhook.common';
-import { BaseShellyResponse } from '@gen2/generic.types';
+import { BaseShellyResponse } from '@common/generic.types';
 import { BaseIdType } from '@gen2/endpoints/types/common/base-id.types';
 
 export interface DeleteWebhookBody extends BaseIdType {}

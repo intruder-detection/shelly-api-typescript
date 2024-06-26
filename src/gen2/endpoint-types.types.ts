@@ -27,7 +27,7 @@ import { ListTimezonesResponse } from '@gen2/endpoints/types/shelly/list-timezon
 import { DetectLocationResponse } from '@gen2/endpoints/types/shelly/detect-device-location-response.interface';
 import { CheckForUpdateResponse } from '@gen2/endpoints/types/shelly/check-for-update-response.interface';
 import { UpdateBody } from '@gen2/endpoints/types/shelly/update.interface';
-import { EmptyResponse } from '@gen2/generic.types';
+import { EmptyResponse } from '@common/generic.types';
 import { RebootBody } from '@gen2/endpoints/types/shelly/reboot.interface';
 import { SetAuthBody } from '@gen2/endpoints/types/shelly/set-auth.interface';
 import { PutUserCaBody, PutUserCaResponse } from '@gen2/endpoints/types/shelly/put-user-ca.interface';

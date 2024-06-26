@@ -1,7 +1,5 @@
 import axios, { AxiosError } from 'axios';
 import { queryStringify } from '@utils/querystring.utils';
-import { AxiosErrorCodes } from '@gen2/types/generic.types';
-import { CommonErrors } from '@gen2/enums/common-errors.enum';
 import { Gen1Endpoints, ShellyEndpoints } from '@gen1/enums/endpoints.enum';
 import { SettingsCloudResponse } from '@gen1/types/gen1/settings-cloud.types';
 import { SettingsLoginRequest, SettingsLoginResponse } from '@gen1/types/gen1/settings-login.types';
@@ -11,6 +9,8 @@ import { SettingsRequest, SettingsResponse } from '@gen1/types/gen1/settings.typ
 import { SettingsActionsResponse } from '@gen1/types/gen1/settings-actions.types';
 import { SettingsWifiAccessPointRequest, SettingsWifiAccessPointResponse } from '@gen1/types/gen1/settings-wifi-access-point.types';
 import { SettingsWifiStationRequest, SettingsWifiStationResponse } from '@gen1/types/gen1/settings-wifi-station.types';
+import { AxiosErrorCodes } from '@common/generic.types';
+import { CommonErrors } from '@common/common-errors.enum';
 
 export class Gen1Device {
   constructor(

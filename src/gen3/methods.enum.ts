@@ -55,3 +55,10 @@ export enum BTHomeMethods {
   StartDeviceDiscovery = 'BTHome.StartDeviceDiscovery',
   GetObjectInfos = 'BTHome.GetObjectInfos',
 }
+
+export enum BTHomeDeviceMethods {
+  SetConfig = 'BTHomeDevice.SetConfig',
+  GetConfig = 'BTHomeDevice.GetConfig',
+  GetStatus = 'BTHomeDevice.GetStatus',
+  GetKnownObjects = 'BTHomeDevice.GetKnownObjects',
+}

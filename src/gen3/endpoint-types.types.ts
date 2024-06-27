@@ -1,5 +1,5 @@
 import {
-  BooleanMethods,
+  BooleanMethods, BTHomeDeviceMethods,
   BTHomeMethods,
   ButtonMethods,
   EnumMethods,
@@ -44,6 +44,21 @@ import {
   BTHomeStartDeviceDiscoveryResponse,
 } from '@gen3/endpoints/dynamic/bthome/bthome/bthome-start-device-discovery.types';
 import { BTHomeGetObjectInfosBody, BTHomeGetObjectInfosResponse } from '@gen3/endpoints/dynamic/bthome/bthome/bthome-get-object-infos.types';
+import {
+  BTHomeDeviceSetConfigBody,
+  BTHomeDeviceSetConfigResponse,
+} from '@gen3/endpoints/dynamic/bthome/bthome/device/bthome-device-set-config.types';
+import {
+  BTHomeDeviceGetStatusBody,
+  BTHomeDeviceGetStatusResponse,
+} from '@gen3/endpoints/dynamic/bthome/bthome/device/bthome-device-get-status.types';
+import {
+  BTHomeDeviceGetConfigBody,
+  BTHomeDeviceGetConfigResponse,
+} from '@gen3/endpoints/dynamic/bthome/bthome/device/bthome-device-get-config.types';
+import {
+  BTHomeDeviceGetKnownObjectsBody, BTHomeDeviceGetKnownObjectsResponse,
+} from '@gen3/endpoints/dynamic/bthome/bthome/device/bthome-device-get-known-objects.types';
 
 export interface VirtualComponentMethodsMapping {
   [VirtualMethods.Add]: {
@@ -205,9 +220,30 @@ export interface BTHomeMethodsMapping {
   };
 }
 
+
+export interface BTHomeDeviceMethodsMapping {
+  [BTHomeDeviceMethods.GetConfig]: {
+    body: BTHomeDeviceGetConfigBody;
+    response: BTHomeDeviceGetConfigResponse;
+  };
+  [BTHomeDeviceMethods.GetStatus]: {
+    body: BTHomeDeviceGetStatusBody;
+    response: BTHomeDeviceGetStatusResponse;
+  };
+  [BTHomeDeviceMethods.SetConfig]: {
+    body: BTHomeDeviceSetConfigBody;
+    response: BTHomeDeviceSetConfigResponse;
+  };
+  [BTHomeDeviceMethods.GetKnownObjects]: {
+    body: BTHomeDeviceGetKnownObjectsBody;
+    response: BTHomeDeviceGetKnownObjectsResponse;
+  };
+}
+
 export interface ShellyGen3HTTPAPIMapping
   extends BooleanMethodsMapping,
     BTHomeMethodsMapping,
+    BTHomeDeviceMethodsMapping,
     ButtonMethodsMapping,
     EnumMethodsMapping,
     GroupMethodsMapping,

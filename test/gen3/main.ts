@@ -87,10 +87,35 @@ async function bthomeDevice() {
   console.log(GetKnownObjects);
 }
 
+async function bthomeSensor() {
+  const gen3Device = new ShellyGen2PlusHTTPAPI('192.168.1.10');
+
+  const GetStatus = await gen3Device.post(BTHomeDeviceMethods.GetStatus, { id: 1 });
+  console.log(GetStatus);
+
+  const GetConfig = await gen3Device.post(BTHomeDeviceMethods.GetConfig, { id: 1 });
+  console.log(GetConfig);
+
+  const SetConfig = await gen3Device.post(BTHomeDeviceMethods.SetConfig, {
+    id: 1,
+    config: {
+      id: 1,
+      name: '',
+      addr: '',
+      key: '',
+    },
+  });
+  console.log(SetConfig);
+
+  const GetKnownObjects = await gen3Device.post(BTHomeDeviceMethods.GetKnownObjects, { id: 1 });
+  console.log(GetKnownObjects);
+}
+
 async function main() {
   await virtual();
   await bthome();
   await bthomeDevice();
+  await bthomeSensor()
 }
 
-void main();
+await main();

@@ -1,6 +1,7 @@
 import {
-  BooleanMethods, BTHomeDeviceMethods,
-  BTHomeMethods,
+  BooleanMethods,
+  BTHomeDeviceMethods,
+  BTHomeMethods, BTHomeSensorMethods,
   ButtonMethods,
   EnumMethods,
   GroupMethods,
@@ -57,8 +58,21 @@ import {
   BTHomeDeviceGetConfigResponse,
 } from '@gen3/endpoints/dynamic/bthome/bthome/device/bthome-device-get-config.types';
 import {
-  BTHomeDeviceGetKnownObjectsBody, BTHomeDeviceGetKnownObjectsResponse,
+  BTHomeDeviceGetKnownObjectsBody,
+  BTHomeDeviceGetKnownObjectsResponse,
 } from '@gen3/endpoints/dynamic/bthome/bthome/device/bthome-device-get-known-objects.types';
+import {
+  BTHomeSensorGetConfigBody,
+  BTHomeSensorGetConfigResponse,
+} from '@gen3/endpoints/dynamic/bthome/bthome/sensor/bthome-sensor-get-config.types';
+import {
+  BTHomeSensorGetStatusBody,
+  BTHomeSensorGetStatusResponse,
+} from '@gen3/endpoints/dynamic/bthome/bthome/sensor/bthome-sensor-get-status.types';
+import {
+  BTHomeSensorSetConfigBody,
+  BTHomeSensorSetConfigResponse,
+} from '@gen3/endpoints/dynamic/bthome/bthome/sensor/bthome-sensor-set-config.types';
 
 export interface VirtualComponentMethodsMapping {
   [VirtualMethods.Add]: {
@@ -220,7 +234,6 @@ export interface BTHomeMethodsMapping {
   };
 }
 
-
 export interface BTHomeDeviceMethodsMapping {
   [BTHomeDeviceMethods.GetConfig]: {
     body: BTHomeDeviceGetConfigBody;
@@ -240,10 +253,26 @@ export interface BTHomeDeviceMethodsMapping {
   };
 }
 
+export interface BTHomeSensorMethodsMapping {
+  [BTHomeSensorMethods.GetConfig]: {
+    body: BTHomeSensorGetConfigBody;
+    response: BTHomeSensorGetConfigResponse;
+  };
+  [BTHomeSensorMethods.GetStatus]: {
+    body: BTHomeSensorGetStatusBody;
+    response: BTHomeSensorGetStatusResponse;
+  };
+  [BTHomeSensorMethods.SetConfig]: {
+    body: BTHomeSensorSetConfigBody;
+    response: BTHomeSensorSetConfigResponse;
+  };
+}
+
 export interface ShellyGen3HTTPAPIMapping
   extends BooleanMethodsMapping,
     BTHomeMethodsMapping,
     BTHomeDeviceMethodsMapping,
+    BTHomeSensorMethodsMapping,
     ButtonMethodsMapping,
     EnumMethodsMapping,
     GroupMethodsMapping,

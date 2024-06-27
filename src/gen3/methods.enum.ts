@@ -62,3 +62,9 @@ export enum BTHomeDeviceMethods {
   GetStatus = 'BTHomeDevice.GetStatus',
   GetKnownObjects = 'BTHomeDevice.GetKnownObjects',
 }
+
+export enum BTHomeSensorMethods {
+  SetConfig = 'BTHomeSensor.SetConfig',
+  GetConfig = 'BTHomeSensor.GetConfig',
+  GetStatus = 'BTHomeSensor.GetStatus',
+}

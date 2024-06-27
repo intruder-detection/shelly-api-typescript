@@ -111,6 +111,7 @@ async function bthomeSensor() {
   console.log(GetKnownObjects);
 }
 
+// TODO: Need gen3 device to test
 async function main() {
   await virtual();
   await bthome();

@@ -3,7 +3,7 @@ import {
   CloudMethods,
   EthernetMethods,
   InputMethods,
-  KVSMethods,
+  KVSMethods, ModbusMethods,
   MQTTMethods,
   ScheduleMethods,
   ScriptMethods,
@@ -556,6 +556,23 @@ async function switch_() {
   console.log(ResetCounters);
 }
 
+async function modbus() {
+  const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.10');
+
+  const GetStatus = await gen2Device.post(ModbusMethods.GetStatus);
+  console.log(GetStatus);
+
+  const GetConfig = await gen2Device.post(ModbusMethods.GetConfig);
+  console.log(GetConfig);
+
+  const SetConfig = await gen2Device.post(ModbusMethods.SetConfig, {
+    config: {
+      enable: false,
+    },
+  });
+  console.log(SetConfig);
+}
+
 async function main() {
   // ShellyMethods
   // await shelly();
@@ -587,6 +604,8 @@ async function main() {
   // await websocket();
   // SwitchMethods
   // await switch_();
+  // ModbusMethods
+  await modbus();
 }
 
 void main();

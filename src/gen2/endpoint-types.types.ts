@@ -3,7 +3,7 @@ import {
   CloudMethods,
   EthernetMethods,
   InputMethods,
-  KVSMethods,
+  KVSMethods, ModbusMethods,
   MQTTMethods,
   ScheduleMethods,
   ScriptMethods,
@@ -93,6 +93,9 @@ import {
   SwitchResetCountersBody,
   SwitchResetCountersResponse,
 } from '@gen2/endpoints/types/switch/switch-reset-counters.types';
+import { ModbusGetConfigResponse } from '@gen2/endpoints/types/modbus/modbus-get-config.types';
+import { ModbusGetStatusResponse } from '@gen2/endpoints/types/modbus/modbus-get-status.types';
+import { ModbusSetConfigBody, ModbusSetConfigResponse } from '@gen2/endpoints/types/modbus/modbus-set-config.types';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -464,6 +467,21 @@ export interface SwitchMethodsMapping {
   };
 }
 
+export interface ModbusMethodsMapping {
+  [ModbusMethods.GetConfig]: {
+    body: undefined;
+    response: ModbusGetConfigResponse;
+  };
+  [ModbusMethods.GetStatus]: {
+    body: undefined;
+    response: ModbusGetStatusResponse;
+  };
+  [ModbusMethods.SetConfig]: {
+    body: ModbusSetConfigBody;
+    response: ModbusSetConfigResponse;
+  };
+}
+
 export interface ShellyGen2HTTPAPIMapping
   extends BLEMethodsMapping,
     CloudMethodsMapping,
@@ -471,6 +489,7 @@ export interface ShellyGen2HTTPAPIMapping
     InputMethodsMapping,
     KVSMethodsMapping,
     MQTTMethodsMapping,
+    ModbusMethodsMapping,
     ScheduleMethodMapping,
     ScriptMethodsMapping,
     ShellyMethodsMapping,

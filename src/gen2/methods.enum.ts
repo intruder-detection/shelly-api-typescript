@@ -128,6 +128,12 @@ export enum InputMethods {
   Trigger = 'Input.Trigger',
 }
 
+export enum ModbusMethods {
+  SetConfig = 'Modbus.SetConfig',
+  GetConfig = 'Modbus.GetConfig',
+  GetStatus = 'Modbus.GetStatus',
+}
+
 export type Gen2Methods =
   | BLEMethods
   | CloudMethods
@@ -144,5 +150,4 @@ export type Gen2Methods =
   | SystemMethods
   | WebhookMethods
   | WifiMethods
-  | WsMethods
-  ;
+  | WsMethods;

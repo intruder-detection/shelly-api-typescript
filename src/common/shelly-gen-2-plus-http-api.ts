@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { BaseRequest, BaseShellyResponse } from '@common/generic.types';
-import { Shelly2PlusMapping } from './shelly-2-plus.common.interface';
+import { Shelly2PlusMapping } from '@common/shelly-2-plus.common.interface';
 
 export class ShellyGen2PlusHTTPAPI {
   constructor(private readonly ip: string) {}

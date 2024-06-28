@@ -1,3 +1,5 @@
+import { Connected } from '@common/connected.types';
+
 export interface StatusResponse {
   wifi_sta: WifiStation;
   cloud: Cloud;
@@ -23,9 +25,8 @@ interface ActionsStats {
   skipped: number;
 }
 
-interface Cloud {
+interface Cloud extends Connected {
   enabled: boolean;
-  connected: boolean;
 }
 
 interface Meter {
@@ -37,9 +38,7 @@ interface Meter {
   total: number;
 }
 
-interface Mqtt {
-  connected: boolean;
-}
+interface Mqtt extends Connected {}
 
 interface Relay {
   ison: boolean;
@@ -59,8 +58,7 @@ interface Update {
   beta_version: string;
 }
 
-interface WifiStation {
-  connected: boolean;
+interface WifiStation extends Connected {
   ssid: string;
   ip: string;
   rssi: number;

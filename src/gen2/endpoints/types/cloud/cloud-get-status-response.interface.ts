@@ -1,7 +1,4 @@
 import { BaseShellyResponse } from '@common/generic.types';
+import { Connected } from '@common/connected.types';
 
-export interface CloudGetStatusResponse extends BaseShellyResponse<CloudGetStatusResponseResult> {}
-
-export interface CloudGetStatusResponseResult {
-  connected: boolean;
-}
+export interface CloudGetStatusResponse extends BaseShellyResponse<Connected> {}

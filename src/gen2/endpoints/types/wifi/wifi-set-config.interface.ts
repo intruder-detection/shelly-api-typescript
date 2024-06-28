@@ -1,6 +1,6 @@
 import { BaseShellyResponse } from '@common/generic.types';
 import { WifiAccessPointWithPass, WifiRoaming, WifiStationWithPass } from '@gen2/endpoints/types/wifi/common-interfaces.types';
-import { RestartRequired } from '@gen2/endpoints/types/common/restart-required.types';
+import { RestartRequired } from '@common/restart-required.types';
 import { DeepPartial } from 'ts-essentials';
 
 export interface WifiSetConfigBody {

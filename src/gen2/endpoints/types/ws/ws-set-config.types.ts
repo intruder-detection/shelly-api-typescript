@@ -1,4 +1,4 @@
-import { RestartRequired } from '@gen2/endpoints/types/common/restart-required.types';
+import { RestartRequired } from '@common/restart-required.types';
 import { BaseShellyResponse } from '@common/generic.types';
 import { DeepPartial } from 'ts-essentials';
 import { WsConfig } from '@gen2/endpoints/types/ws/ws-common.types';

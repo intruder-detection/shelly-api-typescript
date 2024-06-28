@@ -1,3 +1,5 @@
+import { Connected } from '@common/connected.types';
+
 export interface SettingsRequest {
   reset: boolean; //	Will perform a factory reset of the device
   ap_roaming_enabled: boolean; //	Enable/disable AP roaming
@@ -77,9 +79,8 @@ interface BuildInfo {
   build_version: string;
 }
 
-interface Cloud {
+interface Cloud extends Connected {
   enabled: boolean;
-  connected: boolean;
 }
 
 interface Coiot {

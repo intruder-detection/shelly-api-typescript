@@ -1,5 +1,5 @@
 import { BaseShellyResponse } from '@common/generic.types';
-import { BaseIdType } from '@gen2/endpoints/types/common/base-id.types';
+import { BaseIdType } from '@common/base-id.types';
 import { ActiveEnergyCounter, ReturnedActiveEnergyCounter } from '@gen2/endpoints/types/switch/switch.common';
 
 export interface SwitchGetStatusBody extends BaseIdType {}

@@ -1,4 +1,4 @@
-import { BaseIdType } from '@gen2/endpoints/types/common/base-id.types';
+import { BaseIdType } from '@common/base-id.types';
 import { BaseShellyResponse } from '@common/generic.types';
 
 export interface BTHomeSensorGetConfigBody extends BaseIdType {

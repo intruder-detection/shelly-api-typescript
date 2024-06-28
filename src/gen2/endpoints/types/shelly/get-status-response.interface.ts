@@ -1,5 +1,6 @@
 import { BaseShellyResponse } from '@common/generic.types';
 import { SystemStatus } from '@gen2/endpoints/types/system/common.types.interfaces';
+import { Connected } from '@common/connected.types';
 
 export interface GetStatusResponse extends BaseShellyResponse<GetStatusResult> {}
 
@@ -16,9 +17,7 @@ export interface Ble {
   dev_list: string;
 }
 
-export interface Cloud {
-  connected: boolean;
-}
+export interface Cloud extends Connected {}
 
 export interface Wifi {
   sta_ip: string;

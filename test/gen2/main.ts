@@ -3,7 +3,7 @@ import {
   CloudMethods, CoverMethods,
   EthernetMethods,
   InputMethods,
-  KVSMethods, ModbusMethods,
+  KVSMethods, LightMethods, ModbusMethods,
   MQTTMethods,
   ScheduleMethods,
   ScriptMethods,
@@ -650,6 +650,45 @@ async function cover() {
   console.log(ResetCounters);
 }
 
+async function light() {
+  const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.10');
+
+  const GetStatus = await gen2Device.post(LightMethods.GetStatus, {id: 1});
+  console.log(GetStatus);
+
+  const GetConfig = await gen2Device.post(LightMethods.GetConfig, {id :1});
+  console.log(GetConfig);
+
+  const SetConfig = await gen2Device.post(LightMethods.SetConfig, {
+    id: 1,
+    config: {
+      name: '',
+    },
+  });
+  console.log(SetConfig);
+
+  const Calibrate = await gen2Device.post(LightMethods.Calibrate, {
+    id: 1,
+  });
+  console.log(Calibrate);
+
+  const Set = await gen2Device.post(LightMethods.Set, {
+    id: 1,
+  });
+  console.log(Set);
+
+  const Toggle = await gen2Device.post(LightMethods.Toggle, {
+    id: 1,
+  });
+  console.log(Toggle);
+
+  const ResetCounters = await gen2Device.post(LightMethods.ResetCounters, {
+    id: 1,
+    type: [],
+  });
+  console.log(ResetCounters);
+}
+
 async function main() {
   // ShellyMethods
   // await shelly();
@@ -687,6 +726,8 @@ async function main() {
   // await voltmeter();
   // CoverMethods TODO: Test with device that has cover
   // await cover();
+  // CoverMethods TODO: Test with device that has cover
+  // await light();
 }
 
 void main();

@@ -15,13 +15,13 @@ import {
   WifiMethods,
   WsMethods,
 } from '@gen2/methods.enum';
-import { ScriptHelpers } from '@gen2/helpers/scripts/script.helpers';
+import { ScriptHelpers } from '@helpers/scripts/script.helpers';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { KvsHelpers } from '@gen2/helpers/kvs/kvs.helpers';
-import { InputHelpers } from '@gen2/helpers/input/input.helpers';
-import { ShellyHelpers } from '@gen2/helpers/shelly/shelly.helpers';
-import { WebhooksHelpers } from '@gen2/helpers/webhooks/webhooks.helpers';
+import { KvsHelpers } from '@helpers/kvs/kvs.helpers';
+import { InputHelpers } from '@helpers/input/input.helpers';
+import { ShellyHelpers } from '@helpers/shelly/shelly.helpers';
+import { WebhooksHelpers } from '@helpers/webhooks/webhooks.helpers';
 import { ShellyGen2PlusHTTPAPI } from '@common/shelly-gen-2-plus-http-api';
 
 async function shelly() {

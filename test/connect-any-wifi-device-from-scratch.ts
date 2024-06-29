@@ -32,7 +32,7 @@ async function main() {
     },
   });
   console.log(SetConfig);
-  console.log(`Connected device ${SetConfig.src} to Wi-Fi network ${process.env.WIFI_SSID}`)
+  console.log(`Connected device ${SetConfig.src} to Wi-Fi network ${process.env.WIFI_SSID}`);
 }
 
 void main();

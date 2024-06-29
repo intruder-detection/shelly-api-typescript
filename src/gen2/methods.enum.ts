@@ -140,6 +140,18 @@ export enum VoltmeterMethods {
   GetStatus = 'Voltmeter.GetStatus',
 }
 
+export enum CoverMethods {
+  SetConfig = 'Cover.SetConfig',
+  GetConfig = 'Cover.GetConfig',
+  GetStatus = 'Cover.GetStatus',
+  Open = 'Cover.Open',
+  Close = 'Cover.Close',
+  Stop = 'Cover.Stop',
+  GoToPosition = 'Cover.GoToPosition',
+  Calibrate = 'Cover.Calibrate',
+  ResetCounters = 'Cover.ResetCounters',
+}
+
 export type Gen2Methods =
   | BLEMethods
   | CloudMethods

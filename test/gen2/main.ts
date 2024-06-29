@@ -1,6 +1,6 @@
 import {
   BLEMethods,
-  CloudMethods,
+  CloudMethods, CoverMethods,
   EthernetMethods,
   InputMethods,
   KVSMethods, ModbusMethods,
@@ -596,6 +596,60 @@ async function voltmeter() {
   console.log(SetConfig);
 }
 
+async function cover() {
+  const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.10');
+
+  const GetStatus = await gen2Device.post(CoverMethods.GetStatus, {id: 1});
+  console.log(GetStatus);
+
+  const GetConfig = await gen2Device.post(CoverMethods.GetConfig, {id :1});
+  console.log(GetConfig);
+
+  const SetConfig = await gen2Device.post(CoverMethods.SetConfig, {
+    id: 1,
+    config: {
+      name: '',
+    },
+  });
+  console.log(SetConfig);
+
+  const Calibrate = await gen2Device.post(CoverMethods.Calibrate, {
+    id: 1,
+  });
+  console.log(Calibrate);
+
+  const Open = await gen2Device.post(CoverMethods.Open, {
+    id: 1,
+    duration: 1,
+  });
+  console.log(Open);
+
+  const Close = await gen2Device.post(CoverMethods.Close, {
+    id: 1,
+    duration: 1,
+  });
+  console.log(Close);
+
+  const Stop = await gen2Device.post(CoverMethods.Stop, {
+    id: 1,
+    duration: 1,
+  });
+  console.log(Stop);
+
+  const GoToPosition = await gen2Device.post(CoverMethods.GoToPosition, {
+    id: 1,
+    pos: 1,
+    rel: 1,
+  });
+  console.log(GoToPosition);
+
+  const ResetCounters = await gen2Device.post(CoverMethods.ResetCounters, {
+    id: 1,
+    type: [],
+  });
+  console.log(ResetCounters);
+}
+
 async function main() {
   // ShellyMethods
   // await shelly();
@@ -631,6 +685,8 @@ async function main() {
   // await modbus();
   // VoltmeterMethods TODO: Test with device that has voltmeter
   // await voltmeter();
+  // CoverMethods TODO: Test with device that has cover
+  // await cover();
 }
 
 void main();

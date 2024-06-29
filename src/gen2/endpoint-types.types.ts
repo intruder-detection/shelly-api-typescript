@@ -1,6 +1,6 @@
 import {
   BLEMethods,
-  CloudMethods,
+  CloudMethods, CoverMethods,
   EthernetMethods,
   InputMethods,
   KVSMethods, ModbusMethods,
@@ -27,7 +27,7 @@ import { ListTimezonesResponse } from '@gen2/endpoints/types/shelly/list-timezon
 import { DetectLocationResponse } from '@gen2/endpoints/types/shelly/detect-device-location-response.interface';
 import { CheckForUpdateResponse } from '@gen2/endpoints/types/shelly/check-for-update-response.interface';
 import { UpdateBody } from '@gen2/endpoints/types/shelly/update.interface';
-import { EmptyResponse } from '@common/generic.types';
+import { BaseShellyResponse, EmptyResponse } from '@common/generic.types';
 import { RebootBody } from '@gen2/endpoints/types/shelly/reboot.interface';
 import { SetAuthBody } from '@gen2/endpoints/types/shelly/set-auth.interface';
 import { PutUserCaBody, PutUserCaResponse } from '@gen2/endpoints/types/shelly/put-user-ca.interface';
@@ -102,6 +102,18 @@ import {
   VoltmeterSetConfigResponse,
 } from '@gen2/endpoints/types/voltmeter/voltmeter-set-config.types';
 import { VoltmeterGetStatusResponse } from '@gen2/endpoints/types/voltmeter/voltmeter-get-status.types';
+import { CoverGetConfigBody, CoverGetConfigResponse } from '@gen2/endpoints/types/cover/cover-get-config.types';
+import { CoverGetStatusBody, CoverGetStatusResponse } from '@gen2/endpoints/types/cover/cover-get-status.types';
+import { CoverSetConfigBody, CoverSetConfigResponse } from '@gen2/endpoints/types/cover/cover-set-config.types';
+import { CoverCalibrateBody } from '@gen2/endpoints/types/cover/cover-calibrate.types';
+import { CoverOpenBody } from '@gen2/endpoints/types/cover/cover-open.types';
+import { CoverCloseBody } from '@gen2/endpoints/types/cover/cover-close.types';
+import { CoverStopBody } from '@gen2/endpoints/types/cover/cover-stop.types';
+import { CoverGoToPositionBody } from '@gen2/endpoints/types/cover/cover-gotoposition.types';
+import {
+  CoverResetCountersBody,
+  CoverResetCountersResponse,
+} from '@gen2/endpoints/types/cover/cover-reset-counters.types';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -500,6 +512,45 @@ export interface VoltmeterMethodsMapping {
   [VoltmeterMethods.SetConfig]: {
     body: VoltmeterSetConfigBody;
     response: VoltmeterSetConfigResponse;
+  };
+}
+
+export interface CoverMethodsMapping {
+  [CoverMethods.GetConfig]: {
+    body: CoverGetConfigBody;
+    response: CoverGetConfigResponse;
+  };
+  [CoverMethods.GetStatus]: {
+    body: CoverGetStatusBody;
+    response: CoverGetStatusResponse;
+  };
+  [CoverMethods.SetConfig]: {
+    body: CoverSetConfigBody;
+    response: CoverSetConfigResponse;
+  };
+  [CoverMethods.Open]: {
+    body: CoverOpenBody;
+    response: BaseShellyResponse<null>;
+  };
+  [CoverMethods.Close]: {
+    body: CoverCloseBody;
+    response: BaseShellyResponse<null>;
+  };
+  [CoverMethods.Stop]: {
+    body: CoverStopBody;
+    response: BaseShellyResponse<null>;
+  };
+  [CoverMethods.GoToPosition]: {
+    body: CoverGoToPositionBody;
+    response: BaseShellyResponse<null>;
+  };
+  [CoverMethods.Calibrate]: {
+    body: CoverCalibrateBody;
+    response: BaseShellyResponse<null>;
+  };
+  [CoverMethods.ResetCounters]: {
+    body: CoverResetCountersBody;
+    response: CoverResetCountersResponse;
   };
 }
 

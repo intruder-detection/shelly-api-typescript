@@ -140,7 +140,7 @@ function emitData(data) {
   console.log(33);
   console.log(JSON.stringify(data));
   console.log(data.address);
-  MQTT.publish('shellyblugw-a842e33f71f0/events/rpc', JSON.stringify(data));
+  MQTT.publish('shellyblugw/events/rpc', JSON.stringify(data), 2, true);
 }
 
 //saving the id of the last packet, this is used to filter the duplicated packets

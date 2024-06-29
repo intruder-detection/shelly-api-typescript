@@ -10,7 +10,7 @@ import {
   ShellyExtraMethods,
   ShellyMethods,
   SwitchMethods,
-  SystemMethods,
+  SystemMethods, VoltmeterMethods,
   WebhookMethods,
   WifiMethods,
   WsMethods,
@@ -573,6 +573,29 @@ async function modbus() {
   console.log(SetConfig);
 }
 
+async function voltmeter() {
+  const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.10');
+
+  const GetStatus = await gen2Device.post(VoltmeterMethods.GetStatus);
+  console.log(GetStatus);
+
+  const GetConfig = await gen2Device.post(VoltmeterMethods.GetConfig);
+  console.log(GetConfig);
+
+  const SetConfig = await gen2Device.post(VoltmeterMethods.SetConfig, {
+    config: {
+      name: '',
+      report_thr: 1,
+      range: 1,
+      xvoltage: {
+        expr: null,
+        unit: null,
+      }
+    },
+  });
+  console.log(SetConfig);
+}
+
 async function main() {
   // ShellyMethods
   // await shelly();
@@ -604,8 +627,10 @@ async function main() {
   // await websocket();
   // SwitchMethods
   // await switch_();
-  // ModbusMethods
-  await modbus();
+  // ModbusMethods TODO: Test with device that has modbus
+  // await modbus();
+  // VoltmeterMethods TODO: Test with device that has voltmeter
+  // await voltmeter();
 }
 
 void main();

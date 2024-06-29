@@ -134,6 +134,12 @@ export enum ModbusMethods {
   GetStatus = 'Modbus.GetStatus',
 }
 
+export enum VoltmeterMethods {
+  SetConfig = 'Voltmeter.SetConfig',
+  GetConfig = 'Voltmeter.GetConfig',
+  GetStatus = 'Voltmeter.GetStatus',
+}
+
 export type Gen2Methods =
   | BLEMethods
   | CloudMethods
@@ -148,6 +154,7 @@ export type Gen2Methods =
   | ShellyExtraMethods
   | SwitchMethods
   | SystemMethods
+  | VoltmeterMethods
   | WebhookMethods
   | WifiMethods
   | WsMethods;

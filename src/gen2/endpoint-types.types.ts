@@ -9,7 +9,7 @@ import {
   ScriptMethods,
   ShellyExtraMethods,
   ShellyMethods, SwitchMethods,
-  SystemMethods,
+  SystemMethods, VoltmeterMethods,
   WebhookMethods,
   WifiMethods,
   WsMethods,
@@ -96,6 +96,12 @@ import {
 import { ModbusGetConfigResponse } from '@gen2/endpoints/types/modbus/modbus-get-config.types';
 import { ModbusGetStatusResponse } from '@gen2/endpoints/types/modbus/modbus-get-status.types';
 import { ModbusSetConfigBody, ModbusSetConfigResponse } from '@gen2/endpoints/types/modbus/modbus-set-config.types';
+import { VoltmeterGetConfigResponse } from '@gen2/endpoints/types/voltmeter/voltmeter-get-config.types';
+import {
+  VoltmeterSetConfigBody,
+  VoltmeterSetConfigResponse,
+} from '@gen2/endpoints/types/voltmeter/voltmeter-set-config.types';
+import { VoltmeterGetStatusResponse } from '@gen2/endpoints/types/voltmeter/voltmeter-get-status.types';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -482,6 +488,21 @@ export interface ModbusMethodsMapping {
   };
 }
 
+export interface VoltmeterMethodsMapping {
+  [VoltmeterMethods.GetConfig]: {
+    body: undefined;
+    response: VoltmeterGetConfigResponse;
+  };
+  [VoltmeterMethods.GetStatus]: {
+    body: undefined;
+    response: VoltmeterGetStatusResponse;
+  };
+  [VoltmeterMethods.SetConfig]: {
+    body: VoltmeterSetConfigBody;
+    response: VoltmeterSetConfigResponse;
+  };
+}
+
 export interface ShellyGen2HTTPAPIMapping
   extends BLEMethodsMapping,
     CloudMethodsMapping,
@@ -496,6 +517,7 @@ export interface ShellyGen2HTTPAPIMapping
     ShellyExtraMethodsMapping,
     SwitchMethodsMapping,
     SystemMethodsMapping,
+    VoltmeterMethodsMapping,
     WebhooksMethodsMapping,
     WebsocketMethodsMapping,
     WifiMethodsMapping {}

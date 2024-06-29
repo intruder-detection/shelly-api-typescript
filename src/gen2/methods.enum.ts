@@ -152,13 +152,25 @@ export enum CoverMethods {
   ResetCounters = 'Cover.ResetCounters',
 }
 
+export enum LightMethods {
+  SetConfig = 'Light.SetConfig',
+  GetConfig = 'Light.GetConfig',
+  GetStatus = 'Light.GetStatus',
+  Set = 'Light.Set',
+  Toggle = 'Light.Toggle',
+  Calibrate = 'Light.Calibrate',
+  ResetCounters = 'Light.ResetCounters',
+}
+
 export type Gen2Methods =
   | BLEMethods
   | CloudMethods
+  | CoverMethods
   | EthernetMethods
   | HTTPMethods
   | InputMethods
   | KVSMethods
+  | LightMethods
   | MQTTMethods
   | ScheduleMethods
   | ScriptMethods

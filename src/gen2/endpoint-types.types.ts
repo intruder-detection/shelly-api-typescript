@@ -1,15 +1,20 @@
 import {
   BLEMethods,
-  CloudMethods, CoverMethods,
+  CloudMethods,
+  CoverMethods,
   EthernetMethods,
   InputMethods,
-  KVSMethods, ModbusMethods,
+  KVSMethods,
+  LightMethods,
+  ModbusMethods,
   MQTTMethods,
   ScheduleMethods,
   ScriptMethods,
   ShellyExtraMethods,
-  ShellyMethods, SwitchMethods,
-  SystemMethods, VoltmeterMethods,
+  ShellyMethods,
+  SwitchMethods,
+  SystemMethods,
+  VoltmeterMethods,
   WebhookMethods,
   WifiMethods,
   WsMethods,
@@ -89,18 +94,12 @@ import { SwitchGetConfigBody, SwitchGetConfigResponse } from '@gen2/endpoints/ty
 import { SwitchSetConfigBody, SwitchSetConfigResponse } from '@gen2/endpoints/types/switch/switch-set-config.types';
 import { SwitchSetBody, SwitchSetResponse } from '@gen2/endpoints/types/switch/switch-set.types';
 import { SwitchToggleBody, SwitchToggleResponse } from '@gen2/endpoints/types/switch/switch-toggle.types';
-import {
-  SwitchResetCountersBody,
-  SwitchResetCountersResponse,
-} from '@gen2/endpoints/types/switch/switch-reset-counters.types';
+import { SwitchResetCountersBody, SwitchResetCountersResponse } from '@gen2/endpoints/types/switch/switch-reset-counters.types';
 import { ModbusGetConfigResponse } from '@gen2/endpoints/types/modbus/modbus-get-config.types';
 import { ModbusGetStatusResponse } from '@gen2/endpoints/types/modbus/modbus-get-status.types';
 import { ModbusSetConfigBody, ModbusSetConfigResponse } from '@gen2/endpoints/types/modbus/modbus-set-config.types';
 import { VoltmeterGetConfigResponse } from '@gen2/endpoints/types/voltmeter/voltmeter-get-config.types';
-import {
-  VoltmeterSetConfigBody,
-  VoltmeterSetConfigResponse,
-} from '@gen2/endpoints/types/voltmeter/voltmeter-set-config.types';
+import { VoltmeterSetConfigBody, VoltmeterSetConfigResponse } from '@gen2/endpoints/types/voltmeter/voltmeter-set-config.types';
 import { VoltmeterGetStatusResponse } from '@gen2/endpoints/types/voltmeter/voltmeter-get-status.types';
 import { CoverGetConfigBody, CoverGetConfigResponse } from '@gen2/endpoints/types/cover/cover-get-config.types';
 import { CoverGetStatusBody, CoverGetStatusResponse } from '@gen2/endpoints/types/cover/cover-get-status.types';
@@ -110,10 +109,14 @@ import { CoverOpenBody } from '@gen2/endpoints/types/cover/cover-open.types';
 import { CoverCloseBody } from '@gen2/endpoints/types/cover/cover-close.types';
 import { CoverStopBody } from '@gen2/endpoints/types/cover/cover-stop.types';
 import { CoverGoToPositionBody } from '@gen2/endpoints/types/cover/cover-gotoposition.types';
-import {
-  CoverResetCountersBody,
-  CoverResetCountersResponse,
-} from '@gen2/endpoints/types/cover/cover-reset-counters.types';
+import { CoverResetCountersBody, CoverResetCountersResponse } from '@gen2/endpoints/types/cover/cover-reset-counters.types';
+import { LightCalibrateBody } from '@gen2/endpoints/types/light/light-calibrate.types';
+import { LightResetCountersBody, LightResetCountersResponse } from '@gen2/endpoints/types/light/light-reset-counters.types';
+import { LightSetBody } from '@gen2/endpoints/types/light/light-set.types';
+import { LightToggleBody } from '@gen2/endpoints/types/light/light-toggle.types';
+import { LightGetStatusBody, LightGetStatusResponse } from '@gen2/endpoints/types/light/light-get-status.types';
+import { LightGetConfigBody, LightGetConfigResponse } from '@gen2/endpoints/types/light/light-get-config.types';
+import { LightSetConfigBody, LightSetConfigResponse } from '@gen2/endpoints/types/light/light-set-config.types';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -554,12 +557,45 @@ export interface CoverMethodsMapping {
   };
 }
 
+export interface LightMethodsMapping {
+  [LightMethods.GetConfig]: {
+    body: LightGetConfigBody;
+    response: LightGetConfigResponse;
+  };
+  [LightMethods.GetStatus]: {
+    body: LightGetStatusBody;
+    response: LightGetStatusResponse;
+  };
+  [LightMethods.SetConfig]: {
+    body: LightSetConfigBody;
+    response: LightSetConfigResponse;
+  };
+  [LightMethods.Set]: {
+    body: LightSetBody;
+    response: BaseShellyResponse<null>;
+  };
+  [LightMethods.Toggle]: {
+    body: LightToggleBody;
+    response: BaseShellyResponse<null>;
+  };
+  [LightMethods.Calibrate]: {
+    body: LightCalibrateBody;
+    response: BaseShellyResponse<null>;
+  };
+  [LightMethods.ResetCounters]: {
+    body: LightResetCountersBody;
+    response: LightResetCountersResponse;
+  };
+}
+
 export interface ShellyGen2HTTPAPIMapping
   extends BLEMethodsMapping,
     CloudMethodsMapping,
+    CoverMethodsMapping,
     EthernetMethodsMapping,
     InputMethodsMapping,
     KVSMethodsMapping,
+    LightMethodsMapping,
     MQTTMethodsMapping,
     ModbusMethodsMapping,
     ScheduleMethodMapping,

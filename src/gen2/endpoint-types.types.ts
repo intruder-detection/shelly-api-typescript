@@ -2,6 +2,7 @@ import {
   BLEMethods,
   CloudMethods,
   CoverMethods,
+  DevicePowerMethods,
   EthernetMethods,
   InputMethods,
   KVSMethods,
@@ -117,6 +118,7 @@ import { LightToggleBody } from '@gen2/endpoints/types/light/light-toggle.types'
 import { LightGetStatusBody, LightGetStatusResponse } from '@gen2/endpoints/types/light/light-get-status.types';
 import { LightGetConfigBody, LightGetConfigResponse } from '@gen2/endpoints/types/light/light-get-config.types';
 import { LightSetConfigBody, LightSetConfigResponse } from '@gen2/endpoints/types/light/light-set-config.types';
+import { DevicePowerGetStatusResponse } from '@gen2/endpoints/types/device-power/device-power-get-status-response.interface';
 
 interface WifiMethodsMapping {
   [WifiMethods.GetConfig]: {
@@ -588,10 +590,26 @@ export interface LightMethodsMapping {
   };
 }
 
+export interface DevicePowerMethodsMapping {
+  [DevicePowerMethods.GetConfig]: {
+    body: undefined;
+    response: BaseShellyResponse<null>;
+  };
+  [DevicePowerMethods.GetStatus]: {
+    body: undefined;
+    response: DevicePowerGetStatusResponse;
+  };
+  [DevicePowerMethods.SetConfig]: {
+    body: undefined;
+    response: BaseShellyResponse<null>;
+  };
+}
+
 export interface ShellyGen2HTTPAPIMapping
   extends BLEMethodsMapping,
     CloudMethodsMapping,
     CoverMethodsMapping,
+    DevicePowerMethodsMapping,
     EthernetMethodsMapping,
     InputMethodsMapping,
     KVSMethodsMapping,

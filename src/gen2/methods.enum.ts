@@ -162,6 +162,12 @@ export enum LightMethods {
   ResetCounters = 'Light.ResetCounters',
 }
 
+export enum DevicePowerMethods {
+  SetConfig = 'DevicePower.SetConfig',
+  GetConfig = 'DevicePower.GetConfig',
+  GetStatus = 'DevicePower.GetStatus',
+}
+
 export type Gen2Methods =
   | BLEMethods
   | CloudMethods

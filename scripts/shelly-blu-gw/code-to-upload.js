@@ -127,7 +127,7 @@ const BTHomeDecoder = {
 };
 
 /**
- * Еmitting the decoded BLE data to a specified event. It allows other scripts to receive and process the emitted data
+ * Emitting the decoded BLE data via MQTT.
  * @param {DeviceData} data
  */
 function emitData(data) {
@@ -135,8 +135,9 @@ function emitData(data) {
     return;
   }
 
+  // Publish MQTT message to the provided topic: https://shelly-api-docs.shelly.cloud/gen2/Scripts/ShellyScriptLanguageFeatures#mqttpublish
   MQTT.publish('<MQTT_TOPIC>', JSON.stringify(data), 2, true);
-  log('Published message to topic: <MQTT_TOPIC>');
+  log('Device:' + data.address + ' published message to topic: <MQTT_TOPIC>');
 }
 
 //saving the id of the last packet, this is used to filter the duplicated packets
@@ -194,21 +195,6 @@ function init() {
   if (!BLEConfig.enable) {
     log('Error: The Bluetooth is not enabled, please enable it from settings');
     return;
-  }
-
-  // check if the scanner is already running
-  if (BLE.Scanner.isRunning()) {
-    log('Info: The BLE gateway is running, the BLE scan configuration is managed by the device');
-  } else {
-    //start the scanner
-    const bleScanner = BLE.Scanner.Start({
-      duration_ms: BLE.Scanner.INFINITE_SCAN,
-      active: CONFIG.active,
-    });
-
-    if (!bleScanner) {
-      log('Error: Can not start new scanner');
-    }
   }
 
   // subscribe a callback to BLE scanner

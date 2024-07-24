@@ -5,7 +5,14 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "keywords": ["Shelly", "Shelly HTTP/RPC API", "Shelly Typescript", "Shelly NodeJS"],
+  "keywords": [
+    "Shelly",
+    "Shelly API",
+    "Shelly HTTP/RPC API",
+    "Shelly Typescript",
+    "Shelly Javascript",
+    "Shelly NodeJS"
+  ],
   "repository": {
     "url": "https://github.com/intruder-detection/shelly-api-typescript"
   },

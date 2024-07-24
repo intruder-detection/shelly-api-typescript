@@ -1,5 +1,4 @@
-import { ShellyGen2PlusHTTPAPI } from '@common/shelly-gen-2-plus-http-api';
-import { BTHomeDeviceMethods, BTHomeMethods, VirtualMethods } from '@gen3/methods.enum';
+import { BTHomeDeviceMethods, BTHomeMethods, ShellyGen2PlusHTTPAPI } from '../../src';
 
 async function virtual() {
   // await gen3Device.post(VirtualMethods.Add, {
@@ -119,4 +118,4 @@ async function main() {
   await bthomeSensor()
 }
 
-void main();
+await main();

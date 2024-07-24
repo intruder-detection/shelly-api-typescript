@@ -1,17 +1,17 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "es2022",
+    "moduleResolution": "Bundler",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "es2023",
+    "target": "es2022",
     "sourceMap": true,
     "outDir": "./dist",
     "skipLibCheck": true,
     "strictNullChecks": false,
-    "noEmit": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
@@ -25,7 +25,5 @@
       "@utils/*": ["./src/utils/*"],
       "@common/*": ["./src/common/*"]
     }
-  },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+  }
 }

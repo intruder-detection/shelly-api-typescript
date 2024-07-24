@@ -1,4 +1,4 @@
-interface BTHomeDeviceConfig {
+export interface BTHomeDeviceConfig {
   id?: number;
   name: string | null;
   addr: string;
@@ -8,7 +8,7 @@ interface BTHomeDeviceConfig {
   };
 }
 
-interface BTHomeSensorConfig {
+export interface BTHomeSensorConfig {
   id?: number;
   name: string | null;
   obj_id: number;

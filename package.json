@@ -19,10 +19,8 @@
     "connect-new-device": "dotenv -- npx tsx --inspect-brk test/connect-any-wifi-device-from-scratch.ts",
     "shelly-blu-gw-setup": "dotenv -- npx tsx --inspect-brk scripts/shelly-blu-gw/setup-shelly-blu-gw-from-scratch.ts",
     "// BUILD": "",
-    "rebuild-index": "barrelsby --delete --directory ./src -F",
-    "lint-index": "eslint --fix ./src/index.ts",
-    "barrel": "npm run rebuild-index && npm run lint-index",
-    "build": "tsup",
+    "barrel": "barrelsby --delete --directory src -F -q",
+    "build": "npm run barrel && tsup",
     "// DEPLOY": ""
   },
   "author": "Rui Alves",

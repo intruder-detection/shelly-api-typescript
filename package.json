@@ -14,7 +14,7 @@
     "Shelly NodeJS"
   ],
   "repository": {
-    "url": "https://github.com/intruder-detection/shelly-api-typescript"
+    "url": "git+https://github.com/intruder-detection/shelly-api-typescript.git"
   },
   "homepage": "https://github.com/intruder-detection/shelly-api-typescript",
   "scripts": {
@@ -27,8 +27,7 @@
     "shelly-blu-gw-setup": "dotenv -- npx tsx --inspect-brk scripts/shelly-blu-gw/setup-shelly-blu-gw-from-scratch.ts",
     "// BUILD": "",
     "barrel": "barrelsby --delete --directory src -F -q",
-    "build": "npm run barrel && tsup",
-    "// DEPLOY": ""
+    "build": "npm run barrel && tsup"
   },
   "author": "Rui Alves",
   "license": "MIT",
@@ -53,5 +52,11 @@
     "tsup": "^8.2.2",
     "tsx": "^4.15.1",
     "typescript": "^5.5"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "bugs": {
+    "url": "https://github.com/intruder-detection/shelly-api-typescript/issues"
   }
 }

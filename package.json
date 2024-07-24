@@ -10,7 +10,8 @@
   "scripts": {
     "debug_gen2": "dotenv -- npx tsx --inspect-brk test/gen2/main.ts",
     "debug_gen3": "dotenv -- npx tsx --inspect-brk test/gen3/main.ts",
-    "connect-new-device": "dotenv -- npx tsx --inspect-brk test/gen2/connect-from-scratch.ts",
+    "connect-new-device": "dotenv -- npx tsx --inspect-brk test/connect-any-wifi-device-from-scratch.ts",
+    "shelly-blu-gw-setup": "dotenv -- npx tsx --inspect-brk scripts/shelly-blu-gw/setup-shelly-blu-gw-from-scratch.ts",
     "build": "tsc"
   },
   "author": "Rui Alves",

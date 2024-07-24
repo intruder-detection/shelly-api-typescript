@@ -120,13 +120,11 @@ async function updateMQTTServer(deviceName: string) {
   const mqttHelpers = new MqttHelpers(gen2Device);
 
   await mqttHelpers.setConfig({
-    config: {
-      enable: true,
-      server: process.env.MQTT_SERVER_URL,
-      client_id: deviceName,
-      topic_prefix: `shellyblugw-${deviceName}`,
-    }
-  } as MQTTSetConfigBody)
+    enable: true,
+    server: process.env.MQTT_SERVER_URL,
+    client_id: deviceName,
+    topic_prefix: `shellyblugw-${deviceName}`,
+  });
 }
 
 /**

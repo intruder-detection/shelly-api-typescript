@@ -584,6 +584,7 @@ async function voltmeter() {
 
   const SetConfig = await gen2Device.post(VoltmeterMethods.SetConfig, {
     config: {
+      id: 1,
       name: '',
       report_thr: 1,
       range: 1,
@@ -632,7 +633,6 @@ async function cover() {
 
   const Stop = await gen2Device.post(CoverMethods.Stop, {
     id: 1,
-    duration: 1,
   });
   console.log(Stop);
 

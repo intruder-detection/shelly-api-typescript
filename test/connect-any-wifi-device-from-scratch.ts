@@ -5,7 +5,7 @@ import { WifiHelpers } from '@helpers/wifi/wifi.helpers';
 
 /**
  * To run this script, you must be connected to Shelly device Access Point (AP) Wi-Fi network.
- * If you want to connect to the Shelly AP Wi-Fi network you could do it manually or using a script like: github.com/friedrith/node-wifi
+ * If you want to connect to the Shelly AP Wi-Fi network, you could do it manually or using a script like: github.com/friedrith/node-wifi
  * 1. It will force the device to turn off the Access Point (AP) and move to the STA (station) of your Wi-Fi Network
  */
 async function main() {

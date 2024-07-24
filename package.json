@@ -2,17 +2,28 @@
   "name": "@intruder-detection/shelly-api-typescript",
   "version": "0.0.1",
   "description": "Typescript client for the Shelly HTTP API",
-  "main": "dist/src/index.js",
-  "types": "dist/src/index.d.ts",
-  "files": [
-    "dist/src/**"
-  ],
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "keywords": ["Shelly", "Shelly HTTP/RPC API", "Shelly Typescript", "Shelly NodeJS"],
+  "repository": {
+    "url": "https://github.com/intruder-detection/shelly-api-typescript"
+  },
+  "homepage": "https://github.com/intruder-detection/shelly-api-typescript",
   "scripts": {
+    "// DEVELOP": "",
+    "lint": "tsc",
+    "// DEBUG": "",
     "debug_gen2": "dotenv -- npx tsx --inspect-brk test/gen2/main.ts",
     "debug_gen3": "dotenv -- npx tsx --inspect-brk test/gen3/main.ts",
     "connect-new-device": "dotenv -- npx tsx --inspect-brk test/connect-any-wifi-device-from-scratch.ts",
     "shelly-blu-gw-setup": "dotenv -- npx tsx --inspect-brk scripts/shelly-blu-gw/setup-shelly-blu-gw-from-scratch.ts",
-    "build": "tsc"
+    "// BUILD": "",
+    "rebuild-index": "barrelsby --delete --directory ./src -F",
+    "lint-index": "eslint --fix ./src/index.ts",
+    "barrel": "npm run rebuild-index && npm run lint-index",
+    "build": "tsup",
+    "// DEPLOY": ""
   },
   "author": "Rui Alves",
   "license": "MIT",
@@ -21,19 +32,21 @@
   },
   "devDependencies": {
     "@types/node": "^20.14.2",
-    "@typescript-eslint/eslint-plugin": "^6.1.0",
+    "@typescript-eslint/eslint-plugin": "^7.17.0",
+    "barrelsby": "^2.8.1",
     "dotenv-cli": "^7.4.1",
-    "eslint": "^8.45.0",
+    "eslint": "^8.56.0",
     "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-deprecation": "^1.4.1",
+    "eslint-plugin-deprecation": "^2.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-no-relative-import-paths": "^1.5.5",
     "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-unused-imports": "^3.2.0",
     "npx": "^10.2.2",
     "prettier": "^3.3.1",
     "ts-essentials": "^10.0.0",
+    "tsup": "^8.2.2",
     "tsx": "^4.15.1",
     "typescript": "^5.5"
-  },
-  "directories": {
-    "test": "test"
   }
 }

@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
-    "module": "NodeNext",
-    "moduleResolution": "bundler",
+    "module": "commonjs",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
@@ -10,9 +9,9 @@
     "target": "es2023",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
     "skipLibCheck": true,
     "strictNullChecks": false,
+    "noEmit": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
@@ -26,5 +25,7 @@
       "@utils/*": ["./src/utils/*"],
       "@common/*": ["./src/common/*"]
     }
-  }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

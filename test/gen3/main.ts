@@ -119,4 +119,4 @@ async function main() {
   await bthomeSensor()
 }
 
-await main();
+void main();

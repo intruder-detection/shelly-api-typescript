@@ -1,6 +1,6 @@
 {
   "name": "@intruder-detection/shelly-api-typescript",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Typescript client for the Shelly HTTP API",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

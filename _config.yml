@@ -3,6 +3,8 @@ description: Shelly API client implementation in Typescript
 remote_theme: pages-themes/cayman@v0.2.0
 plugins:
   - jekyll-remote-theme
-show_downloads: true
 github:
+  # URL for documentation page, in case the user clicks on Demo page then it's possible to come back to Docs page
+  documentation_url: https://intruder-detection.github.io/shelly-api-typescript
+  # URL for the demos page
   demos_url: https://intruder-detection.github.io/shelly-api-typescript/demos.html

@@ -34,8 +34,7 @@ async function main() {
         is_open: false,
         enable: true,
         ssid: process.env.WIFI_SSID,
-        ipv4mode: 'static',
-        ip: process.env.STATIC_IP,
+        ipv4mode: 'dhcp',
       },
     },
   });

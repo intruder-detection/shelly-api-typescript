@@ -16,7 +16,7 @@
   "repository": {
     "url": "git+https://github.com/intruder-detection/shelly-api-typescript.git"
   },
-  "homepage": "https://github.com/intruder-detection/shelly-api-typescript",
+  "homepage": "https://intruder-detection.github.io/shelly-api-typescript/",
   "scripts": {
     "// DEVELOP": "",
     "lint": "tsc",

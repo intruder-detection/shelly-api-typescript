@@ -22,11 +22,5 @@ const status = await gen2Device.post(ShellyMethods.GetStatus);
 console.log(status);
 ```
 
-Almost all methods of [Gen2+ devices](https://shelly-api-docs.shelly.cloud/gen2/) are present in the current client implementation.
-
-In the following video, we see how easy it is to use the API client 
-
-<video src="converted_file.mp4" width="800" height="600"  controls ></video>
-
----
+Almost all methods of [Gen2+ devices](https://shelly-api-docs.shelly.cloud/gen2/) are present in the current client implementation. Head over to the Demos page for more examples of the usage.
 

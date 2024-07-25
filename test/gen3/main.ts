@@ -1,4 +1,4 @@
-import { BTHomeDeviceMethods, BTHomeMethods, ShellyGen2PlusHTTPAPI } from '../../src';
+import { BTHomeDeviceMethods, BTHomeMethods, ShellyGen2PlusHTTPAPI } from '@intruder-detection/shelly-api-typescript';
 
 async function virtual() {
   // await gen3Device.post(VirtualMethods.Add, {

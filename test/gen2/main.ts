@@ -14,15 +14,15 @@ import {
   WebhookMethods,
   WifiMethods,
   WsMethods,
-} from '@gen2/methods.enum';
-import { ScriptHelpers } from '@helpers/scripts/script.helpers';
+  ScriptHelpers,
+  KvsHelpers,
+  InputHelpers,
+  ShellyHelpers,
+  WebhooksHelpers,
+  ShellyGen2PlusHTTPAPI
+} from  '@intruder-detection/shelly-api-typescript';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { KvsHelpers } from '@helpers/kvs/kvs.helpers';
-import { InputHelpers } from '@helpers/input/input.helpers';
-import { ShellyHelpers } from '@helpers/shelly/shelly.helpers';
-import { WebhooksHelpers } from '@helpers/webhooks/webhooks.helpers';
-import { ShellyGen2PlusHTTPAPI } from '@common/shelly-gen-2-plus-http-api';
 
 async function shelly() {
   const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.10');

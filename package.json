@@ -5,12 +5,13 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "connect-device-from-scratch": "dotenv -- npx tsx --inspect-brk scripts/connect-any-wifi-device-from-scratch.ts"
+    "shelly-blu-gw":  "dotenv -- npx tsx --inspect-brk demos/shelly-blu-gw/setup-shelly-blu-gw-from-scratch.ts",
+    "connect-any-gen2plus-device-to-provided-wifi": "dotenv -- npx tsx --inspect-brk demos/connect-any-wifi-device-from-scratch.ts"
   },
   "author": "Rui Alves",
   "license": "MIT",
   "dependencies": {
-    "@intruder-detection/shelly-api-typescript": "^0.0.1"
+    "@intruder-detection/shelly-api-typescript": "^0.0.12"
   },
   "devDependencies": {
     "@types/node": "^20.14.2",

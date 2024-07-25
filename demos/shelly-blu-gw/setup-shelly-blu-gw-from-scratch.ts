@@ -49,7 +49,6 @@ function getMyPrivateIPAddress() {
  */
 function getCodeToUpload(mqttServer: string) {
   const fileCode = fs.readFileSync(path.join(__dirname, 'code-to-upload.js'), 'utf8');
-
 }
 
 /**

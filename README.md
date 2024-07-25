@@ -1,21 +1,9 @@
-# Shelly API Typescript 
+# Shelly API client Demos
 
-Strongly typed Shelly API client written in Typescript
-
-## Install
-
-You can install it in a Typescript/Javascript project by doing the following:
-
-```bash
-npm i @intruder-detection/shelly-api-typescript
-```
-
-## Usage
-
-```ts
-import { ShellyGen2PlusHTTPAPI, ShellyMethods } from '@intruder-detection/shelly-api-typescript';
-
-const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.10');
-const status = await gen2Device.post(ShellyMethods.GetStatus);
-console.log(status);
-```
+1. [Connect gen+ devices from WiFi](./demos/connect-any-wifi-device-from-scratch.ts)
+   * Connects the Shelly Gen2+ device to the provided WiFi Network (SSID/Password should be passed as environment variables)
+2. [Shelly BLU Gateway setup from scratch](./demos/shelly-blu-gw/setup-shelly-blu-gw-from-scratch.ts)
+   * Connects the Shelly BLU GW device to the provided WiFi Network (SSID/Password should be passed as environment variables)
+   * Waits for the connection from the device to exist
+   * Uploads code to process BLU devices data and send it over MQTT 
+     * `MQTT_SERVER_URL`/`MQTT_TOPIC` should be provided as environment variables

@@ -1,5 +1,10 @@
 import * as process from 'node:process';
-import { ShellyGen2PlusHTTPAPI, WifiHelpers, WifiMethods } from '@intruder-detection/shelly-api-typescript';
+import {
+  ShellyGen2PlusHTTPAPI,
+  ShellyHelpers,
+  WifiHelpers,
+  WifiMethods,
+} from '@intruder-detection/shelly-api-typescript';
 import { input, password, select } from '@inquirer/prompts';
 
 async function verifyConnectionToShelly(): Promise<boolean> {
@@ -74,14 +79,16 @@ async function main() {
         is_open: false,
         enable: true,
         ssid: ssid,
-        ...(staticIP ? { ipv4mode: 'static', ip: staticIP } : { ipv4mode: 'dhcp' }),
+        ...(staticIP ? { ipv4mode: 'static', ip: staticIP, netmask: '255.255.255.0', gw: '192.168.1.1' } : { ipv4mode: 'dhcp' }),
       },
     },
   });
 
   console.log(SetConfig);
   if (!SetConfig.error && SetConfig.result) {
-    console.log(`Connected shelly device ${SetConfig.src} to Wi-Fi network ${ssid}. Use script: \x1b[41m get-device-configuration.ts \x1b[0m to get the most up to date configuration`);
+    console.log(`Connected shelly device ${SetConfig.src} to Wi-Fi network ${ssid}. Rebooting to apply configuration`);
+    await new ShellyHelpers(device).reboot();
+    console.log(`To get the most up to date configuration run the following: npx tsx get-device-configuration.ts`);
   } else {
     console.error('Error updating device Wi-Fi network.');
     process.exit(1);

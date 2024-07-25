@@ -19,3 +19,7 @@ const gen2Device = new ShellyGen2PlusHTTPAPI('192.168.1.10');
 const status = await gen2Device.post(ShellyMethods.GetStatus);
 console.log(status);
 ```
+
+# Demos
+
+There are some [helper scripts](https://github.com/intruder-detection/shelly-api-typescript/tree/scripts/scripts)/demos that show how to use the client API in the [demos](https://github.com/intruder-detection/shelly-api-typescript/tree/demos) branch

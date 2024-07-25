@@ -1,7 +1,5 @@
-import { WifiMethods } from '@gen2/methods.enum';
 import * as process from 'node:process';
-import { ShellyGen2PlusHTTPAPI } from '@common/shelly-gen-2-plus-http-api';
-import { WifiHelpers } from '@helpers/wifi/wifi.helpers';
+import { ShellyGen2PlusHTTPAPI, WifiHelpers, WifiMethods } from '@intruder-detection/shelly-api-typescript';
 
 /**
  * To run this script, you must be connected to Shelly device Access Point (AP) Wi-Fi network.
@@ -49,4 +47,4 @@ async function main() {
   console.log(`Connected device ${SetConfig.src} to Wi-Fi network ${process.env.WIFI_SSID}`);
 }
 
-void main();
+await main();

@@ -1,13 +1,14 @@
-import { WifiMethods } from '@gen2/methods.enum';
 import * as process from 'node:process';
-import { ShellyGen2PlusHTTPAPI } from '@common/shelly-gen-2-plus-http-api';
-import { WifiHelpers } from '@helpers/wifi/wifi.helpers';
 import * as dns from 'node:dns';
 import * as os from 'node:os';
 import fs from 'node:fs';
 import path from 'node:path';
-import { MqttHelpers } from '@helpers/mqtt/mqtt.helpers';
-import { MQTTSetConfigBody } from '@gen2/endpoints/types/mqtt/mqtt-set-config.types';
+import {
+  MqttHelpers,
+  ShellyGen2PlusHTTPAPI,
+  WifiHelpers,
+  WifiMethods,
+} from '@intruder-detection/shelly-api-typescript';
 
 async function waitForCondition(condition: () => Promise<boolean>, timeoutMs: number): Promise<void> {
   const startTime = Date.now();
@@ -109,7 +110,8 @@ async function awaitComputerToReconnectToMyWifi() {
         console.log('Connected to Wifi');
         return true;
       }
-    } catch (e) {}
+    } catch (e) {
+    }
     return false;
   }, 60 * 1000);
 }

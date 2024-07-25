@@ -24,4 +24,8 @@ console.log(status);
 
 In the following video, we see how easy it is to use the API client 
 
-<video src="converted_file.mp4" width="800" height="600" controls></video>
+<video src="converted_file.mp4" width="800" height="600"  controls ></video>
+
+---
+
+Almost all methods of [Gen2](https://shelly-api-docs.shelly.cloud/gen2/) devices are present in the current client implementation.

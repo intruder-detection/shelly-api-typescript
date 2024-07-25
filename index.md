@@ -30,6 +30,3 @@ In the following video, we see how easy it is to use the API client
 
 ---
 
-# Demos
-
-There's a [branch with demos](https://github.com/intruder-detection/shelly-api-typescript/tree/demos) for the API client.

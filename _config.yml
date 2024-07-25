@@ -3,3 +3,6 @@ description: Shelly API client implementation in Typescript
 remote_theme: pages-themes/cayman@v0.2.0
 plugins:
   - jekyll-remote-theme
+show_downloads: true
+github:
+  demos_url: https://intruder-detection.github.io/shelly-api-typescript/demos.html

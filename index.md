@@ -22,10 +22,14 @@ const status = await gen2Device.post(ShellyMethods.GetStatus);
 console.log(status);
 ```
 
+Almost all methods of [Gen2+ devices](https://shelly-api-docs.shelly.cloud/gen2/) are present in the current client implementation.
+
 In the following video, we see how easy it is to use the API client 
 
 <video src="converted_file.mp4" width="800" height="600"  controls ></video>
 
 ---
 
-Almost all methods of [Gen2](https://shelly-api-docs.shelly.cloud/gen2/) devices are present in the current client implementation.
+# Demos
+
+There's a [branch with demos](https://github.com/intruder-detection/shelly-api-typescript/tree/demos) for the API client.

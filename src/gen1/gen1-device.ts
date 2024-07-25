@@ -1,5 +1,4 @@
 import axios, { AxiosError } from 'axios';
-import { queryStringify } from '@utils/querystring.utils';
 import { Gen1Endpoints, ShellyEndpoints } from '@gen1/enums/endpoints.enum';
 import { SettingsCloudResponse } from '@gen1/types/gen1/settings-cloud.types';
 import { SettingsLoginRequest, SettingsLoginResponse } from '@gen1/types/gen1/settings-login.types';
@@ -17,6 +16,43 @@ export class Gen1Device {
     private readonly ip: string,
     private readonly id: number = 1,
   ) {}
+
+  /**
+   * Converts a JavaScript object to a URL query string.
+   * @example:
+   *  queryStringify({ a: 1, b: 2 }) // returns 'a=1&b=2'
+   *  queryStringify({ a: 1, b: [2, 3] }) // returns 'a=1&b=2&b=3'
+   *  queryStringify({ a: 1, b: null }) // returns 'a=1'
+   *  queryStringify({ a: 1, b: undefined }) // returns 'a=1'
+   *  queryStringify({ a: 1, b: [null, undefined] }) // returns 'a=1'
+   *  queryStringify({ a: 1, b: [2, null, 3, undefined] }) // returns 'a=1&b=2&b=3'
+   * @param source - The object to convert.
+   * @returns The URL query string.
+   */
+  private static queryStringify(
+    source: Record<string, string | number | boolean | readonly string[] | readonly number[] | readonly boolean[] | null | undefined>,
+  ): string {
+    const urlSearch = new URLSearchParams();
+
+    Object.entries(source).forEach(([key, value]) => {
+      // The behavior of query parameters without a value is actually not well-defined by the URL specification,
+      // so we ignore it
+      if (value === null || value === undefined) {
+        return;
+      }
+      if (value instanceof Array) {
+        for (const innerValue of value) {
+          if (innerValue !== null && innerValue !== undefined) {
+            urlSearch.append(key, innerValue.toString());
+          }
+        }
+        return urlSearch;
+      }
+      return urlSearch.append(key, value.toString());
+    });
+
+    return urlSearch.toString();
+  }
 
   async shelly(): Promise<ShellyResponse> {
     return await this.post(ShellyEndpoints.Shelly);
@@ -93,7 +129,7 @@ export class Gen1Device {
   protected async get<T>(endpoint: Gen1Endpoints, queryParameters?: { [key: string]: any }): Promise<T> {
     try {
       return (
-        await axios.get<T>(`http://${this.ip}/${endpoint}${queryParameters ? `?${queryStringify(queryParameters)}` : ''}`, {
+        await axios.get<T>(`http://${this.ip}/${endpoint}${queryParameters ? `?${Gen1Device.queryStringify(queryParameters)}` : ''}`, {
           timeout: 5000, // TODO: Provide as an environment variable
           transitional: { clarifyTimeoutError: true },
         })

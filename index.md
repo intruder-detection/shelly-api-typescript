@@ -24,4 +24,4 @@ console.log(status);
 
 In the following video, we see how easy it is to use the API client 
 
-<video src="converted_file.mp4" width="800" height="600" controls></video>
+<video src="./docs/converted_file.mp4" width="800" height="600" controls></video>

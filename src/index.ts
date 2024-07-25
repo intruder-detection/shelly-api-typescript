@@ -195,4 +195,3 @@ export * from './helpers/scripts/script.helpers';
 export * from './helpers/shelly/shelly.helpers';
 export * from './helpers/webhooks/webhooks.helpers';
 export * from './helpers/wifi/wifi.helpers';
-export * from './utils/querystring.utils';

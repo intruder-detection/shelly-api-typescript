@@ -5,17 +5,18 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "shelly-blu-gw":  "dotenv -- npx tsx --inspect-brk demos/shelly-blu-gw/setup-shelly-blu-gw-from-scratch.ts",
+    "shelly-blu-gw": "dotenv -- npx tsx --inspect-brk demos/shelly-blu-gw/setup-shelly-blu-gw-from-scratch.ts",
     "connect-any-gen2plus-device-to-provided-wifi": "dotenv -- npx tsx --inspect-brk demos/connect-any-wifi-device-from-scratch.ts"
   },
   "author": "Rui Alves",
   "license": "MIT",
   "dependencies": {
+    "@inquirer/prompts": "^5.3.2",
     "@intruder-detection/shelly-api-typescript": "^0.0.12"
   },
   "devDependencies": {
     "@types/node": "^20.14.2",
-    "tsx": "^4.16.2",
-    "dotenv-cli": "^7.4.1"
+    "dotenv-cli": "^7.4.1",
+    "tsx": "^4.16.2"
   }
 }

@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "shelly-blu-gw": "dotenv -- npx tsx --inspect-brk demos/shelly-blu-gw/setup-shelly-blu-gw-from-scratch.ts",
-    "connect-any-gen2plus-device-to-provided-wifi": "dotenv -- npx tsx --inspect-brk demos/connect-any-wifi-device-from-scratch.ts"
+    "connect-any-gen2plus-device-to-provided-wifi": "dotenv -- npx tsx --inspect-brk demos/connect-any-wifi-device-from-scratch.ts",
+    "update-mqtt": "dotenv -- npx tsx --inspect-brk demos/update-mqtt.ts"
   },
   "author": "Rui Alves",
   "license": "MIT",

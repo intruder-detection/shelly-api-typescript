@@ -17,3 +17,24 @@
     * Waits for the connection from the device to exist
     * Uploads code to process BLU devices data and send it over MQTT
         * `MQTT_SERVER_URL`/`MQTT_TOPIC` should be provided as environment variables
+4. [Update MQTT configuration](./demos/update-mqtt.ts)
+   * Update MQTT configuration 
+   * `MQTT_SERVER_URL`/`MQTT_TOPIC` environment variables must be set
+
+
+Debug any script script with
+
+```bash
+dotenv -- npx tsx --inspect-brk demos/<script_name.ts> 
+```
+
+You can look into the `README.md` for a bunch of examples.
+
+```json
+{
+  "scripts": {
+    "shelly-blu-gw": "dotenv -- npx tsx --inspect-brk demos/shelly-blu-gw/setup-shelly-blu-gw-from-scratch.ts",
+    "update-mqtt": "dotenv -- npx tsx --inspect-brk demos/update-mqtt.ts"
+  }
+}
+```

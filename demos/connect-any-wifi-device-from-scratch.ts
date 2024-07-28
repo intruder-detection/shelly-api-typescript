@@ -86,9 +86,7 @@ async function main() {
 
   console.log(SetConfig);
   if (!SetConfig.error && SetConfig.result) {
-    console.log(`Connected shelly device ${SetConfig.src} to Wi-Fi network ${ssid}. Rebooting to apply configuration`);
-    await new ShellyHelpers(device).reboot();
-    console.log(`To get the most up to date configuration run the following: npx tsx get-device-configuration.ts`);
+    console.log(`Connected shelly device ${SetConfig.src} to Wi-Fi network ${ssid}. \n Connect to the same network, and  to get the most up to date configuration run the following: npx tsx get-device-configuration.ts`);
   } else {
     console.error('Error updating device Wi-Fi network.');
     process.exit(1);

@@ -9,15 +9,17 @@
     | WIFI_SSID                   	| SSID of the WiFi Network to connec to               	                                                      |
     | WIFI_PASSWORD               	| Password of the WiFi Network to connec to           	                                                      |
     | STATIC_IP_FOR_SHELLY_DEVICE 	| Provide the static IP address the Shelly device should use  after connecting to the provided WiFi network	 |
-2. [Get Device configuration by IP](./demos/get-device-configuration.ts)
-   * Given the IP address tries to access the Shelly device and retrieve the configuration and status
-2. [Shelly BLU Gateway setup from scratch](./demos/shelly-blu-gw/setup-shelly-blu-gw-from-scratch.ts)
+2. [Get Device configuration by IP](./demos/get-device-wifi-info.ts)
+   * Given the IP address, it tries to access the Shelly device and retrieve WiFi the configuration and status
+3. [Get Device configuration by IP](./demos/get-device-wifi-info.ts)
+    * Given the IP address, it tries to access the Shelly device and retrieve the Switch configuration and status
+4. [Shelly BLU Gateway setup from scratch](./demos/shelly-blu-gw/setup-shelly-blu-gw-from-scratch.ts)
     * Connects the Shelly BLU GW device to the provided WiFi Network (SSID/Password should be passed as environment
       variables)
     * Waits for the connection from the device to exist
     * Uploads code to process BLU devices data and send it over MQTT
         * `MQTT_SERVER_URL`/`MQTT_TOPIC` should be provided as environment variables
-4. [Update MQTT configuration](./demos/update-mqtt.ts)
+5. [Update MQTT configuration](./demos/update-mqtt.ts)
    * Update MQTT configuration 
    * `MQTT_SERVER_URL`/`MQTT_TOPIC` environment variables must be set
 

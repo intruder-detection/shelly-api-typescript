@@ -1,7 +1,7 @@
 import { input } from '@inquirer/prompts';
 import { ShellyGen2PlusHTTPAPI, WifiHelpers } from '@intruder-detection/shelly-api-typescript';
 
-async function getConfigurationForDevice(): Promise<void> {
+async function getWifiConfigurationForDevice(): Promise<void> {
   const ip = await input({ message: 'Provide Shelly device IP to verify connection', required: true });
   try {
     const device = new ShellyGen2PlusHTTPAPI(ip);
@@ -16,5 +16,5 @@ async function getConfigurationForDevice(): Promise<void> {
 }
 
 while (true) {
-  await getConfigurationForDevice();
+  await getWifiConfigurationForDevice();
 }
